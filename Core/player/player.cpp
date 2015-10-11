@@ -34,11 +34,56 @@ void Player::init()
 			}
 		}
 	}
+
+    //m_prototypes
+    // clear prototype table
+    for(int type = t_FIRST_OBJ; type < NUM_OF_OBJ_TYPES; type++)
+    {
+        for(int res = FIRST_RES; res <= LAST_PARAMETER; res++)
+        {
+            ResPrototype* prot = new ResPrototype();
+            prot->defValue = INVALIDE_VALUE;
+            m_prototypes[type][res] = prot;
+            for(int level = 0; level < MAX_LEVEL; level++)
+            {
+                prot->resorses[level] = nullptr;
+            }
+        }
+    }
 }
 
 void Player::setResLimit(OBJECT_TYPE type, RESOURSES res, int level, int value)
 {
 	m_buildingLimits[type][res][level] = value;
+}
+
+void Player::setResToPrototype(OBJECT_TYPE type, Resourse *res, int level)
+{
+    if(res == nullptr)
+    {
+        qDebug() << "Player::setResPrototype: Error! res is null.";
+        return;
+    }
+
+    if(type < 0 || type >= NUM_OF_OBJ_TYPES)
+    {
+        qDebug() << "Player::setResPrototype: Error! type is wrong! type: " << type;
+        return;
+    }
+
+    if(level < 0 || level > MAX_LEVEL)
+    {
+        qDebug() << "Player::setResPrototype: Error! level is wrong! level: " << level;
+        return;
+    }
+
+    RESOURSES resType = res->type;
+    m_prototypes[type][resType]->resorses[level] = res;
+}
+
+void Player::setDefValue(OBJECT_TYPE type, RESOURSES resType, int defValue)
+{
+    m_prototypes[type][resType]->defValue = defValue;
 }
 
 int Player::getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level)

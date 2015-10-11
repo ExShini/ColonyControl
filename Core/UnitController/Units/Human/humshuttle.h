@@ -26,6 +26,7 @@ protected:
 	Request * m_source;
 	Request * m_target;
 
+    int m_baseID;
 	int m_targetID;
 	int m_sourceID;
 };

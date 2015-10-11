@@ -7,6 +7,13 @@
 #include "Enums/races.h"
 #include "Enums/guisettings.h"
 
+struct ResPrototype
+{
+    int defValue;
+    Resourse* resorses [MAX_LEVEL];
+};
+
+
 class Player
 {
 public:
@@ -32,8 +39,12 @@ public:
 
 protected:
 	void setResLimit(OBJECT_TYPE type, RESOURSES res, int level, int value);
+    void setResToPrototype(OBJECT_TYPE type, Resourse * res, int level);
+    void setDefValue(OBJECT_TYPE type, RESOURSES resType, int defValue);
 
 	int m_buildingLimits[NUM_OF_OBJ_TYPES][NUM_OF_RESOURSES][MAX_LEVEL];
+    ResPrototype* m_prototypes[NUM_OF_OBJ_TYPES][NUM_OF_RESOURSES];
+
 	RequestManager* m_reqManager;
 	BuildManager* m_builManager;
 	AbilityManager* m_abilityManager;

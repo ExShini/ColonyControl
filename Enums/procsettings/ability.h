@@ -1,0 +1,12 @@
+#ifndef ABILITY_H
+#define ABILITY_H
+
+
+enum ABILITIES
+{
+	INVALIDE_ABILITY_TYPE,
+	ION_CANON
+};
+
+#endif // ABILITY_H
+

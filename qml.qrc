@@ -1,0 +1,51 @@
+<RCC>
+    <qresource prefix="/res">
+        <file alias="main.qml">UIDrawer/QML/main.qml</file>
+        <file alias="MapItem.qml">UIDrawer/QML/MapItem.qml</file>
+        <file alias="UnitItem.qml">UIDrawer/QML/UnitItem.qml</file>
+        <file alias="MonitorPanel.qml">UIDrawer/QML/MonitorPanel.qml</file>
+        <file alias="HeaderBar.qml">UIDrawer/QML/HeaderBar.qml</file>
+        <file alias="ResourceCell.qml">UIDrawer/QML/ResourceCell.qml</file>
+        <file alias="SimpleResourceCell.qml">UIDrawer/QML/SimpleResourceCell.qml</file>
+        <file alias="CellMarker.qml">UIDrawer/QML/CellMarker.qml</file>
+        <file alias="GameMenu.qml">UIDrawer/QML/GameMenu.qml</file>
+        <file alias="ResearchMenu.qml">UIDrawer/QML/ResearchMenu.qml</file>
+        <file alias="GlobalResBar.qml">UIDrawer/QML/GlobalResBar.qml</file>
+        <file alias="BuildCell.qml">UIDrawer/QML/BuildCell.qml</file>
+        <file alias="BuildPanel.qml">UIDrawer/QML/BuildPanel.qml</file>
+        <file>UIDrawer/QML/Styles/Styles.qml</file>
+        <file>UIDrawer/QML/Styles/qmldir</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file alias="NoData.png">UIDrawer/Res/NoData.png</file>
+        <file alias="Marker.png">UIDrawer/Res/Marker2.png</file>
+        <file alias="NGround_1B.png">UIDrawer/Res/background/NGround_1B.png</file>
+        <file alias="NGround_2B.png">UIDrawer/Res/background/NGround_2B.png</file>
+        <file alias="NGround_3B.png">UIDrawer/Res/background/NGround_3B.png</file>
+        <file alias="NGround_4B.png">UIDrawer/Res/background/NGround_4B.png</file>
+        <file alias="LavaMount_1.png">UIDrawer/Res/background/Mount.png</file>
+        <file alias="MineralField.png">UIDrawer/Res/background/MineralField.png</file>
+        <file alias="Desert.png">UIDrawer/Res/background/Desert.png</file>
+        <file alias="LavaField.png">UIDrawer/Res/background/LavaField.png</file>
+        <file alias="DeepLava.png">UIDrawer/Res/background/DeepLava.png</file>
+        <file alias="DefBackground.png">UIDrawer/Res/background/DefBackground.png</file>
+        <file alias="HumMarker_Blue.png">UIDrawer/Res/Markers/HumMarker_Blue.png</file>
+        <file alias="HumMarker_Red.png">UIDrawer/Res/Markers/HumMarker_Red.png</file>
+        <file alias="HumTransportCenter_Icon.png">UIDrawer/Res/Icons/HumTransportCenter.png</file>
+        <file alias="DefAbility.png">UIDrawer/Res/AbilityMarkers/DefAbility.png</file>
+        <file alias="KILLLLL.png">UIDrawer/Res/AbilityMarkers/KILLLLL.png</file>
+        <file alias="HumTransportCenter.png">UIDrawer/Res/AbilityMarkers/HumTransportCenter.png</file>
+        <file alias="humanSettlerL0.png">UIDrawer/Res/Buildings/Human/humanSettlerL0.png</file>
+        <file alias="humanSettlerL1.png">UIDrawer/Res/Buildings/Human/humanSettlerL1.png</file>
+        <file alias="humanSettlerL2.png">UIDrawer/Res/Buildings/Human/humanSettlerL2.png</file>
+        <file alias="humanSettlerL3.png">UIDrawer/Res/Buildings/Human/humanSettlerL3.png</file>
+        <file alias="humanSettlerL4.png">UIDrawer/Res/Buildings/Human/humanSettlerL4.png</file>
+        <file alias="humanColonyCenterL0.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL0.png</file>
+        <file alias="humanColonyCenterL1.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL1.png</file>
+        <file alias="humanColonyCenterL2.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL2.png</file>
+        <file alias="humanTransportCenterL0.png">UIDrawer/Res/Buildings/Human/humanTransportCenterL0.png</file>
+        <file alias="PionerL0.png">UIDrawer/Res/Units/Human/PionerL0.png</file>
+        <file alias="IonCanonAbility.png">UIDrawer/Res/Units/Human/IonCanonAbility.png</file>
+        <file alias="IonCanonBullet.png">UIDrawer/Res/Units/Human/IonCanonBullet.png</file>
+    </qresource>
+</RCC>

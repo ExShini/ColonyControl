@@ -1,0 +1,8 @@
+#ifndef CORESETTINGS
+#define CORESETTINGS
+
+#define ONE_SECOND 1000
+#define GAME_STEP_PER_SECOND 20
+
+#endif // CORESETTINGS
+

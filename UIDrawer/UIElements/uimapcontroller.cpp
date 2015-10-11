@@ -1,5 +1,5 @@
 #include "uimapcontroller.h"
-#include "QQmlContext.h"
+#include "QQmlContext"
 #include "QtQml"
 #include "Enums/guisettings.h"
 

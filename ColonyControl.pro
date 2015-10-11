@@ -126,13 +126,15 @@ HEADERS += \
     Core/player/Human/Abilities/ioncanonbullet.h \
     Enums/objstatus.h \
     Core/objectstatecontroller.h \
-    AudioModule/audiocontroller.h
+    AudioModule/audiocontroller.h \
+    Enums/colonycontrol.h
 
 
 
 
 
-### Copy of Qt libraries
+### Copy of Qt libraries for windows OS
+win32{
 QT5_LIBS = $$[QT_INSTALL_PREFIX]/bin/libgcc_s_dw2-1.dll \
            $$[QT_INSTALL_PREFIX]/bin/libwinpthread-1.dll \
            $$[QT_INSTALL_PREFIX]/bin/Qt5Core.dll \
@@ -176,7 +178,8 @@ QT5_LIBSD = $$[QT_INSTALL_PREFIX]/bin/libgcc_s_dw2-1.dll \
            $$[QT_INSTALL_PREFIX]/bin/icuin54.dll \
            $$[QT_INSTALL_PREFIX]/bin/icuuc54.dll
 
-CONFIG(debug, debug|release) {
+
+CONFIG(debug) {
     DEST = debug
     copy_qt5_libs.input = QT5_LIBSD
 } else {
@@ -185,7 +188,9 @@ CONFIG(debug, debug|release) {
 }
 
 
-copy_qt5_libs.input = QT5_LIBS
+#copy_qt5_libs.input = QT5_LIBS
 copy_qt5_libs.output = $${OUT_PWD}/$${DEST}/${QMAKE_FILE_BASE}${QMAKE_FILE_EXT}
 copy_qt5_libs.commands = ${COPY_FILE} ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 QMAKE_EXTRA_COMPILERS += copy_qt5_libs
+}
+

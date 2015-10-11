@@ -144,6 +144,7 @@ int GObject::getResLimit(RESOURSES type)
 /************************************************
  * Func: regResourse
  * Desc: registr new resourse for current GObject
+ * Note: This routine used only for Units! For Building we should use smurt version of regResourse(RESOURSES type) call
  ***********************************************/
 void GObject::regResourse(RESOURSES type, int maxValue, int defValue, bool hard)
 {

@@ -99,6 +99,39 @@ int Player::getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level)
 	return val;
 }
 
+Resourse* Player::getResPrototype(OBJECT_TYPE buildingType, RESOURSES res, int level)
+{
+	ResPrototype* proto = m_prototypes[buildingType][res];
+	if(proto != nullptr)
+	{
+		qDebug() << "Player::getResPrototype : Error!!! proto is null for objType:" << buildingType <<
+					" res:" << res << " level:" << level;
+		return nullptr;
+	}
+
+	Resourse* protoRes = m_prototypes[buildingType][res]->resorses[level];
+
+	if(protoRes == nullptr)
+	{
+		qDebug() << "Player::getResPrototype : Error!!! incorrect proto settings for objType:" << buildingType <<
+					" res:" << res << " level:" << level;
+	}
+
+	return protoRes;
+}
+
+int Player::getResDefaultValue(OBJECT_TYPE buildingType, RESOURSES res)
+{
+	int defValue = INVALIDE_VALUE;
+	ResPrototype* proto = m_prototypes[buildingType][res];
+	if(proto != nullptr)
+	{
+		defValue = m_prototypes[buildingType][res]->defValue;
+	}
+
+	return defValue;
+}
+
 void Player::addRequest(Request *request)
 {
 	m_reqManager->addRequest(request);

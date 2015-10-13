@@ -42,4 +42,6 @@ int Sector::getNaturalResourse(RESOURSES resType)
     {
         qDebug() << "Sector::getNaturalResourse: Error! Bad resType: " << resType;
     }
+
+	return INVALIDE_VALUE;
 }

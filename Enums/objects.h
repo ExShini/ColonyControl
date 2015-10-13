@@ -103,10 +103,10 @@ struct Resourse
     int value;
     int maxValue;
 
-    // hard papameter determine how we should handle overflow of resource
+	// hardLimit papameter determine how we should handle overflow of resource
     // if true - value can not be bigger whan maxValue
     // if false - value can be bigger whan maxValue, but 25% of overlaping will be last
-    bool hard;
+	bool hardLimit;
 
     // determine size of group. Should be setuped via the power of 2 (it uses for optimization)
     int sizeOfGroup;
@@ -116,10 +116,14 @@ struct Resourse
     RESOURSES producebBy;
     // it mean, how mach resourses group (of POPULATION) produce at one step
     int producedForGroup;
+	// some objects is hurd to manufactoring (f.e. Units)
+	// next value determine - how much work is needed for producing 1 unit of resource
+	int complexityOfManufacturing;
+	int currentProgress;	// current work progress
 
     // determine, what resource is used for producing
     RESOURSES material;
-    int costOfMaterial;
+	int costOfMaterial;		// Should be setuped via the power of 2 (it uses for optimization)
     bool naturalMaterial;
 
     // determine, what resource is requared for supply current resource

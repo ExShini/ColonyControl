@@ -18,6 +18,7 @@ public:
 protected:
 	Building(GObjWrapper * wrapper, Sector *sector, int initialStep, int plID);
 	virtual void checkState();
+	virtual void processResource();
 
 	Sector* m_sector;
 	int m_initialStep;

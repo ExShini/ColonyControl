@@ -1,6 +1,7 @@
 #include "building.h"
 #include "Core/gobjwrapper.h"
 #include "Core/objectstatecontroller.h"
+#include "qdebug.h"
 
 
 Building::Building(GObjWrapper *wrapper, Sector* sector, int initialStep, int plID):
@@ -25,6 +26,141 @@ Building::~Building()
 void Building::process(int step)
 {
 	Q_UNUSED(step)
+}
+
+void Building::processResource()
+{
+	// process all registred resourses
+	RESOURSES resType;
+	Resourse resorce;
+
+	// start new iteration
+	resetIteration();
+	while (getNextResource(resType, resorce))
+	{
+		// take current value of material
+		int currentValue = resorce.value;
+
+		// determine - who will be produce this resource and working efficiency of group
+		RESOURSES workerType = resorce.producebBy;
+		int producedForGroup = resorce.producedForGroup;
+
+		Resourse* workerResObj = getResourcesObj(workerType);
+
+		if(workerResObj == nullptr)
+		{
+			qDebug() << "Building::processResource: Error! workerResObj is nullptr";
+			continue;
+		}
+
+		int sizeOfWorkerGroup = workerResObj->sizeOfGroup;
+
+		int workers = workerResObj->value;
+		if(workers == INVALIDE_VALUE)
+		{
+			qDebug() << "Building::processResource: Error! workers = INVALIDE_VALUE";
+			continue;
+		}
+
+		// calculate - how much resourses(works) we can produce at this step
+		int possibleToProduce = (workers >> sizeOfWorkerGroup) * producedForGroup;
+
+		//check resourse storage limit
+		int storageLimit = resorce.maxValue - currentValue;
+		if(possibleToProduce > storageLimit && resorce.hardLimit)
+		{
+			possibleToProduce = storageLimit;
+		}
+
+
+		/* **************************************** */
+		// material part
+		RESOURSES materialType = resorce.material;
+		if(materialType != NO_RES)
+		{
+			// if material is natural resourse - take it from sector
+			int materialStorage = INVALIDE_VALUE;
+			if(resorce.naturalMaterial)
+			{
+				materialStorage = m_sector->getResources(materialType);
+			}
+			else
+			{
+				// if it synthetic - take it from storage
+				materialStorage = getResources(materialType);
+			}
+
+			int sufficientTo = materialStorage >> resorce.costOfMaterial;
+
+			// check - are we have enough resourse?
+			if(possibleToProduce > sufficientTo)
+			{
+				// determine how much we can produce by this material
+				possibleToProduce = sufficientTo;
+			}
+
+			// if material is synthetic - decrease value by used
+			if(!resorce.naturalMaterial)
+			{
+				materialStorage = materialStorage - (possibleToProduce << resorce.costOfMaterial);
+				setResources(materialType, materialStorage);
+			}
+		}
+
+
+
+		/* **************************************** */
+		//produce resource(works)
+		int currWork = resorce.currentProgress + possibleToProduce;
+		int producedResource = currWork / resorce.complexityOfManufacturing;
+		int newCurrentProgress = currWork % resorce.complexityOfManufacturing;
+
+		// setup new value of progress
+		setResProgress(resType, newCurrentProgress);
+
+		int newResValue = currentValue + producedResource;
+
+
+
+		/* **************************************** */
+		// TODO - think about siquence and resourse optimization
+		// supply part
+		if(resorce.requaredRes != NO_RES)
+		{
+			int reqResStorage = getResources(resorce.requaredRes);
+			int numOfResWithSupply = reqResStorage / resorce.consumeRes;
+
+			if(newResValue > numOfResWithSupply)
+			{
+				// 25% of res without supply (overflow) should be destroyed
+				newResValue -= (newResValue - numOfResWithSupply) >> 2;
+				reqResStorage = 0;
+			}
+			else
+			{
+				reqResStorage -= newResValue * resorce.consumeRes;
+			}
+
+			//setup new value of "supply" resourse
+			setResources(resorce.requaredRes, reqResStorage);
+		}
+
+
+		/* **************************************** */
+		// storage limit part
+		if(!resorce.hardLimit)
+		{
+			if(newResValue > resorce.maxValue)
+			{
+				// 25% of res without supply (overflow) should be destroyed
+				newResValue -= (newResValue - resorce.maxValue) >> 2;
+			}
+		}
+
+
+		// Setup new value of produced resource
+		setResources(resType, newResValue);
+	}
 }
 
 void Building::checkState()

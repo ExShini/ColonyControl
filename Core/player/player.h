@@ -23,6 +23,8 @@ public:
 
 	virtual void init();
 	virtual int getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level);
+	virtual Resourse* getResPrototype(OBJECT_TYPE buildingType, RESOURSES res, int level);
+	virtual int getResDefaultValue(OBJECT_TYPE buildingType, RESOURSES res);
 
 	void addRequest(Request* request);
 	Request* getRequest(RESOURSES resType, REQ_TYPE reqType, int mapX, int mapY);

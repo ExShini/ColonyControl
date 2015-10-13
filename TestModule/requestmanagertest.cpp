@@ -3,9 +3,38 @@
 #include "Core/gobject.h"
 #include "qdebug.h"
 
-RequestManagerTest::RequestManagerTest()
+RequestManagerTest::RequestManagerTest():
+	TestCase("RequestManagerTest")
 {
+	m_numOfTests = 4;
+}
 
+void RequestManagerTest::executeTest(int testNumber)
+{
+	TestCase::executeTest(testNumber);
+	bool res = false;
+
+	switch (testNumber) {
+	case 0:
+		res = executeT1();
+		break;
+	case 1:
+		res = executeT2();
+		break;
+	case 2:
+		res = executeT3();
+		break;
+	case 3:
+		res = executeT4();
+		break;
+	default:
+		break;
+	}
+
+	if(res)
+		qDebug() << "Test is done";
+	else
+		qDebug() << "Test is faled";
 }
 
 bool RequestManagerTest::executeT1()

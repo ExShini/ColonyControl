@@ -71,7 +71,7 @@ int GObject::setResources(RESOURSES type, int value)
 
         Resourse* res = m_resources[type];
 
-		if(value > res->maxValue && res->hard)
+		if(value > res->maxValue && res->hardLimit)
 		{
 			res->value = res->maxValue;
 			overflow = 0;
@@ -88,6 +88,19 @@ int GObject::setResources(RESOURSES type, int value)
     }
 
 	return overflow;
+}
+
+/************************************************
+ * Func: setResProgress
+ * Desc: setup current resourse's progress value
+ ***********************************************/
+void GObject::setResProgress(RESOURSES type, int progValue)
+{
+	if(m_resources.keys().contains(type))
+	{
+		Resourse* res = m_resources[type];
+		res->currentProgress = progValue;
+	}
 }
 
 /************************************************
@@ -128,6 +141,20 @@ int GObject::getResources(RESOURSES type)
 }
 
 /************************************************
+ * Func: getResources
+ * Desc: return current value for resorse
+ ***********************************************/
+Resourse* GObject::getResourcesObj(RESOURSES type)
+{
+	if(m_resources.keys().contains(type))
+	{
+		return m_resources[type];
+	}
+
+	return nullptr;
+}
+
+/************************************************
  * Func: getResLimit
  * Desc: return current limit value for resorse
  ***********************************************/
@@ -154,7 +181,7 @@ void GObject::regResourse(RESOURSES type, int maxValue, int defValue, bool hard)
         res->type = type;
         res->maxValue = maxValue;
         res->value = defValue;
-		res->hard = hard;
+		res->hardLimit = hard;
         m_resources[type] = res;
 
 		m_requestMap[type] = nullptr;
@@ -177,9 +204,9 @@ void GObject::regResourse(RESOURSES type)
 		Player* player = PlayerController::getInstance()->getPlayer(m_playerID);
 
 		Resourse* res = new Resourse();
-		res->type = type;
-		res->maxValue = player->getResLimit(m_type, type, 0);
-
+		Resourse* proto = player->getResPrototype(m_type, type, 0);
+		memcpy(res, proto, sizeof(Resourse));
+		res->value = player->getResDefaultValue(m_type, type);
 
 		m_resources[type] = res;
 		m_requestMap[type] = nullptr;

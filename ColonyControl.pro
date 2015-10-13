@@ -53,7 +53,8 @@ SOURCES += main.cpp \
     Core/UnitController/Units/bullet.cpp \
     Core/player/Human/Abilities/ioncanonbullet.cpp \
     Core/objectstatecontroller.cpp \
-    AudioModule/audiocontroller.cpp
+    AudioModule/audiocontroller.cpp \
+    TestModule/testcase.cpp
 
 RESOURCES += qml.qrc
 
@@ -127,7 +128,8 @@ HEADERS += \
     Enums/objstatus.h \
     Core/objectstatecontroller.h \
     AudioModule/audiocontroller.h \
-    Enums/colonycontrol.h
+    Enums/colonycontrol.h \
+    TestModule/testcase.h
 
 
 

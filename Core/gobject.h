@@ -32,7 +32,9 @@ public:
 	virtual void process(int step) { Q_UNUSED(step) /* do nothing */ }
 
 	int setResources(RESOURSES type, int value);
+	void setResProgress(RESOURSES type, int progValue);
 	int getResources(RESOURSES type);
+	Resourse* getResourcesObj(RESOURSES type);
 	void setResLimit(RESOURSES type, int value);
 	int getResLimit(RESOURSES type);
 

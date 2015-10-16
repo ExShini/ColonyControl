@@ -23,10 +23,12 @@ public:
 
     void process(int step);
 	void finalizeStep();
+
 	Building* buildObj(OBJECT_TYPE type, int x, int y, int population, int playerID);
 	Building* updateObj(OBJECT_TYPE type, int x, int y, int playerID);
 	Sector* getSector(int mapX, int mapY);
 	Building* getBuilding(int mapX, int mapY);
+
 	void addBuildingFactory(BuildingFactory* buildFactory, int plID);
 	void getFocus(int & x, int & y);
 

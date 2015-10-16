@@ -124,3 +124,120 @@ void HumanPlayer::setAllHumanLimits()
 	setResLimit(t_HUMAN_TRANSPORT_CENTER, SHIPS, 1, HUM_TRANSPORT_CENTER_SHIPS_LIM_1);
 	setResLimit(t_HUMAN_TRANSPORT_CENTER, SHIPS, 2, HUM_TRANSPORT_CENTER_SHIPS_LIM_2);
 }
+
+
+void HumanPlayer::setupHumanResPrototypes()
+{
+	// prepare common res prototype
+
+	/******************************************/
+	// m_populationProtoRes
+
+	m_populationProtoRes = new Resourse();
+	m_populationProtoRes->type = POPULATION;
+	m_populationProtoRes->value = 0;
+	// next value should be specified for each of building separetly
+	m_populationProtoRes->maxValue = INVALIDE_VALUE;
+	m_populationProtoRes->hardLimit = false;
+	m_populationProtoRes->sizeOfGroup = GROUP_FROM_16;
+	m_populationProtoRes->producebBy = POPULATION;
+	m_populationProtoRes->producedForGroup = 1;
+
+	// manufacturing for hard res
+	m_populationProtoRes->complexityOfManufacturing = 1;
+	m_populationProtoRes->currentProgress = 0;
+
+	// material
+	m_populationProtoRes->material = NO_RES;
+	m_populationProtoRes->naturalMaterial = false;
+	m_populationProtoRes->costOfMaterial = 0;
+
+	//req resourse
+	m_populationProtoRes->requaredRes = SUPPLY;
+	m_populationProtoRes->consumeRes = 1;
+
+	// export
+	m_populationProtoRes->exportable = true;
+	m_populationProtoRes->exportLimit = PERCENT_25;
+
+	// import
+	m_populationProtoRes->importable = true;
+	m_populationProtoRes->importLimit = PERCENT_12a5;
+
+	m_populationProtoRes->displayble = true;
+
+
+
+	/******************************************/
+	//m_supplyPropoRes
+
+	m_supplyPropoRes = new Resourse();
+	m_supplyPropoRes->type = SUPPLY;
+	m_supplyPropoRes->value = 0;
+	// next value should be specified for each of building separetly
+	m_supplyPropoRes->maxValue = INVALIDE_VALUE;
+	m_supplyPropoRes->hardLimit = false;
+	m_supplyPropoRes->sizeOfGroup = GROUP_FROM_4;
+	m_supplyPropoRes->producebBy = POPULATION;
+	m_supplyPropoRes->producedForGroup = 19;
+
+	// manufacturing for hard res
+	m_supplyPropoRes->complexityOfManufacturing = 1;
+	m_supplyPropoRes->currentProgress = 0;
+
+	// material
+	m_supplyPropoRes->material = FERTILITY;
+	m_supplyPropoRes->naturalMaterial = true;
+	m_supplyPropoRes->costOfMaterial = 0;
+
+	//req resourse
+	m_supplyPropoRes->requaredRes = NO_RES;
+	m_supplyPropoRes->consumeRes = 0;
+
+	// export
+	m_supplyPropoRes->exportable = true;
+	m_supplyPropoRes->exportLimit = PERCENT_25;
+
+	// import
+	m_supplyPropoRes->importable = false;
+	m_supplyPropoRes->importLimit = PERCENT_25;
+
+	m_supplyPropoRes->displayble = true;
+
+
+	/******************************************/
+	//m_transportShuttle
+
+	m_transportShuttle = new Resourse();
+	m_transportShuttle->type = SHIPS;
+	m_transportShuttle->value = 0;
+	// next value should be specified for each of building separetly
+	m_transportShuttle->maxValue = INVALIDE_VALUE;
+	m_transportShuttle->hardLimit = false;
+	m_transportShuttle->sizeOfGroup = GROUP_FROM_1;
+	m_transportShuttle->producebBy = POPULATION;
+	m_transportShuttle->producedForGroup = 1;
+
+	// manufacturing for hard res
+	m_transportShuttle->complexityOfManufacturing = 2000;
+	m_transportShuttle->currentProgress = 0;
+
+	// material
+	m_transportShuttle->material = NO_RES;
+	m_transportShuttle->naturalMaterial = false;
+	m_transportShuttle->costOfMaterial = 0;
+
+	//req resourse
+	m_transportShuttle->requaredRes = NO_RES;
+	m_transportShuttle->consumeRes = 0;
+
+	// export
+	m_transportShuttle->exportable = true;
+	m_transportShuttle->exportLimit = PERCENT_25;
+
+	// import
+	m_transportShuttle->importable = false;
+	m_transportShuttle->importLimit = PERCENT_25;
+
+	m_transportShuttle->displayble = true;
+}

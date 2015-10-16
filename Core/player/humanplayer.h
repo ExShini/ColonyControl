@@ -14,8 +14,14 @@ public:
 
 protected:
 	void setAllHumanLimits();
+	void setupHumanResPrototypes();
 	HumanUnitFactory* m_unitFactory;
 	HumanBuildingFactory* m_buildingFactory;
+
+
+	Resourse* m_supplyPropoRes;
+	Resourse* m_populationProtoRes;
+	Resourse* m_transportShuttle;
 
 
 };

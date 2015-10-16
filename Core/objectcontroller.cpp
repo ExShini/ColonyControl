@@ -120,6 +120,8 @@ void ObjectController::init()
  ***********************************************/
 void ObjectController::setupNewGame()
 {
+	m_buildings.clearAll();
+	m_objectID = 0;
 
 	Map* map = m_mapGenerator->generateMap();
 
@@ -133,8 +135,7 @@ void ObjectController::setupNewGame()
 	}
 
 	// clear buildings
-	m_buildings.clearAll();
-	m_objectID = 0;
+
 }
 
 

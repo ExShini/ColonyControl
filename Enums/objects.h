@@ -1,5 +1,6 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
+#include <iostream>
 
 #define INVALIDE_VALUE -1
 #define IT_DOES_NOT_METTER -2
@@ -8,6 +9,7 @@
 #define SCIENSE_POSITION -2
 #define MAIN_RACE_RES_POSITION -3
 
+#define PERCENT_100 0
 #define PERCENT_50 1
 #define PERCENT_25 2
 #define PERCENT_12a5 3
@@ -109,6 +111,13 @@ enum REQ_TYPE
 // RES container
 struct Resourse
 {
+
+	Resourse(){}
+	Resourse(Resourse* res)
+	{
+		memcpy(this, res, sizeof(Resourse));
+	}
+
     RESOURSES type;
 
     // value and top limet of resourse

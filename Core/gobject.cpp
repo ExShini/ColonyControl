@@ -18,7 +18,6 @@ GObject::GObject(GObjWrapper * wrapper):
 	m_requestMap(),
 	m_playerID(INVALIDE_VALUE)
 {
-
 }
 
 

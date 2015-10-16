@@ -82,7 +82,7 @@ void Building::processResource()
 			int materialStorage = INVALIDE_VALUE;
 			if(resorce.naturalMaterial)
 			{
-				materialStorage = m_sector->getResources(materialType);
+				materialStorage = m_sector->getNaturalResourse(materialType);
 			}
 			else
 			{

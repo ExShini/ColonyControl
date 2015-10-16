@@ -96,6 +96,9 @@ void TestBuilding::setup1Env()
 
 	population->displayble = true;
 	m_resources[population->type] = population;
+
+	// sector settings
+	m_sector->setFertility(1000);
 }
 
 void TestBuilding::setup2Env()

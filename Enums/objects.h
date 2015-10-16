@@ -13,6 +13,13 @@
 #define PERCENT_12a5 3
 #define PERCENT_6a25 4
 
+#define GROUP_FROM_32 5
+#define GROUP_FROM_16 4
+#define GROUP_FROM_8 3
+#define GROUP_FROM_4 2
+#define GROUP_FROM_2 1
+#define GROUP_FROM_1 0
+
 enum OBJECT_TYPE
 {
     INVALID_OBJ_TYPE = - 1,

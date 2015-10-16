@@ -9,6 +9,5 @@ TestCase::TestCase(QString name):
 
 void TestCase::executeTest(int testNumber)
 {
-	QString message = "Test Case: " + m_name + " test #" + QString::number(testNumber);
-	qDebug() << message;
+	qDebug() << "Test Case: " << m_name << " test #" << QString::number(testNumber);
 }

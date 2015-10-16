@@ -125,6 +125,8 @@ void Building::processResource()
 		/* **************************************** */
 		// TODO - think about siquence and resourse optimization
 		// supply part
+		bool reqResIsEnough = true;
+
 		if(resorce.requaredRes != NO_RES)
 		{
 			int reqResStorage = getResources(resorce.requaredRes);
@@ -135,6 +137,7 @@ void Building::processResource()
 				// 25% of res without supply (overflow) should be destroyed
 				newResValue -= (newResValue - numOfResWithSupply) >> 2;
 				reqResStorage = 0;
+				reqResIsEnough = false;
 			}
 			else
 			{
@@ -160,8 +163,155 @@ void Building::processResource()
 
 		// Setup new value of produced resource
 		setResources(resType, newResValue);
+
+		// check import
+		if(resorce.importable && reqResIsEnough)
+		{
+			int limit = resorce.maxValue;
+			int lowLimit = limit >> resorce.importLimit;	// take low limit
+
+			if(lowLimit > newResValue)
+			{
+				setNewRequestToMap(CONSUME, resType, lowLimit - newResValue);
+			}
+		}
+
+		// check export
+		if(resorce.importable && reqResIsEnough)
+		{
+			int limit = resorce.maxValue;
+			int topLimit = limit - (limit >> resorce.importLimit);	// take top limit
+
+			if(topLimit < newResValue)
+			{
+				setNewRequestToMap(PROVIDE, resType, newResValue - topLimit);
+			}
+		}
 	}
 }
+
+void Building::setNewRequestToMap(REQ_TYPE reqType, RESOURSES resType, int value)
+{
+	// TODO
+	Request * req = m_requestMap[resType];
+
+	if(value > 0)
+	{
+		if(req == nullptr)
+		{
+			req = new Request();
+			req->resType = resType;
+			req->status = AWAITS;
+			req->subject = this;
+			req->type = reqType;
+			req->value = value;
+
+			m_requestMap[resType] = req;
+		}
+
+		if(req->type != reqType)
+		{
+			qDebug() << "setNewRequestToMap: Change req-direction at x:" << getMapX() << " y:" << getMapY();
+
+			// set NOT_ACTUAL for previus request
+			req->status = NOT_ACTUAL;
+			req->value = 0;
+
+			//create new request
+			req = new Request();
+			req->resType = resType;
+			req->status = AWAITS;
+			req->subject = this;
+			req->type = reqType;
+			req->value = value;
+			m_requestMap[resType] = req;
+		}
+
+
+		if(req->value < value)
+		{
+			req->value = value;
+		}
+
+		//register request if it needed
+		if(req->value >= MIN_RES_TO_MOVE && !req->registred)
+		{
+			m_player->addRequest(req);
+		}
+	}
+}
+
+
+
+//************************************/
+///*************************************
+//FUNC: popLimitEmigration()
+//DESC: Add emigration request (if it needed) and increase number of colonists
+//*************************************/
+//void HumSettlers::popLimitEmigration()
+//{
+//	int population = getResources(POPULATION);
+//	int populationLimit = getResLimit(POPULATION);
+
+
+//	Request * req = m_requestMap[POPULATION];
+
+//	int col = population - populationLimit;
+
+//	// take 25% of population - it is top limit for emigration
+//	int pop25persent = (population >> 2);
+
+//	if(col > pop25persent)
+//	{
+//		col = pop25persent;
+//	}
+
+//	if(col > 0)
+//	{
+//		if(req == nullptr)
+//		{
+//			req = new Request();
+//			req->resType = POPULATION;
+//			req->status = AWAITS;
+//			req->subject = this;
+//			req->type = PROVIDE;
+//			req->value = col;
+
+//			m_requestMap[POPULATION] = req;
+//		}
+
+//		if(req->type == CONSUME)
+//		{
+//			qDebug() << "popLimitEmigration: Change req-direction at x:" << getMapX() << " y:" << getMapY();
+
+//			// set NOT_ACTUAL for previus request
+//			req->status = NOT_ACTUAL;
+//			req->value = 0;
+
+//			//create new request
+//			req = new Request();
+//			req->resType = POPULATION;
+//			req->status = AWAITS;
+//			req->subject = this;
+//			req->type = PROVIDE;
+//			req->value = col;
+//			m_requestMap[POPULATION] = req;
+//		}
+
+//		if(req->value < col)
+//		{
+//			req->value = col;
+//		}
+
+//		//register request if it needed
+//		if(req->value >= MIN_HUMAN_TO_MOVE && !req->registred)
+//		{
+//			m_player->addRequest(req);
+//		}
+//	}
+//}
+///************************************
+
 
 void Building::checkState()
 {

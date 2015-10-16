@@ -9,7 +9,7 @@
 
 
 #define MIN_HUMAN_TO_MOVE 100	// TODO: should be changed to dependency by shuttle
-
+#define MIN_RES_TO_MOVE 100	// TODO: should be changed to dependency by shuttle
 
 /******************************************
  *				HUM_SETTLERS

@@ -8,6 +8,11 @@
 #define SCIENSE_POSITION -2
 #define MAIN_RACE_RES_POSITION -3
 
+#define PERCENT_50 1
+#define PERCENT_25 2
+#define PERCENT_12a5 3
+#define PERCENT_6a25 4
+
 enum OBJECT_TYPE
 {
     INVALID_OBJ_TYPE = - 1,
@@ -130,6 +135,14 @@ struct Resourse
     // for ex. POPULATION spend SYPPLY res
     RESOURSES requaredRes;
     int consumeRes;
+
+	// determine, can resourse be imported
+	bool importable;
+	int importLimit;	// determine res low-limit for import
+
+	// determine, can resourse be exported
+	bool exportable;
+	int exportLimit;	// determine res low-limit for export
 
     // determine - should it be displayed in HUD
     bool displayble;

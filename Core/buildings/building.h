@@ -19,6 +19,7 @@ protected:
 	Building(GObjWrapper * wrapper, Sector *sector, int initialStep, int plID);
 	virtual void checkState();
 	virtual void processResource();
+	virtual void setNewRequestToMap(REQ_TYPE reqType, RESOURSES resType, int value);
 
 	Sector* m_sector;
 	int m_initialStep;

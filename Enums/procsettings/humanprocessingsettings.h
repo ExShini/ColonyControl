@@ -2,7 +2,7 @@
 #define HUMANPROCESSINGSETTINGS
 
 //human settlement settings:
-#define HUMAN_MAX_SETTLEMENT_LEVEL 4 //9    //lower level = 0, top = 9, number of levels = 10
+#define HUMAN_MAX_SETTLEMENT_LEVEL 9 //9    //lower level = 0, top = 9, number of levels = 10
 #define HUMAN_MAX_COLONY_CENTER_LEVEL 3
 #define HUMAN_MAX_TRANSPORT_CENTER_LEVEL 2
 

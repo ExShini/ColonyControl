@@ -137,7 +137,6 @@ ApplicationWindow {
 
         onStopped:
         {
-            console.log("player");
             playMusic.source = AudioController.getNextTrack();
             playMusic.play();
         }

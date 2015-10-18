@@ -55,6 +55,8 @@ void Player::init()
 void Player::setResLimit(OBJECT_TYPE type, RESOURSES res, int level, int value)
 {
 	m_buildingLimits[type][res][level] = value;
+
+	m_prototypes[type][res]->resorses[level]->maxValue = value;
 }
 
 void Player::setResToPrototype(OBJECT_TYPE type, Resourse *res, int level)
@@ -77,8 +79,16 @@ void Player::setResToPrototype(OBJECT_TYPE type, Resourse *res, int level)
         return;
     }
 
-    RESOURSES resType = res->type;
-    m_prototypes[type][resType]->resorses[level] = res;
+	Resourse* resToSet = new Resourse(res);
+	RESOURSES resType = resToSet->type;
+
+	if(resType < FIRST_RES || resType > NUM_OF_RESOURSES)
+	{
+		qDebug() << "Player::setResPrototype: resType is wrong! resType: " << resType;
+		return;
+	}
+
+	m_prototypes[type][resType]->resorses[level] = resToSet;
 }
 
 void Player::setDefValue(OBJECT_TYPE type, RESOURSES resType, int defValue)

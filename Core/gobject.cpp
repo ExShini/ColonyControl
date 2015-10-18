@@ -202,9 +202,8 @@ void GObject::regResourse(RESOURSES type)
 	{
 		Player* player = PlayerController::getInstance()->getPlayer(m_playerID);
 
-		Resourse* res = new Resourse();
 		Resourse* proto = player->getResPrototype(m_type, type, 0);
-		memcpy(res, proto, sizeof(Resourse));
+		Resourse* res = new Resourse(proto);
 		res->value = player->getResDefaultValue(m_type, type);
 
 		m_resources[type] = res;

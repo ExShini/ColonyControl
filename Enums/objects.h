@@ -22,6 +22,14 @@
 #define GROUP_FROM_2 1
 #define GROUP_FROM_1 0
 
+#define MATERIAL_COST_1 0
+#define MATERIAL_COST_2 1
+#define MATERIAL_COST_4 2
+#define MATERIAL_COST_8 3
+#define MATERIAL_COST_16 4
+#define MATERIAL_COST_32 5
+#define MATERIAL_COST_64 6
+
 enum OBJECT_TYPE
 {
     INVALID_OBJ_TYPE = - 1,
@@ -151,6 +159,7 @@ struct Resourse
     // for ex. POPULATION spend SYPPLY res
     RESOURSES requaredRes;
     int consumeRes;
+	bool hardRequirement;	// determine - should it be destroyed if req-res is not enough
 
 	// determine, can resourse be imported
 	bool importable;

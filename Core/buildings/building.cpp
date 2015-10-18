@@ -40,30 +40,38 @@ void Building::processResource()
 	{
 		// take current value of material
 		int currentValue = resorce.value;
+		int possibleToProduce = 0;
 
 		// determine - who will be produce this resource and working efficiency of group
 		RESOURSES workerType = resorce.producebBy;
-		int producedForGroup = resorce.producedForGroup;
 
-		Resourse* workerResObj = getResourcesObj(workerType);
-
-		if(workerResObj == nullptr)
+		// check - should we produce current resource here
+		if(workerType != NO_RES)
 		{
-			qDebug() << "Building::processResource: Error! workerResObj is nullptr";
-			continue;
+			int producedForGroup = resorce.producedForGroup;
+
+			Resourse* workerResObj = getResourcesObj(workerType);
+
+			if(workerResObj == nullptr)
+			{
+				qDebug() << "Building::processResource: Error! workerResObj is nullptr";
+				continue;
+			}
+
+			int sizeOfWorkerGroup = workerResObj->sizeOfGroup;
+
+			int workers = workerResObj->value;
+			if(workers == INVALIDE_VALUE)
+			{
+				qDebug() << "Building::processResource: Error! workers = INVALIDE_VALUE";
+				continue;
+			}
+
+			// calculate - how much resourses(works) we can produce at this step
+			possibleToProduce = (workers >> sizeOfWorkerGroup) * producedForGroup;
 		}
 
-		int sizeOfWorkerGroup = workerResObj->sizeOfGroup;
 
-		int workers = workerResObj->value;
-		if(workers == INVALIDE_VALUE)
-		{
-			qDebug() << "Building::processResource: Error! workers = INVALIDE_VALUE";
-			continue;
-		}
-
-		// calculate - how much resourses(works) we can produce at this step
-		int possibleToProduce = (workers >> sizeOfWorkerGroup) * producedForGroup;
 
 		//check resourse storage limit
 		int storageLimit = resorce.maxValue - currentValue;
@@ -126,18 +134,32 @@ void Building::processResource()
 		// TODO - think about siquence and resourse optimization
 		// supply part
 		bool reqResIsEnough = true;
+		int resWithoutSupply = 0;
 
 		if(resorce.requaredRes != NO_RES)
 		{
+			if(resorce.consumeRes == 0)
+			{
+				qDebug() << "Building::processResource: Error! resorce.consumeRes is 0!!! for res: " << resorce.type;
+				return;
+			}
+
 			int reqResStorage = getResources(resorce.requaredRes);
 			int numOfResWithSupply = reqResStorage / resorce.consumeRes;
 
 			if(newResValue > numOfResWithSupply)
 			{
-				// 25% of res without supply (overflow) should be destroyed
-				newResValue -= (newResValue - numOfResWithSupply) >> 2;
+				if(resorce.hardRequirement)
+				{
+					// 25% of res without supply (overflow) should be destroyed
+					resWithoutSupply = newResValue - numOfResWithSupply;
+					int resToDestroy = resWithoutSupply >> 2;
+					newResValue -= resToDestroy;
+					resWithoutSupply -= resToDestroy;
+				}
 				reqResStorage = 0;
 				reqResIsEnough = false;
+
 			}
 			else
 			{
@@ -156,7 +178,9 @@ void Building::processResource()
 			if(newResValue > resorce.maxValue)
 			{
 				// 25% of res without supply (overflow) should be destroyed
-				newResValue -= (newResValue - resorce.maxValue) >> 2;
+				int resToDestroy = (newResValue - resorce.maxValue) >> 2;
+				newResValue -= resToDestroy;
+				resWithoutSupply -= resToDestroy;
 			}
 		}
 
@@ -177,14 +201,16 @@ void Building::processResource()
 		}
 
 		// check export
-		if(resorce.importable && reqResIsEnough)
+		if(resorce.exportable)
 		{
 			int limit = resorce.maxValue;
-			int topLimit = limit - (limit >> resorce.importLimit);	// take top limit
+			int topLimit = limit - (limit >> resorce.exportLimit);	// take top limit
 
-			if(topLimit < newResValue)
+			if(topLimit < newResValue || resWithoutSupply > 0)
 			{
-				setNewRequestToMap(PROVIDE, resType, newResValue - topLimit);
+				int extraRes = newResValue - topLimit;
+				int resToExport = resWithoutSupply > extraRes ? resWithoutSupply: extraRes;
+				setNewRequestToMap(PROVIDE, resType, resToExport);
 			}
 		}
 	}

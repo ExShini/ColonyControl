@@ -23,7 +23,7 @@ protected:
 
 
 	// human prototypes
-	Resourse* m_supplyPropoRes;
+	Resourse* m_supplyProtoRes;
 	Resourse* m_populationProtoRes;
 	Resourse* m_transportShuttle;
 	Resourse* m_infrastructure[MAX_LEVEL];

@@ -23,8 +23,8 @@ protected:
 	void processUnits();
 	void scanSectors();
 
-	int m_building;
 	QList<HumShuttle*> m_pionersInBase;
+	QList<HumShuttle*> m_pioners;
 	EmptySectorRadar* radar;
 };
 

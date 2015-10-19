@@ -196,6 +196,8 @@ void HumShuttle::buildSettlement()
 		delete m_target;
 		m_target = nullptr;
 
+		// sends first supply package - just small present for first step :)
+		building->setResources(SUPPLY, population);
 		setResources(POPULATION, 0);
 	}
 	else

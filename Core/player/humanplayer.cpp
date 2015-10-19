@@ -138,20 +138,22 @@ void HumanPlayer::setupHumanResPrototypes()
 	for(int level = 0; level <= HUMAN_MAX_COLONY_CENTER_LEVEL; level++)
 	{
 		setResToPrototype(t_HUMAN_COLONY_CENTER, m_populationProtoRes, level);
-		setResToPrototype(t_HUMAN_COLONY_CENTER, m_supplyPropoRes, level);
+		setResToPrototype(t_HUMAN_COLONY_CENTER, m_supplyProtoRes, level);
 		setResToPrototype(t_HUMAN_COLONY_CENTER, m_transportShuttle, level);
 		setResToPrototype(t_HUMAN_COLONY_CENTER, m_infrastructure[level], level);
 	}
 	setResToPrototype(t_HUMAN_COLONY_CENTER,
 					  m_infrastructure[HUMAN_MAX_COLONY_CENTER_LEVEL + 1],
 					  HUMAN_MAX_COLONY_CENTER_LEVEL + 1);
+	// setup default value
+	setDefValue(t_HUMAN_COLONY_CENTER, SHIPS, 1);
 
 
 	// HUMAN_SETTLERS
 	for(int level = 0; level <= HUMAN_MAX_SETTLEMENT_LEVEL; level++)
 	{
 		setResToPrototype(t_HUMAN_SETTLERS, m_populationProtoRes, level);
-		setResToPrototype(t_HUMAN_SETTLERS, m_supplyPropoRes, level);
+		setResToPrototype(t_HUMAN_SETTLERS, m_supplyProtoRes, level);
 		setResToPrototype(t_HUMAN_SETTLERS, m_infrastructure[level], level);
 	}
 	setResToPrototype(t_HUMAN_SETTLERS,
@@ -163,7 +165,7 @@ void HumanPlayer::setupHumanResPrototypes()
 	for(int level = 0; level <= HUMAN_MAX_TRANSPORT_CENTER_LEVEL; level++)
 	{
 		setResToPrototype(t_HUMAN_TRANSPORT_CENTER, m_populationProtoRes, level);
-		setResToPrototype(t_HUMAN_TRANSPORT_CENTER, m_supplyPropoRes, level);
+		setResToPrototype(t_HUMAN_TRANSPORT_CENTER, m_supplyProtoRes, level);
 		setResToPrototype(t_HUMAN_TRANSPORT_CENTER, m_infrastructure[level], level);
 		setResToPrototype(t_HUMAN_TRANSPORT_CENTER, m_transportShuttle, level);
 	}
@@ -216,41 +218,41 @@ void HumanPlayer::prepareHumanResPrototypes()
 	}
 
 	/******************************************/
-	//m_supplyPropoRes
+	//m_supplyProtoRes
 	{
-		m_supplyPropoRes = new Resourse();
-		m_supplyPropoRes->type = SUPPLY;
-		m_supplyPropoRes->value = 0;
+		m_supplyProtoRes = new Resourse();
+		m_supplyProtoRes->type = SUPPLY;
+		m_supplyProtoRes->value = 0;
 		// next value should be specified for each of building separetly
-		m_supplyPropoRes->maxValue = INVALIDE_VALUE;
-		m_supplyPropoRes->hardLimit = true;
-		m_supplyPropoRes->sizeOfGroup = GROUP_FROM_4;
-		m_supplyPropoRes->producebBy = POPULATION;
-		m_supplyPropoRes->producedForGroup = 19;
+		m_supplyProtoRes->maxValue = INVALIDE_VALUE;
+		m_supplyProtoRes->hardLimit = true;
+		m_supplyProtoRes->sizeOfGroup = GROUP_FROM_4;
+		m_supplyProtoRes->producebBy = POPULATION;
+		m_supplyProtoRes->producedForGroup = 19;
 
 		// manufacturing for hard res
-		m_supplyPropoRes->complexityOfManufacturing = 1;
-		m_supplyPropoRes->currentProgress = 0;
+		m_supplyProtoRes->complexityOfManufacturing = 1;
+		m_supplyProtoRes->currentProgress = 0;
 
 		// material
-		m_supplyPropoRes->material = FERTILITY;
-		m_supplyPropoRes->naturalMaterial = true;
-		m_supplyPropoRes->costOfMaterial = 0;
+		m_supplyProtoRes->material = FERTILITY;
+		m_supplyProtoRes->naturalMaterial = true;
+		m_supplyProtoRes->costOfMaterial = 0;
 
 		//req resourse
-		m_supplyPropoRes->requaredRes = NO_RES;
-		m_supplyPropoRes->consumeRes = 0;
-		m_supplyPropoRes->hardRequirement = false;
+		m_supplyProtoRes->requaredRes = NO_RES;
+		m_supplyProtoRes->consumeRes = 0;
+		m_supplyProtoRes->hardRequirement = false;
 
 		// export
-		m_supplyPropoRes->exportable = true;
-		m_supplyPropoRes->exportLimit = PERCENT_25;
+		m_supplyProtoRes->exportable = true;
+		m_supplyProtoRes->exportLimit = PERCENT_25;
 
 		// import
-		m_supplyPropoRes->importable = false;
-		m_supplyPropoRes->importLimit = PERCENT_25;
+		m_supplyProtoRes->importable = false;
+		m_supplyProtoRes->importLimit = PERCENT_25;
 
-		m_supplyPropoRes->displayble = true;
+		m_supplyProtoRes->displayble = true;
 	}
 
 	/******************************************/
@@ -303,7 +305,7 @@ void HumanPlayer::prepareHumanResPrototypes()
 		infrastr->hardLimit = true;
 		infrastr->sizeOfGroup = GROUP_FROM_8;
 		infrastr->producebBy = POPULATION;
-		infrastr->producedForGroup = 16;
+		infrastr->producedForGroup = 1;
 
 		// manufacturing for hard res
 		infrastr->complexityOfManufacturing = 1;
@@ -334,57 +336,57 @@ void HumanPlayer::prepareHumanResPrototypes()
 
 		// 1 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->producedForGroup = 8;
+		infrastr->complexityOfManufacturing = 2;
 		m_infrastructure[1] = infrastr;
 
 		// 2 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->producedForGroup = 4;
+		infrastr->complexityOfManufacturing = 4;
 		m_infrastructure[2] = infrastr;
 
 		// 3 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->producedForGroup = 2;
+		infrastr->complexityOfManufacturing = 8;
 		m_infrastructure[3] = infrastr;
 
 		// 4 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->producedForGroup = 1;
+		infrastr->complexityOfManufacturing = 16;
 		m_infrastructure[4] = infrastr;
 
 		// 5 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 2;
+		infrastr->complexityOfManufacturing = 32;
 		m_infrastructure[5] = infrastr;
 
 		// 6 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 4;
+		infrastr->complexityOfManufacturing = 64;
 		m_infrastructure[6] = infrastr;
 
 		// 7 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 8;
+		infrastr->complexityOfManufacturing = 128;
 		m_infrastructure[7] = infrastr;
 
 		// 8 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 16;
+		infrastr->complexityOfManufacturing = 256;
 		m_infrastructure[8] = infrastr;
 
 		// 9 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 32;
+		infrastr->complexityOfManufacturing = 512;
 		m_infrastructure[9] = infrastr;
 
 		// 10 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 64;
+		infrastr->complexityOfManufacturing = 1024;
 		m_infrastructure[9] = infrastr;
 
 		// 11 lvl
 		infrastr = new Resourse(infrastr);
-		infrastr->complexityOfManufacturing = 128;
+		infrastr->complexityOfManufacturing = 2048;
 		m_infrastructure[10] = infrastr;
 	}
 }

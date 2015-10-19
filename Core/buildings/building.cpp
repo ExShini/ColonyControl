@@ -25,7 +25,10 @@ Building::~Building()
 
 void Building::process(int step)
 {
-	Q_UNUSED(step)
+	if(step != m_initialStep)
+		return;
+
+	processResource();
 }
 
 void Building::processResource()
@@ -74,7 +77,7 @@ void Building::processResource()
 
 
 		//check resourse storage limit
-		int storageLimit = resorce.maxValue - currentValue;
+		int storageLimit = (resorce.maxValue - currentValue) * resorce.complexityOfManufacturing - resorce.currentProgress;
 		if(possibleToProduce > storageLimit && resorce.hardLimit)
 		{
 			possibleToProduce = storageLimit;
@@ -366,14 +369,7 @@ void Building::checkState()
 
 		while(this->getNextResource(resType, value))
 		{
-			if(resType != INFROSTRUCTURE)
-			{
-				setResLimit(resType, m_player->getResLimit(m_type, resType, m_level));
-			}
-			else
-			{
-				setResLimit(resType, m_player->getResLimit(m_type, resType, m_level + 1));
-			}
+			updateResourse(resType, m_level);
 		}
 
 		m_wrapper->setLevel(m_level);

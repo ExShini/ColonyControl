@@ -54,7 +54,7 @@ protected:
 
 	virtual void regResourse(RESOURSES type, int maxValue, int defValue = 0, bool hard = true);
 	virtual void regResourse(RESOURSES type);
-	virtual void updateResourse(RESOURSES type, int level);
+	virtual void updateResourse(RESOURSES type, int level, bool initial = false);
 
 	GObjWrapper* m_wrapper;
 	bool m_active;

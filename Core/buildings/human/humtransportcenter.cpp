@@ -13,7 +13,7 @@ HumTransportCenter::HumTransportCenter(GObjWrapper *wrapper, Sector *sector, int
 	updateResourse(POPULATION, m_level);
 	updateResourse(SUPPLY, m_level);
 	updateResourse(INFROSTRUCTURE, m_level);
-	updateResourse(SHIPS, m_level);
+	updateResourse(SHIPS, m_level, true);
 
 	m_maxLevel = HUMAN_MAX_TRANSPORT_CENTER_LEVEL;
 

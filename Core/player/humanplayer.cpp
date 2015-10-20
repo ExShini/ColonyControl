@@ -147,6 +147,8 @@ void HumanPlayer::setupHumanResPrototypes()
 					  HUMAN_MAX_COLONY_CENTER_LEVEL + 1);
 	// setup default value
 	setDefValue(t_HUMAN_COLONY_CENTER, SHIPS, 1);
+	setDefValue(t_HUMAN_COLONY_CENTER, POPULATION, 800);
+	setDefValue(t_HUMAN_COLONY_CENTER, SUPPLY, 800);
 
 
 	// HUMAN_SETTLERS

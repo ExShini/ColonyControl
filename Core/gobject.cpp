@@ -228,7 +228,7 @@ void GObject::regResourse(RESOURSES type)
  * Func: updateResourse
  * Desc: update resourse settings for current GObject from prototype object
  ***********************************************/
-void GObject::updateResourse(RESOURSES type, int level)
+void GObject::updateResourse(RESOURSES type, int level, bool initial)
 {
 	if(m_resources.keys().contains(type))
 	{
@@ -243,6 +243,7 @@ void GObject::updateResourse(RESOURSES type, int level)
 			level++;
 		}
 
+
 		Resourse* proto = player->getResPrototype(m_type, type, level);
 		Resourse* res = m_resources[type];
 		int currValue = res->value;
@@ -254,6 +255,11 @@ void GObject::updateResourse(RESOURSES type, int level)
 		// restore current valuea and progress of resource
 		res->value = currValue;
 		res->currentProgress = currProgress;
+
+		if(initial)
+		{
+			res->value = player->getResDefaultValue(m_type, type);
+		}
 	}
 	else
 	{

@@ -44,6 +44,8 @@
         <file alias="humanColonyCenterL1.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL1.png</file>
         <file alias="humanColonyCenterL2.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL2.png</file>
         <file alias="humanTransportCenterL0.png">UIDrawer/Res/Buildings/Human/humanTransportCenterL0.png</file>
+        <file alias="humanTransportCenterL1.png">UIDrawer/Res/Buildings/Human/humanTransportCenterL1.png</file>
+        <file alias="humanTransportCenterL2.png">UIDrawer/Res/Buildings/Human/humanTransportCenterL2.png</file>
         <file alias="PionerL0.png">UIDrawer/Res/Units/Human/PionerL0.png</file>
         <file alias="IonCanonAbility.png">UIDrawer/Res/Units/Human/IonCanonAbility.png</file>
         <file alias="IonCanonBullet.png">UIDrawer/Res/Units/Human/IonCanonBullet.png</file>

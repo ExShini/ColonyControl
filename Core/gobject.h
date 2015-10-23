@@ -32,7 +32,9 @@ public:
 	virtual void process(int step) { Q_UNUSED(step) /* do nothing */ }
 
 	int setResources(RESOURSES type, int value);
+	void setResProgress(RESOURSES type, int progValue);
 	int getResources(RESOURSES type);
+	Resourse* getResourcesObj(RESOURSES type);
 	void setResLimit(RESOURSES type, int value);
 	int getResLimit(RESOURSES type);
 
@@ -50,8 +52,9 @@ protected:
 
 
 
-	virtual void regResourse(RESOURSES type, int maxValue = 0, int defValue = 0, bool hard = true);
+	virtual void regResourse(RESOURSES type, int maxValue, int defValue = 0, bool hard = true);
 	virtual void regResourse(RESOURSES type);
+	virtual void updateResourse(RESOURSES type, int level, bool initial = false);
 
 	GObjWrapper* m_wrapper;
 	bool m_active;

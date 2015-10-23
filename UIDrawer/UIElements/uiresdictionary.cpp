@@ -32,6 +32,11 @@ UIResDictionary::UIResDictionary()
 	registerResPath(t_HUMAN_SETTLERS, 2, "/img/humanSettlerL2.png");
 	registerResPath(t_HUMAN_SETTLERS, 3, "/img/humanSettlerL3.png");
 	registerResPath(t_HUMAN_SETTLERS, 4, "/img/humanSettlerL4.png");
+	registerResPath(t_HUMAN_SETTLERS, 5, "/img/humanSettlerL4.png");
+	registerResPath(t_HUMAN_SETTLERS, 6, "/img/humanSettlerL4.png");
+	registerResPath(t_HUMAN_SETTLERS, 7, "/img/humanSettlerL4.png");
+	registerResPath(t_HUMAN_SETTLERS, 8, "/img/humanSettlerL4.png");
+	registerResPath(t_HUMAN_SETTLERS, 9, "/img/humanSettlerL4.png");
 
 	registerResPath(t_HUMAN_COLONY_CENTER, 0, "/img/humanColonyCenterL0.png");
 	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL1.png");
@@ -39,8 +44,8 @@ UIResDictionary::UIResDictionary()
 	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL2.png");
 
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 0, "/img/humanTransportCenterL0.png");
-	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL0.png");
-	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL0.png");
+	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL1.png");
+	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL2.png");
 
 
 	/*********************************

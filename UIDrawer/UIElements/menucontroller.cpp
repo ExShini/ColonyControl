@@ -1,4 +1,5 @@
 #include "menucontroller.h"
+#include "Enums/colonycontrol.h"
 #include "QDebug"
 
 MenuController* MenuController::s_instance = nullptr;
@@ -71,4 +72,11 @@ void MenuController::startGame()
 {
     qDebug() << "MenuController::startGame()";
     emit gameIsStarted();
+}
+
+QString MenuController::getCCVersion()
+{
+    QString major = QString::number(VERSION_MAJOR);
+    QString minor = QString::number(VERSION_MINOR);
+    return "V." + major + "." + minor;
 }

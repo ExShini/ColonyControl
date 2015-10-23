@@ -18,7 +18,6 @@ GObject::GObject(GObjWrapper * wrapper):
 	m_requestMap(),
 	m_playerID(INVALIDE_VALUE)
 {
-
 }
 
 
@@ -71,7 +70,7 @@ int GObject::setResources(RESOURSES type, int value)
 
         Resourse* res = m_resources[type];
 
-		if(value > res->maxValue && res->hard)
+		if(value > res->maxValue && res->hardLimit)
 		{
 			res->value = res->maxValue;
 			overflow = 0;
@@ -88,6 +87,19 @@ int GObject::setResources(RESOURSES type, int value)
     }
 
 	return overflow;
+}
+
+/************************************************
+ * Func: setResProgress
+ * Desc: setup current resourse's progress value
+ ***********************************************/
+void GObject::setResProgress(RESOURSES type, int progValue)
+{
+	if(m_resources.keys().contains(type))
+	{
+		Resourse* res = m_resources[type];
+		res->currentProgress = progValue;
+	}
 }
 
 /************************************************
@@ -128,6 +140,20 @@ int GObject::getResources(RESOURSES type)
 }
 
 /************************************************
+ * Func: getResources
+ * Desc: return current value for resorse
+ ***********************************************/
+Resourse* GObject::getResourcesObj(RESOURSES type)
+{
+	if(m_resources.keys().contains(type))
+	{
+		return m_resources[type];
+	}
+
+	return nullptr;
+}
+
+/************************************************
  * Func: getResLimit
  * Desc: return current limit value for resorse
  ***********************************************/
@@ -144,6 +170,7 @@ int GObject::getResLimit(RESOURSES type)
 /************************************************
  * Func: regResourse
  * Desc: registr new resourse for current GObject
+ * Note: This routine used only for Units! For Building we should use smurt version of regResourse(RESOURSES type) call
  ***********************************************/
 void GObject::regResourse(RESOURSES type, int maxValue, int defValue, bool hard)
 {
@@ -153,7 +180,7 @@ void GObject::regResourse(RESOURSES type, int maxValue, int defValue, bool hard)
         res->type = type;
         res->maxValue = maxValue;
         res->value = defValue;
-		res->hard = hard;
+		res->hardLimit = hard;
         m_resources[type] = res;
 
 		m_requestMap[type] = nullptr;
@@ -175,10 +202,18 @@ void GObject::regResourse(RESOURSES type)
 	{
 		Player* player = PlayerController::getInstance()->getPlayer(m_playerID);
 
-		Resourse* res = new Resourse();
-		res->type = type;
-		res->maxValue = player->getResLimit(m_type, type, 0);
+		Resourse* proto = player->getResPrototype(m_type, type, 0);
+		Resourse* res = new Resourse(proto);
+		res->value = player->getResDefaultValue(m_type, type);
 
+		/* INFROSTRUCTURE have some specific in handling - we need to know low and top limits
+		** current level limit determine low limit
+		** next level limit determine top limit
+		*/
+		if(type == INFROSTRUCTURE)
+		{
+			res->maxValue = player->getResLimit(m_type, INFROSTRUCTURE, 1);
+		}
 
 		m_resources[type] = res;
 		m_requestMap[type] = nullptr;
@@ -189,6 +224,48 @@ void GObject::regResourse(RESOURSES type)
 	}
 }
 
+/************************************************
+ * Func: updateResourse
+ * Desc: update resourse settings for current GObject from prototype object
+ ***********************************************/
+void GObject::updateResourse(RESOURSES type, int level, bool initial)
+{
+	if(m_resources.keys().contains(type))
+	{
+		Player* player = PlayerController::getInstance()->getPlayer(m_playerID);
+
+		/* INFROSTRUCTURE have some specific in handling - we need to know low and top limits
+		** current level limit determine low limit
+		** next level limit determine top limit
+		*/
+		if(type == INFROSTRUCTURE)
+		{
+			level++;
+		}
+
+
+		Resourse* proto = player->getResPrototype(m_type, type, level);
+		Resourse* res = m_resources[type];
+		int currValue = res->value;
+		int currProgress = res->currentProgress;
+
+		// copy settings from prototype to current res object
+		memcpy(res, proto, sizeof(Resourse));
+
+		// restore current valuea and progress of resource
+		res->value = currValue;
+		res->currentProgress = currProgress;
+
+		if(initial)
+		{
+			res->value = player->getResDefaultValue(m_type, type);
+		}
+	}
+	else
+	{
+		qDebug() << "!ERROR! GObject::updateResourse we have not such res of type: " << type;
+	}
+}
 
 /************************************************
  * Func: requestComplited

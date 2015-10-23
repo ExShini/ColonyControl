@@ -13,6 +13,7 @@ HumShuttle::HumShuttle(UnitWrapper *wrapper, Building *base, int initialStep):
 	setSpeedInSectors(0.9);
 
 	regResourse(POPULATION, 1000, 0);
+    m_baseID = base->getID();
 }
 
 HumShuttle::~HumShuttle()
@@ -125,6 +126,8 @@ void HumShuttle::targetAchived()
 		if(m_target == nullptr)
 		{
 			qDebug() << "HumShuttle::targetAchived : Error! m_target is null!";
+            flyToBase();
+            return;
 		}
 
 		if(m_target->subject == nullptr)
@@ -161,7 +164,8 @@ void HumShuttle::targetAchived()
 
 void HumShuttle::flyToBase()
 {
-	if(m_base != nullptr)
+    bool baseDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(m_baseID, DESTROED_CONDITION);
+    if(m_base != nullptr && !baseDestroyed)
 	{
 		m_specStatus = RETURN_TO_BASE;
 		setMapCourse(m_base->getMapX(), m_base->getMapY());
@@ -192,6 +196,8 @@ void HumShuttle::buildSettlement()
 		delete m_target;
 		m_target = nullptr;
 
+		// sends first supply package - just small present for first step :)
+		building->setResources(SUPPLY, population);
 		setResources(POPULATION, 0);
 	}
 	else
@@ -343,6 +349,13 @@ bool HumShuttle::getResFromTarget()
 
 void HumShuttle::returnToBase()
 {
+    bool baseDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(m_baseID, DESTROED_CONDITION);
+    if(baseDestroyed)
+    {
+        //TODO
+        return;
+    }
+
 	Unit::returnToBase();
 	HumColonyCenter* base = (HumColonyCenter*)m_base;
 

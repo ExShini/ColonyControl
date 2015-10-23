@@ -120,6 +120,8 @@ void ObjectController::init()
  ***********************************************/
 void ObjectController::setupNewGame()
 {
+	m_buildings.clearAll();
+	m_objectID = 0;
 
 	Map* map = m_mapGenerator->generateMap();
 
@@ -133,8 +135,7 @@ void ObjectController::setupNewGame()
 	}
 
 	// clear buildings
-	m_buildings.clearAll();
-	m_objectID = 0;
+
 }
 
 
@@ -403,10 +404,18 @@ void ObjectController::setupFocus(int x, int y)
 				value.value = 0;
 				value.type = NO_RES;
 				value.maxValue = 1;
+				value.displayble = true; // show empty cell
 			}
 
-			//qDebug() << "Type" << (int)resType << " val " << value.value << " max " << value.maxValue << " num " << numCounter;
+			if(value.displayble)
+			{
 			emit updateResourceValue((int)resType, value.value, value.maxValue, numCounter);
+			}
+			else
+			{
+				// skip current resourse, it should not be displayed
+				numCounter--;
+			}
 		}
 	}
 	else

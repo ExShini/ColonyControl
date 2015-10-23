@@ -47,8 +47,6 @@ GameCore::GameCore(QObject *parent):
 	QObject::connect(this, SIGNAL(startNewGame()),
 					 m_unitController, SLOT(setupNewGame()));
 
-
-
 }
 
 
@@ -128,9 +126,6 @@ void GameCore::init()
  ***********************************************/
 void GameCore::mainGameLoop()
 {
-    //
-    //qDebug() << "Main Game loop! step: " << m_currentGStep;
-
     m_objController->process(m_currentGStep);
 	m_unitController->process(m_currentGStep);
 	m_playerController->process(m_currentGStep);

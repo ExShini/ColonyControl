@@ -15,18 +15,12 @@ HumSettlers::HumSettlers(GObjWrapper *wrapper, Sector* sector, int population, i
 	m_wrapper->setLevel(0);
 	m_wrapper->setEnabled();
 
-	regResourse(POPULATION,
-				m_player->getResLimit(m_type, POPULATION, m_level),
-				population,
-				false);
+	regResourse(POPULATION);
+	setResources(POPULATION, population);
 
-	regResourse(SUPPLY,
-				m_player->getResLimit(m_type, SUPPLY, m_level),
-				50);
+	regResourse(SUPPLY);
 
-	regResourse(INFROSTRUCTURE,
-				m_player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1),
-				m_player->getResLimit(m_type, INFROSTRUCTURE, m_level));
+	regResourse(INFROSTRUCTURE);
 
 	m_maxLevel = HUMAN_MAX_SETTLEMENT_LEVEL;
 }
@@ -42,91 +36,92 @@ void HumSettlers::process(int step)
 	if(step != m_initialStep)
 		return;
 
+	Building::process(step);
 
 
 	int population = getResources(POPULATION);
 
-	int produceFood = HUMANS_GROPS(population * HUMAN_FOOD_PRODUCING) ;
-	if (produceFood > m_sector->getFertility())
-		produceFood = m_sector->getFertility();
+//	int produceFood = HUMANS_GROPS(population * HUMAN_FOOD_PRODUCING) ;
+//	if (produceFood > m_sector->getFertility())
+//		produceFood = m_sector->getFertility();
 
-	int food = getResources(SUPPLY);
-	food += produceFood;
+//	int food = getResources(SUPPLY);
+//	food += produceFood;
 
-	//population processing
-	int growth = HUMAN_POPULATION_GROWTH(population);
-	population +=  growth; //HUMAN_POPULATION_GROWTH(m_population);
-
-
-	//check limits and consumptions
-	//food
-	food -= HUMAN_FOOD_CONSUMPTIONS(population);
-	if(food < 0)
-	{
-		population -= HUMAN_HUNGER_DEMAGE(food);
-		foodEmigration();
-		food = 0;
-	}
-	else
-	{
-		//take 12.5% of population and compair it with food storage
-		//if food storege will be smoll - emigrate
-		int pop125 = population >> 3;
-		if(pop125 > food)
-		{
-			foodEmigration();
-		}
-	}
+//	//population processing
+//	int growth = HUMAN_POPULATION_GROWTH(population);
+//	population +=  growth; //HUMAN_POPULATION_GROWTH(m_population);
 
 
-	//population
-	int populationLimit = getResLimit(POPULATION);
-	if(population > populationLimit)
-	{
-		int excess = population - populationLimit;
-		population -= HUMAN_POPULATION_DEMAGE(excess);
-		popLimitEmigration();
-	}
-	else
-	{
-		//if population less than 75% of population limit and settlement
-		//have enough food - send immigrate request
-		int pop25Limit = populationLimit >> 2;
-		int pop75limit = populationLimit - pop25Limit;
-
-		int immReqValue = pop75limit - population;
-		if(immReqValue > 0)
-		{
-			if(immReqValue > pop25Limit)
-			{
-				immReqValue = pop25Limit;
-			}
-
-			// calculatr num of immigrants with food storage
-			int immigrantsWithFood = food / 5;
-			if(immReqValue > immigrantsWithFood)
-			{
-				immReqValue = immigrantsWithFood;
-			}
-
-			immigrationReq(immReqValue);
-
-		}
-	}
+//	//check limits and consumptions
+//	//food
+//	food -= HUMAN_FOOD_CONSUMPTIONS(population);
+//	if(food < 0)
+//	{
+//		population -= HUMAN_HUNGER_DEMAGE(food);
+//		foodEmigration();
+//		food = 0;
+//	}
+//	else
+//	{
+//		//take 12.5% of population and compair it with food storage
+//		//if food storege will be smoll - emigrate
+//		int pop125 = population >> 3;
+//		if(pop125 > food)
+//		{
+//			foodEmigration();
+//		}
+//	}
 
 
-	//infrastructure building
-	if(m_level <= m_maxLevel && food > 0)
-	{
-		int infrostructure = getResources(INFROSTRUCTURE);
-		infrostructure += (HUMANS_GROPS(population) / (m_level + 1));
-		setResources(INFROSTRUCTURE, infrostructure);
-	}
+//	//population
+//	int populationLimit = getResLimit(POPULATION);
+//	if(population > populationLimit)
+//	{
+//		int excess = population - populationLimit;
+//		population -= HUMAN_POPULATION_DEMAGE(excess);
+//		popLimitEmigration();
+//	}
+//	else
+//	{
+//		//if population less than 75% of population limit and settlement
+//		//have enough food - send immigrate request
+//		int pop25Limit = populationLimit >> 2;
+//		int pop75limit = populationLimit - pop25Limit;
+
+//		int immReqValue = pop75limit - population;
+//		if(immReqValue > 0)
+//		{
+//			if(immReqValue > pop25Limit)
+//			{
+//				immReqValue = pop25Limit;
+//			}
+
+//			// calculatr num of immigrants with food storage
+//			int immigrantsWithFood = food / 5;
+//			if(immReqValue > immigrantsWithFood)
+//			{
+//				immReqValue = immigrantsWithFood;
+//			}
+
+//			immigrationReq(immReqValue);
+
+//		}
+//	}
+
+
+//	//infrastructure building
+//	if(m_level <= m_maxLevel && food > 0)
+//	{
+//		int infrostructure = getResources(INFROSTRUCTURE);
+//		infrostructure += (HUMANS_GROPS(population) / (m_level + 1));
+//		setResources(INFROSTRUCTURE, infrostructure);
+//	}
 
 
 
-	setResources(POPULATION, population);
-	setResources(SUPPLY, food);
+//	setResources(POPULATION, population);
+//	setResources(SUPPLY, food);
 
 	// update main resource
 	int mainResChange = HUMANS_GROPS(population);

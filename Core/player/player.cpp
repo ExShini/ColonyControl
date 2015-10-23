@@ -34,16 +34,87 @@ void Player::init()
 			}
 		}
 	}
+
+    //m_prototypes
+    // clear prototype table
+    for(int type = t_FIRST_OBJ; type < NUM_OF_OBJ_TYPES; type++)
+    {
+        for(int res = FIRST_RES; res <= LAST_PARAMETER; res++)
+        {
+            ResPrototype* prot = new ResPrototype();
+			prot->defValue = 0;
+            m_prototypes[type][res] = prot;
+            for(int level = 0; level < MAX_LEVEL; level++)
+            {
+                prot->resorses[level] = nullptr;
+            }
+        }
+    }
 }
 
 void Player::setResLimit(OBJECT_TYPE type, RESOURSES res, int level, int value)
 {
 	m_buildingLimits[type][res][level] = value;
+
+	m_prototypes[type][res]->resorses[level]->maxValue = value;
+}
+
+void Player::setResToPrototype(OBJECT_TYPE type, Resourse *res, int level)
+{
+    if(res == nullptr)
+    {
+        qDebug() << "Player::setResPrototype: Error! res is null.";
+        return;
+    }
+
+    if(type < 0 || type >= NUM_OF_OBJ_TYPES)
+    {
+        qDebug() << "Player::setResPrototype: Error! type is wrong! type: " << type;
+        return;
+    }
+
+    if(level < 0 || level > MAX_LEVEL)
+    {
+        qDebug() << "Player::setResPrototype: Error! level is wrong! level: " << level;
+        return;
+    }
+
+	Resourse* resToSet = new Resourse(res);
+	RESOURSES resType = resToSet->type;
+
+	if(resType < FIRST_RES || resType > NUM_OF_RESOURSES)
+	{
+		qDebug() << "Player::setResPrototype: resType is wrong! resType: " << resType;
+		return;
+	}
+
+	m_prototypes[type][resType]->resorses[level] = resToSet;
+}
+
+void Player::setDefValue(OBJECT_TYPE type, RESOURSES resType, int defValue)
+{
+    m_prototypes[type][resType]->defValue = defValue;
 }
 
 int Player::getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level)
 {
-	int val = m_buildingLimits[buildingType][res][level];
+	int val = INVALIDE_VALUE;
+	ResPrototype* proto = m_prototypes[buildingType][res];
+
+	if(proto != nullptr)
+	{
+		val = proto->resorses[level]->maxValue;
+	}
+	else
+	{
+		qDebug() << "Player::getResLimit : Error!!! proto is null for objType:" << buildingType <<
+					" res:" << res << " level:" << level;
+
+		return val;
+	}
+
+
+//	int val = m_buildingLimits[buildingType][res][level];
 
 	if(val == INVALIDE_VALUE)
 	{
@@ -52,6 +123,39 @@ int Player::getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level)
 	}
 
 	return val;
+}
+
+Resourse* Player::getResPrototype(OBJECT_TYPE buildingType, RESOURSES res, int level)
+{
+	ResPrototype* proto = m_prototypes[buildingType][res];
+	if(proto == nullptr)
+	{
+		qDebug() << "Player::getResPrototype : Error!!! proto is null for objType:" << buildingType <<
+					" res:" << res << " level:" << level;
+		return nullptr;
+	}
+
+	Resourse* protoRes = m_prototypes[buildingType][res]->resorses[level];
+
+	if(protoRes == nullptr)
+	{
+		qDebug() << "Player::getResPrototype : Error!!! incorrect proto settings for objType:" << buildingType <<
+					" res:" << res << " level:" << level;
+	}
+
+	return protoRes;
+}
+
+int Player::getResDefaultValue(OBJECT_TYPE buildingType, RESOURSES res)
+{
+	int defValue = INVALIDE_VALUE;
+	ResPrototype* proto = m_prototypes[buildingType][res];
+	if(proto != nullptr)
+	{
+		defValue = m_prototypes[buildingType][res]->defValue;
+	}
+
+	return defValue;
 }
 
 void Player::addRequest(Request *request)

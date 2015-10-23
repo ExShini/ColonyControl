@@ -10,12 +10,10 @@ HumTransportCenter::HumTransportCenter(GObjWrapper *wrapper, Sector *sector, int
 	m_wrapper->setLevel(0);
 	m_wrapper->setEnabled();
 
-	setResLimit(POPULATION, m_player->getResLimit(m_type, POPULATION, m_level));
-	setResLimit(SUPPLY, m_player->getResLimit(m_type, SUPPLY, m_level));
-	setResLimit(INFROSTRUCTURE, m_player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1));
-
-	setResLimit(SHIPS, m_player->getResLimit(m_type, SHIPS, m_level));
-
+	updateResourse(POPULATION, m_level);
+	updateResourse(SUPPLY, m_level);
+	updateResourse(INFROSTRUCTURE, m_level);
+	updateResourse(SHIPS, m_level, true);
 
 	m_maxLevel = HUMAN_MAX_TRANSPORT_CENTER_LEVEL;
 

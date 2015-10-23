@@ -11,6 +11,7 @@ public:
 
 	int getFertility()          { return m_fertility; }
 	int getMineralWealth()      { return m_mineralWealth; }
+    int getNaturalResourse(RESOURSES resType);
 	OBJECT_TYPE getType()		{ return m_type; }
 
 	void setFertility(int value)        { m_fertility = value; }

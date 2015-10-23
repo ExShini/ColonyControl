@@ -5,8 +5,8 @@
 
 HumColonyCenter::HumColonyCenter(GObjWrapper *wrapper, Sector *sector, int population, int initialStep, int plID):
 	HumSettlers(wrapper, sector, population, initialStep, plID),
-	m_building(0),
-	m_pionersInBase()
+	m_pionersInBase(),
+	m_pioners()
 {
 	m_type = t_HUMAN_COLONY_CENTER;
 
@@ -14,11 +14,16 @@ HumColonyCenter::HumColonyCenter(GObjWrapper *wrapper, Sector *sector, int popul
 	m_wrapper->setLevel(0);
 	m_wrapper->setEnabled();
 
-	setResLimit(POPULATION, m_player->getResLimit(m_type, POPULATION, m_level));
-	setResLimit(SUPPLY, m_player->getResLimit(m_type, SUPPLY, m_level));
-	setResLimit(INFROSTRUCTURE, m_player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1));
 
-	regResourse(SHIPS, m_player->getResLimit(m_type, SHIPS, m_level), 0);
+	updateResourse(POPULATION, m_level, true);
+	updateResourse(SUPPLY, m_level, true);
+	updateResourse(INFROSTRUCTURE, m_level, true);
+
+	//	setResLimit(POPULATION, m_player->getResLimit(m_type, POPULATION, m_level));
+	//	setResLimit(SUPPLY, m_player->getResLimit(m_type, SUPPLY, m_level));
+	//	setResLimit(INFROSTRUCTURE, m_player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1));
+
+	regResourse(SHIPS);
 
 
 	m_maxLevel = HUMAN_MAX_COLONY_CENTER_LEVEL;
@@ -41,24 +46,13 @@ void HumColonyCenter::process(int step)
 	HumSettlers::process(step);
 
 	int currShips = getResources(SHIPS);
-	int limShips = getResLimit(SHIPS);
 
-	if(currShips < limShips)
+	if(currShips > m_pioners.count())
 	{
-		m_building++;
+		HumShuttle* pioner = (HumShuttle*)UnitController::getInstance()->buildUnit(this, t_HUMAN_SHUTTLE);
 
-		if(m_building >= 3)
-		{
-			m_building = 0;
-
-			HumShuttle* pioner = (HumShuttle*)UnitController::getInstance()->buildUnit(this, t_HUMAN_SHUTTLE);
-//			pioner->setMapCourse(getMapX() + 5, getMapY() + 5);
-
-			m_pionersInBase.push_back(pioner);
-
-			currShips++;
-			setResources(SHIPS, currShips);
-		}
+		m_pionersInBase.push_back(pioner);
+		m_pioners.push_back(pioner);
 	}
 
 	processUnits();

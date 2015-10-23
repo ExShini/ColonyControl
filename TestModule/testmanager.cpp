@@ -1,5 +1,6 @@
 #include "testmanager.h"
 #include "requestmanagertest.h"
+#include "basebuildingtester.h"
 #include "qdebug.h"
 
 TestManager::TestManager()
@@ -9,30 +10,21 @@ TestManager::TestManager()
 
 void TestManager::exec()
 {
-	RequestManagerTest test1;
+	qDebug() << "\n*** Start testing ***\n";
+	RequestManagerTest testCase1;
 	/***********************/
+	for(int i = 0; i < testCase1.getNumOfTests(); i++)
+	{
+		testCase1.executeTest(i);
+	}
 
-	if(test1.executeT1())
-		qDebug() << "Test is done";
-	else
-		qDebug() << "Test is faled";
+	qDebug() << "\n*** Next test case ***\n";
 
+	BaseBuildingTester testCase2;
 	/***********************/
-	if(test1.executeT2())
-		qDebug() << "Test is done";
-	else
-		qDebug() << "Test is faled";
+	for(int i = 0; i < testCase2.getNumOfTests(); i++)
+	{
+		testCase2.executeTest(i);
+	}
 
-	/***********************/
-	if(test1.executeT3())
-		qDebug() << "Test is done";
-	else
-		qDebug() << "Test is faled";
-
-
-	/***********************/
-	if(test1.executeT4())
-		qDebug() << "Test is done";
-	else
-		qDebug() << "Test is faled";
 }

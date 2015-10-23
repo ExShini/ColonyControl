@@ -11,7 +11,7 @@ ApplicationWindow {
     visible: true
     width: (Screen.desktopAvailableWidth * 80) / 100;
     height: (Screen.desktopAvailableHeight * 80) / 100;
-    title: qsTr("Colony Control")
+    title: qsTr("Colony Control " + MenuController.getCCVersion())
     objectName: "MainWindow";
 
     // key handler
@@ -137,7 +137,6 @@ ApplicationWindow {
 
         onStopped:
         {
-            console.log("player");
             playMusic.source = AudioController.getNextTrack();
             playMusic.play();
         }

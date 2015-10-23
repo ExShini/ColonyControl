@@ -11,6 +11,7 @@ class MenuController : public QObject
     Q_OBJECT
 public:
     Q_INVOKABLE void startGame();
+    Q_INVOKABLE QString getCCVersion();
 
     static MenuController* getInstance();
 

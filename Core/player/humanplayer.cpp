@@ -271,7 +271,7 @@ void HumanPlayer::prepareHumanResPrototypes()
 		m_transportShuttle->producedForGroup = 1;
 
 		// manufacturing for hard res
-		m_transportShuttle->complexityOfManufacturing = 2000;
+		m_transportShuttle->complexityOfManufacturing = 1400;
 		m_transportShuttle->currentProgress = 0;
 
 		// material

@@ -198,3 +198,13 @@ copy_qt5_libs.commands = ${COPY_FILE} ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 QMAKE_EXTRA_COMPILERS += copy_qt5_libs
 }
 
+
+!equals(_PRO_FILE_PWD_, $$OUT_PWD) {
+    copy_music.target = $${OUT_PWD}/$${DEST}/Music
+    copy_music.depends = $$_PRO_FILE_PWD_/AudioModule/Music/.
+    copy_music.commands = $(COPY_DIR) \"$$replace(copy_music.depends, /, $$QMAKE_DIR_SEP)\" \"$$replace(copy_music.target, /, $$QMAKE_DIR_SEP)\"
+    QMAKE_EXTRA_TARGETS += copy_music
+    PRE_TARGETDEPS += $$copy_music.target
+}
+
+

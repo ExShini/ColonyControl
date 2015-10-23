@@ -44,8 +44,8 @@ UIResDictionary::UIResDictionary()
 	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL2.png");
 
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 0, "/img/humanTransportCenterL0.png");
-	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL0.png");
-	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL0.png");
+	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL1.png");
+	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL2.png");
 
 
 	/*********************************

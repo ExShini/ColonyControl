@@ -12,8 +12,10 @@ CellController::CellController(int id, QObject *parent) :
 	m_id = id;
     m_active = false;
     m_visible = false;
+	m_state = 0;	// NORMAL STATE
     m_animFrameCnt = 2;
     m_animFrameRate = 0.5;
+	m_rowInFrame = 0,
     m_animSrc = QString("");
 	m_backSrc = QString("/img/DefBackground.png");
 	m_markerSrc = QString(""),
@@ -93,14 +95,24 @@ double CellController::mainObjAnimFrameRate()
 }
 
 /************************************************
+ * Func: rowInFrame
+ * Desc: return number of row in animation file.
+ ***********************************************/
+int CellController::rowInFrame()
+{
+	return m_rowInFrame;
+}
+
+/************************************************
  * Func: setNewAnimation
  * Desc: setup new animation for cell.
  ***********************************************/
-void CellController::setNewAnimation(QString src, int cnt, double rate)
+void CellController::setNewAnimation(QString src, int cnt, double rate, int row)
 {
     m_animSrc = src;
     m_animFrameCnt = cnt;
     m_animFrameRate = rate;
+	m_rowInFrame = row;
 
     emit animChanged();
 }
@@ -152,11 +164,16 @@ void CellController::enableObj()
  * Func: setLevel
  * Desc: setup new level for object. It also change animation src.
  ***********************************************/
-void CellController::setLevel(int level)
+void CellController::setLevel(int level, int state)
 {
-    QString src = UIResDictionary::getInstance()->getResource(m_curType, level);
+	int row = INVALIDE_VALUE;
+	int frameCnt = INVALIDE_VALUE;
+	m_level = level;
+	m_state = state;
+	QString src = UIResDictionary::getInstance()
+			->getResource(m_curType, m_level, m_state, row, frameCnt);
 
-    setNewAnimation(src, 8, 4.0);
+	setNewAnimation(src, frameCnt, 4.0, row);
 }
 
 /************************************************
@@ -165,10 +182,24 @@ void CellController::setLevel(int level)
  ***********************************************/
 void CellController::setType(int type)
 {
+	int row = INVALIDE_VALUE;
+	int frameCnt = INVALIDE_VALUE;
     m_curType = (OBJECT_TYPE)type;
-    QString src = UIResDictionary::getInstance()->getResource(m_curType, 0);
+	QString src = UIResDictionary::getInstance()
+			->getResource(m_curType, 0, 0, row, frameCnt);
 
-    setNewAnimation(src, 8, 4.0);
+	setNewAnimation(src, frameCnt, 4.0, row);
+}
+
+void CellController::setState(int state)
+{
+	int row = INVALIDE_VALUE;
+	int frameCnt = INVALIDE_VALUE;
+	m_state = state;
+	QString src = UIResDictionary::getInstance()
+			->getResource(m_curType, m_level, m_state, row, frameCnt);
+
+	setNewAnimation(src, frameCnt, 4.0, row);
 }
 
 /************************************************
@@ -177,8 +208,12 @@ void CellController::setType(int type)
  ***********************************************/
 void CellController::setSecType(int type)
 {
+	// trick, it does not used
+	int row = INVALIDE_VALUE;
+	int frameCnt = INVALIDE_VALUE;
+
 	OBJECT_TYPE bacType = (OBJECT_TYPE)type;
-	QString src = UIResDictionary::getInstance()->getResource(bacType, 0);
+	QString src = UIResDictionary::getInstance()->getResource(bacType, 0, 0, row, frameCnt);
 	setNewBackground(src);
 }
 

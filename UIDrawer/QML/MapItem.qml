@@ -29,6 +29,8 @@ Rectangle {
 
     AnimatedSprite {
 
+        property int rowNumber: parent.control.rowInFrame;
+
         id: sprite
         width: 128
         height: 128
@@ -42,6 +44,12 @@ Rectangle {
         frameRate: parent.control.animFrameRate;
         running: parent.control.objIsActive;
         visible: parent.control.objIsvisible;
+
+        onRowNumberChanged:
+        {
+            frameY = frameHeight * rowNumber;
+            restart();
+        }
 
     }
 

@@ -19,6 +19,7 @@ class CellController : public QObject
 	Q_PROPERTY(QString markerSrc READ markerSrc NOTIFY markerChanged)
     Q_PROPERTY(int animFrameCnt READ mainObjAnimFrameCnt NOTIFY animChanged)
     Q_PROPERTY(double animFrameRate READ mainObjAnimFrameRate NOTIFY animChanged)
+	Q_PROPERTY(int rowInFrame READ rowInFrame NOTIFY animChanged)
 
 public:
 	explicit CellController(int id = 0, QObject *parent = 0);
@@ -33,6 +34,7 @@ public:
 	QString markerSrc();
     int mainObjAnimFrameCnt();
     double mainObjAnimFrameRate();
+	int rowInFrame();
 	int id();
 
 
@@ -52,10 +54,11 @@ signals:
 	void idChanged();
 
 public slots:
-    void setLevel(int level);
+	void setLevel(int level, int state);
     void setType(int type);
+	void setState(int state);
 
-    void setNewAnimation(QString src, int cnt, double rate);
+	void setNewAnimation(QString src, int cnt, double rate, int row);
 	void setNewBackground(QString src);
 	void setPlayerMarker(int playerID);
     void disableObj();
@@ -67,6 +70,8 @@ private:
 	int m_id;
     bool m_active;
     bool m_visible;
+	int m_state;
+	int m_level;
     OBJECT_TYPE m_curType;
 
     QString m_animSrc;
@@ -74,6 +79,7 @@ private:
 	QString m_markerSrc;
     int m_animFrameCnt;
     double m_animFrameRate;
+	int m_rowInFrame;
 
 	int m_fertility;
 	int m_mineralWealth;

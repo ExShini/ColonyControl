@@ -13,6 +13,7 @@
         <file alias="GlobalResBar.qml">UIDrawer/QML/GlobalResBar.qml</file>
         <file alias="BuildCell.qml">UIDrawer/QML/BuildCell.qml</file>
         <file alias="BuildPanel.qml">UIDrawer/QML/BuildPanel.qml</file>
+        <file alias="MapField.qml">UIDrawer/QML/MapField.qml</file>
         <file>UIDrawer/QML/Styles/Styles.qml</file>
         <file>UIDrawer/QML/Styles/qmldir</file>
     </qresource>

@@ -6,12 +6,24 @@
 #include "Enums/guisettings.h"
 #include <QMap>
 
+struct UIResSpecifier
+{
+	int frameCnt;
+	int rowNumber;
+};
+
+struct UIResourse
+{
+	QString path;
+	QMap<int, UIResSpecifier*> spec;
+};
+
 class UIResDictionary
 {
 public:
 
     static UIResDictionary* getInstance();
-    QString getResource(int type, int level);
+	QString getResource(int type, int level, int state, int &row, int &frameCnt);
 	QString getMarkerSrc(int playerID);
 	QString getAbilityIcon(ABILITY_TYPE type, int subType);
 	QString getAbilityMouseSrc(ABILITY_TYPE type, int subType);
@@ -23,12 +35,14 @@ protected:
 	void registerAbilityButtonSrc(int id, QString icon, QString mouseMarker);
 	void registerBuildButtonSrc(int id, QString icon, QString mouseMarker);
 
+	void addSpecific(int type, int level, int state, UIResSpecifier* spec);
+
 	UIResDictionary();
 	~UIResDictionary();
 
 
     static UIResDictionary* s_instance;
-    QString m_resoursesPath[NUM_OF_OBJ_TYPES][MAX_LEVEL];
+	UIResourse m_resoursesPath[NUM_OF_OBJ_TYPES][MAX_LEVEL];
 	QString m_markerDictionary[NUM_OF_RACE][NUMBER_OF_PLAYERS];
 	QString m_markers[NUMBER_OF_PLAYERS];
 	QMap<int, QString> m_abilityButtonIcons;

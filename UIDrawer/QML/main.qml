@@ -94,14 +94,13 @@ ApplicationWindow {
 
     }
 
-    Flickable {
+    MapField
+    {
         id: mapArea
         z:0
-        width: (parent.width * 80) / 100;
         anchors.fill: parent
 
         objectName: "mapArea";
-        boundsBehavior: Flickable.StopAtBounds;
     }
 
     BuildPanel

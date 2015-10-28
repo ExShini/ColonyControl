@@ -84,8 +84,8 @@ void ObjectController::init()
 
             QObject::connect(wrapper, SIGNAL(changeType(int)),
                              cc, SLOT(setType(int)), Qt::QueuedConnection);
-            QObject::connect(wrapper, SIGNAL(changeLevel(int)),
-                             cc, SLOT(setLevel(int)), Qt::QueuedConnection);
+			QObject::connect(wrapper, SIGNAL(changeLevel(int, int)),
+							 cc, SLOT(setLevel(int, int)), Qt::QueuedConnection);
 			QObject::connect(wrapper, SIGNAL(changeMarker(int)),
 							 cc, SLOT(setPlayerMarker(int)), Qt::QueuedConnection);
             QObject::connect(wrapper, SIGNAL(enable()),

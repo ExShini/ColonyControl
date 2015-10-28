@@ -26,7 +26,7 @@ Unit::Unit(UnitWrapper *wrapper, OBJECT_TYPE type, Building * base, int initialS
 {
 	m_type = type;
 	m_unitWrapper->setType(type);
-	m_unitWrapper->setLevel(0);
+	m_unitWrapper->setLevel(0, UI_NORMAL);
 	m_procStepSize = GAME_STEP_PER_SECOND / UNIT_PROC_RATE;
 
 	if(base != nullptr)

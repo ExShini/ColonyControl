@@ -32,7 +32,10 @@ UIResDictionary::UIResDictionary()
 	classicNormalSpec->rowNumber = 0;
 	UIResSpecifier* classicBuildSpec = new UIResSpecifier();
 	classicBuildSpec->frameCnt = 8;
-	classicBuildSpec->rowNumber = 1;
+	classicBuildSpec->rowNumber = 0;	// TODO: temprory solution
+	UIResSpecifier* classicDestrSpec = new UIResSpecifier();
+	classicDestrSpec->frameCnt = 8;
+	classicDestrSpec->rowNumber = 0;	// TODO: temprory solution
 
 
 	// t_HUMAN_SETTLERS
@@ -40,58 +43,91 @@ UIResDictionary::UIResDictionary()
 	registerResPath(t_HUMAN_SETTLERS, 0, "/img/humanSettlerL0.png");
 	addSpecific(t_HUMAN_SETTLERS, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 0, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 1, "/img/humanSettlerL1.png");
 	addSpecific(t_HUMAN_SETTLERS, 1, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 1, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 2, "/img/humanSettlerL2.png");
 	addSpecific(t_HUMAN_SETTLERS, 2, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 2, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 3, "/img/humanSettlerL3.png");
 	addSpecific(t_HUMAN_SETTLERS, 3, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 3, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 3, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 4, "/img/humanSettlerL4.png");
 	addSpecific(t_HUMAN_SETTLERS, 4, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 4, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 4, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 5, "/img/humanSettlerL4.png");
 	addSpecific(t_HUMAN_SETTLERS, 5, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 5, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 5, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 6, "/img/humanSettlerL4.png");
 	addSpecific(t_HUMAN_SETTLERS, 6, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 6, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 6, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 7, "/img/humanSettlerL4.png");
 	addSpecific(t_HUMAN_SETTLERS, 7, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 7, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 7, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 8, "/img/humanSettlerL4.png");
 	addSpecific(t_HUMAN_SETTLERS, 8, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 8, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 8, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 9, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_DESTROYED, classicDestrSpec);
 
 	// t_HUMAN_COLONY_CENTER
 
 	registerResPath(t_HUMAN_COLONY_CENTER, 0, "/img/humanColonyCenterL0.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL1.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_COLONY_CENTER, 2, "/img/humanColonyCenterL2.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL2.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_DESTROYED, classicDestrSpec);
 
 	// t_HUMAN_TRANSPORT_CENTER
 
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 0, "/img/humanTransportCenterL0.png");
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL1.png");
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL2.png");
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_DESTROYED, classicDestrSpec);
 
 
 	/*********************************

@@ -115,13 +115,13 @@ void UiUnitCntr::enableObj()
  * Func: setLevel()
  * Desc: setup level for unit. Also it change animation.
  ***********************************************/
-void UiUnitCntr::setLevel(int level)
+void UiUnitCntr::setLevel(int level, int state)
 {
 	// TODO: update unit state machine to use graphic posibilityes
 	int row = INVALIDE_VALUE;
 	int frameCnt = INVALIDE_VALUE;
 
-	QString src = UIResDictionary::getInstance()->getResource(m_curType, level, 0, row, frameCnt);
+	QString src = UIResDictionary::getInstance()->getResource(m_curType, level, state, row, frameCnt);
 
 	setNewAnimation(src, 8, 4.0);
 }

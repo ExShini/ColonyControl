@@ -353,11 +353,13 @@ void Building::checkState()
 	if(infrostructure >= topInfLevel && m_level < m_maxLevel)
 	{
 		m_level++;
+		m_uiState = UI_BUILDED;
 	}
 	// chack to degrise level
 	else if(infrostructure < lowInfLevel && m_level > 0)
 	{
 		m_level--;
+		m_uiState = UI_DESTROYED;
 	}
 
 	if(currentLevel != m_level)
@@ -372,7 +374,7 @@ void Building::checkState()
 			updateResourse(resType, m_level);
 		}
 
-		m_wrapper->setLevel(m_level);
+		m_wrapper->setLevel(m_level, m_uiState);
 	}
 }
 
@@ -389,7 +391,7 @@ void Building::deactivate()
 void Building::activate()
 {
 	m_wrapper->setEnabled();
-	m_wrapper->setLevel(0);
+	m_wrapper->setLevel(0, UI_NORMAL);
 	m_wrapper->setType(m_type);
 }
 

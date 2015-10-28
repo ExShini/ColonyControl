@@ -33,9 +33,9 @@ void GObjWrapper::setType(OBJECT_TYPE type)
  * Func: setLevel
  * Desc: setup level for wrapper
  ***********************************************/
-void GObjWrapper::setLevel(int level)
+void GObjWrapper::setLevel(int level, UI_STATES state)
 {
-    emit changeLevel(level);
+	emit changeLevel(level, (int)state);
 }
 
 /************************************************

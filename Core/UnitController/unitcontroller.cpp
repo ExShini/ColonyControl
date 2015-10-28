@@ -47,8 +47,8 @@ void UnitController::init()
 
 		QObject::connect(wrapper, SIGNAL(changeType(int)),
 						 uc, SLOT(setType(int)), Qt::QueuedConnection);
-		QObject::connect(wrapper, SIGNAL(changeLevel(int)),
-						 uc, SLOT(setLevel(int)), Qt::QueuedConnection);
+		QObject::connect(wrapper, SIGNAL(changeLevel(int, int)),
+						 uc, SLOT(setLevel(int, int)), Qt::QueuedConnection);
 		QObject::connect(wrapper, SIGNAL(enable()),
 						 uc, SLOT(enableObj()), Qt::QueuedConnection);
 		QObject::connect(wrapper, SIGNAL(disable()),

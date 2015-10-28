@@ -4,6 +4,7 @@
 #include "Enums/objects.h"
 #include "Enums/mapsettings.h"
 #include "Enums/races.h"
+#include "Enums/uistate.h"
 #include <QObject>
 
 class GObject;
@@ -16,7 +17,7 @@ public:
     ~GObjWrapper();
 
     void setType(OBJECT_TYPE type);
-    void setLevel(int level);
+	void setLevel(int level, UI_STATES state);
 	void setMarker(int plID);
     void setEnabled();
     void setDisabled();
@@ -26,7 +27,7 @@ public:
 
 signals:
     void changeType(int type);
-    void changeLevel(int level);
+	void changeLevel(int level, int state);
 	void changeMarker(int plId);
     void enable();
     void disable();

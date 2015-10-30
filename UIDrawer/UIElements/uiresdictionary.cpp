@@ -92,28 +92,34 @@ UIResDictionary::UIResDictionary()
 
 	// t_HUMAN_COLONY_CENTER
 
+	classicNormalSpec->frameCnt = 24;
+	classicBuildSpec->frameCnt = 24;
+	classicDestrSpec->frameCnt = 24;
 	registerResPath(t_HUMAN_COLONY_CENTER, 0, "/img/humanColonyCenterL0.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_DESTROYED, classicDestrSpec);
 
-	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL1.png");
+	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL0.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_DESTROYED, classicDestrSpec);
 
-	registerResPath(t_HUMAN_COLONY_CENTER, 2, "/img/humanColonyCenterL2.png");
+	registerResPath(t_HUMAN_COLONY_CENTER, 2, "/img/humanColonyCenterL0.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_DESTROYED, classicDestrSpec);
 
-	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL2.png");
+	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL0.png");
 	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_DESTROYED, classicDestrSpec);
 
 	// t_HUMAN_TRANSPORT_CENTER
 
+	classicNormalSpec->frameCnt = 8;
+	classicBuildSpec->frameCnt = 8;
+	classicDestrSpec->frameCnt = 8;
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 0, "/img/humanTransportCenterL0.png");
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_BUILDED, classicBuildSpec);

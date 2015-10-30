@@ -26,6 +26,7 @@ public:
 	explicit CellController(int id = 0, QObject *parent = 0);
     ~CellController();
 
+    bool elapseTime(double time);
 
     //getters for QML
     bool isActive();
@@ -68,7 +69,9 @@ public slots:
 
 	void setSecType(int type);
 
-private:
+protected:
+    void setTemproryState(double animationTime);
+
 	int m_id;
     bool m_active;
     bool m_visible;
@@ -86,6 +89,8 @@ private:
 
 	int m_fertility;
 	int m_mineralWealth;
+
+    double m_timeToAnimate;
 };
 
 #endif // CELLCONTROLLER_H

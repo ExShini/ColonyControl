@@ -2,6 +2,7 @@
 #define UIDRAWER_H
 
 #include <QApplication>
+#include "uitimingmanager.h"
 #include "UIElements/uimapcontroller.h"
 #include "UIElements/menucontroller.h"
 #include "UIElements/monitorpanelcontroller.h"
@@ -26,6 +27,7 @@ private:
     QApplication* m_app;
     QQmlApplicationEngine* m_engine;
 
+    UITimingManager* m_timerManager;
     UIMapController* m_mapController;
     MenuController * m_menuController;
 	MonitorPanelController* m_monitorController;

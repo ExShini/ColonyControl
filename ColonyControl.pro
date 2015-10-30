@@ -55,7 +55,8 @@ SOURCES += main.cpp \
     Core/objectstatecontroller.cpp \
     AudioModule/audiocontroller.cpp \
     TestModule/testcase.cpp \
-    TestModule/basebuildingtester.cpp
+    TestModule/basebuildingtester.cpp \
+    UIDrawer/uitimingmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -132,7 +133,8 @@ HEADERS += \
     Enums/colonycontrol.h \
     TestModule/testcase.h \
     TestModule/basebuildingtester.h \
-    Enums/uistate.h
+    Enums/uistate.h \
+    UIDrawer/uitimingmanager.h
 
 
 

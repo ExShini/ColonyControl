@@ -2,6 +2,9 @@
 #include "cellcontroller.h"
 #include "uiresdictionary.h"
 #include "Core/randomgen.h"
+#include "Enums/uistate.h"
+#include "UIDrawer/uitimingmanager.h"
+#include "qdebug.h"
 
 /************************************************
  * Func: CellController
@@ -10,10 +13,10 @@
 CellController::CellController(int id, QObject *parent) :
     QObject(parent)
 {
-	m_id = id;
+    m_id = id;
     m_active = false;
     m_visible = false;
-	m_state = 0;	// NORMAL STATE
+    m_state = 0;	// NORMAL STATE
     m_animFrameCnt = 2;
     m_animFrameRate = 0.5;
     m_rowInFrame = 0;
@@ -22,6 +25,7 @@ CellController::CellController(int id, QObject *parent) :
     m_backDir = 0;
     m_markerSrc = QString("");
     m_curType = INVALID_OBJ_TYPE;
+    m_timeToAnimate = 0;
 }
 
 /************************************************
@@ -48,7 +52,7 @@ QString CellController::mainObjAnimSrc()
  ***********************************************/
 QString CellController::backgroundSrc()
 {
-	return m_backSrc;
+    return m_backSrc;
 }
 
 /************************************************
@@ -66,7 +70,7 @@ int CellController::backgroundDir()
  ***********************************************/
 QString CellController::markerSrc()
 {
-	return m_markerSrc;
+    return m_markerSrc;
 }
 
 /************************************************
@@ -111,7 +115,7 @@ double CellController::mainObjAnimFrameRate()
  ***********************************************/
 int CellController::rowInFrame()
 {
-	return m_rowInFrame;
+    return m_rowInFrame;
 }
 
 /************************************************
@@ -123,7 +127,7 @@ void CellController::setNewAnimation(QString src, int cnt, double rate, int row)
     m_animSrc = src;
     m_animFrameCnt = cnt;
     m_animFrameRate = rate;
-	m_rowInFrame = row;
+    m_rowInFrame = row;
 
     emit animChanged();
 }
@@ -134,10 +138,10 @@ void CellController::setNewAnimation(QString src, int cnt, double rate, int row)
  ***********************************************/
 void CellController::setNewBackground(QString src)
 {
-	m_backSrc = src;
+    m_backSrc = src;
     // add random rotation for background
     m_backDir = (RandomGen::getRand() % 4) * 90;
-	emit backChanged();
+    emit backChanged();
 }
 
 /************************************************
@@ -146,8 +150,8 @@ void CellController::setNewBackground(QString src)
  ***********************************************/
 void CellController::setPlayerMarker(int playerID)
 {
-	m_markerSrc = UIResDictionary::getInstance()->getMarkerSrc(playerID);
-	emit markerChanged();
+    m_markerSrc = UIResDictionary::getInstance()->getMarkerSrc(playerID);
+    emit markerChanged();
 }
 
 /************************************************
@@ -179,14 +183,49 @@ void CellController::enableObj()
  ***********************************************/
 void CellController::setLevel(int level, int state)
 {
-	int row = INVALIDE_VALUE;
-	int frameCnt = INVALIDE_VALUE;
-	m_level = level;
-	m_state = state;
-	QString src = UIResDictionary::getInstance()
-			->getResource(m_curType, m_level, m_state, row, frameCnt);
+    int row = INVALIDE_VALUE;
+    int frameCnt = INVALIDE_VALUE;
+    m_level = level;
+    bool tempState = (m_state != state) && (state != UI_NORMAL);
+    m_state = state;
+    QString src = UIResDictionary::getInstance()
+            ->getResource(m_curType, m_level, m_state, row, frameCnt);
 
-	setNewAnimation(src, frameCnt, 4.0, row);
+    if(tempState)
+    {
+        setTemproryState(frameCnt / 4.0);
+    }
+
+    setNewAnimation(src, frameCnt, 4.0, row);
+}
+
+void CellController::setTemproryState(double animationTime)
+{
+    double oldTime = m_timeToAnimate;
+    m_timeToAnimate = animationTime;
+
+    if(oldTime == 0)
+    {
+        qDebug() << "CellController::setTemproryState: registred!!!";
+        UITimingManager::getInstance()->addCCCntr(this);
+    }
+}
+
+bool CellController::elapseTime(double time)
+{
+    bool continues = true;
+
+    m_timeToAnimate -= time;
+    if(m_timeToAnimate <= 0)
+    {
+        m_timeToAnimate = 0;
+        setState((int)UI_NORMAL);
+        continues = false;
+
+        qDebug() << "CellController::elapseTime: resolved!!!";
+    }
+
+    return continues;
 }
 
 /************************************************
@@ -195,24 +234,24 @@ void CellController::setLevel(int level, int state)
  ***********************************************/
 void CellController::setType(int type)
 {
-	int row = INVALIDE_VALUE;
-	int frameCnt = INVALIDE_VALUE;
+    int row = INVALIDE_VALUE;
+    int frameCnt = INVALIDE_VALUE;
     m_curType = (OBJECT_TYPE)type;
-	QString src = UIResDictionary::getInstance()
-			->getResource(m_curType, 0, 0, row, frameCnt);
+    QString src = UIResDictionary::getInstance()
+            ->getResource(m_curType, 0, 0, row, frameCnt);
 
-	setNewAnimation(src, frameCnt, 4.0, row);
+    setNewAnimation(src, frameCnt, 4.0, row);
 }
 
 void CellController::setState(int state)
 {
-	int row = INVALIDE_VALUE;
-	int frameCnt = INVALIDE_VALUE;
-	m_state = state;
-	QString src = UIResDictionary::getInstance()
-			->getResource(m_curType, m_level, m_state, row, frameCnt);
+    int row = INVALIDE_VALUE;
+    int frameCnt = INVALIDE_VALUE;
+    m_state = state;
+    QString src = UIResDictionary::getInstance()
+            ->getResource(m_curType, m_level, m_state, row, frameCnt);
 
-	setNewAnimation(src, frameCnt, 4.0, row);
+    setNewAnimation(src, frameCnt, 4.0, row);
 }
 
 /************************************************
@@ -221,13 +260,13 @@ void CellController::setState(int state)
  ***********************************************/
 void CellController::setSecType(int type)
 {
-	// trick, it does not used
-	int row = INVALIDE_VALUE;
-	int frameCnt = INVALIDE_VALUE;
+    // trick, it does not used
+    int row = INVALIDE_VALUE;
+    int frameCnt = INVALIDE_VALUE;
 
-	OBJECT_TYPE bacType = (OBJECT_TYPE)type;
-	QString src = UIResDictionary::getInstance()->getResource(bacType, 0, 0, row, frameCnt);
-	setNewBackground(src);
+    OBJECT_TYPE bacType = (OBJECT_TYPE)type;
+    QString src = UIResDictionary::getInstance()->getResource(bacType, 0, 0, row, frameCnt);
+    setNewBackground(src);
 }
 
 
@@ -237,5 +276,5 @@ void CellController::setSecType(int type)
  ***********************************************/
 int CellController::id()
 {
-	return m_id;
+    return m_id;
 }

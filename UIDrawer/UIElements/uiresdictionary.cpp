@@ -1,5 +1,6 @@
 #include "uiresdictionary.h"
 #include "Enums/procsettings/ability.h"
+#include "Enums/uistate.h"
 #include "qdebug.h"
 
 UIResDictionary* UIResDictionary::s_instance = nullptr;
@@ -14,7 +15,7 @@ UIResDictionary::UIResDictionary()
     {
         for(int level = 0; level < MAX_LEVEL; level++)
         {
-            m_resoursesPath[type][level] = QString("");
+			m_resoursesPath[type][level].path = QString("");
         }
     }
 
@@ -26,26 +27,113 @@ UIResDictionary::UIResDictionary()
 	/*********************************
 	 *			Buildings
 	 ********************************/
+	UIResSpecifier* classicNormalSpec = new UIResSpecifier();
+	classicNormalSpec->frameCnt = 8;
+	classicNormalSpec->rowNumber = 0;
+	UIResSpecifier* classicBuildSpec = new UIResSpecifier();
+	classicBuildSpec->frameCnt = 8;
+    classicBuildSpec->rowNumber = 1;	// TODO: temprory solution
+	UIResSpecifier* classicDestrSpec = new UIResSpecifier();
+	classicDestrSpec->frameCnt = 8;
+	classicDestrSpec->rowNumber = 0;	// TODO: temprory solution
+
+
+	// t_HUMAN_SETTLERS
 
 	registerResPath(t_HUMAN_SETTLERS, 0, "/img/humanSettlerL0.png");
+	addSpecific(t_HUMAN_SETTLERS, 0, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 0, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 1, "/img/humanSettlerL1.png");
+	addSpecific(t_HUMAN_SETTLERS, 1, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 1, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 2, "/img/humanSettlerL2.png");
+	addSpecific(t_HUMAN_SETTLERS, 2, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 2, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 3, "/img/humanSettlerL3.png");
+	addSpecific(t_HUMAN_SETTLERS, 3, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 3, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 3, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 4, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 4, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 4, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 4, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 5, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 5, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 5, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 5, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 6, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 6, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 6, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 6, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 7, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 7, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 7, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 7, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 8, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 8, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 8, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 8, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_SETTLERS, 9, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 9, UI_DESTROYED, classicDestrSpec);
 
+	// t_HUMAN_COLONY_CENTER
+
+	classicNormalSpec->frameCnt = 24;
+	classicBuildSpec->frameCnt = 24;
+	classicDestrSpec->frameCnt = 24;
 	registerResPath(t_HUMAN_COLONY_CENTER, 0, "/img/humanColonyCenterL0.png");
-	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL1.png");
-	registerResPath(t_HUMAN_COLONY_CENTER, 2, "/img/humanColonyCenterL2.png");
-	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL2.png");
+	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 0, UI_DESTROYED, classicDestrSpec);
 
+	registerResPath(t_HUMAN_COLONY_CENTER, 1, "/img/humanColonyCenterL0.png");
+	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 1, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_HUMAN_COLONY_CENTER, 2, "/img/humanColonyCenterL0.png");
+	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 2, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_HUMAN_COLONY_CENTER, 3, "/img/humanColonyCenterL0.png");
+	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_COLONY_CENTER, 3, UI_DESTROYED, classicDestrSpec);
+
+	// t_HUMAN_TRANSPORT_CENTER
+
+	classicNormalSpec->frameCnt = 8;
+	classicBuildSpec->frameCnt = 8;
+	classicDestrSpec->frameCnt = 8;
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 0, "/img/humanTransportCenterL0.png");
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 0, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 1, "/img/humanTransportCenterL1.png");
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 1, UI_DESTROYED, classicDestrSpec);
+
 	registerResPath(t_HUMAN_TRANSPORT_CENTER, 2, "/img/humanTransportCenterL2.png");
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_DESTROYED, classicDestrSpec);
 
 
 	/*********************************
@@ -53,8 +141,13 @@ UIResDictionary::UIResDictionary()
 	 ********************************/
 
 	registerResPath(t_HUMAN_SHUTTLE, 0, "/img/PionerL0.png");
+	addSpecific(t_HUMAN_SHUTTLE, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_HUMAN_ION_CANON_SATELLITE, 0, "/img/IonCanonAbility.png");
+	addSpecific(t_HUMAN_ION_CANON_SATELLITE, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_HUMAN_ION_CANON_BULLET, 0, "/img/IonCanonBullet.png");
+	addSpecific(t_HUMAN_ION_CANON_BULLET, 0, UI_NORMAL, classicNormalSpec);
 
 
 	/*********************************
@@ -62,11 +155,22 @@ UIResDictionary::UIResDictionary()
 	 ********************************/
 
 	registerResPath(t_MOUNT, 0, "/img/LavaMount_1.png", true);
+	addSpecific(t_MOUNT, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_FERTILYTY_FIELD, 0, "/img/NGround_1B.png", true);
+	addSpecific(t_FERTILYTY_FIELD, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_DESERT, 0, "/img/Desert.png", true);
+	addSpecific(t_DESERT, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_MINERAL_FIELD, 0, "/img/MineralField.png", true);
+	addSpecific(t_MINERAL_FIELD, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_LAVA, 0, "/img/LavaField.png", true);
+	addSpecific(t_LAVA, 0, UI_NORMAL, classicNormalSpec);
+
 	registerResPath(t_DEEP_LAVA, 0, "/img/DeepLava.png", true);
+	addSpecific(t_DEEP_LAVA, 0, UI_NORMAL, classicNormalSpec);
 
 
 	registerMarkerPath(Human, 0, "/img/HumMarker_Blue.png");
@@ -187,17 +291,41 @@ UIResDictionary::~UIResDictionary()
  * Func: getResource
  * Desc: Return src for images and animations.
  ***********************************************/
-QString UIResDictionary::getResource(int type, int level)
+QString UIResDictionary::getResource(int type, int level, int state, int& row, int& frameCnt)
 {
     if(type == INVALID_OBJ_TYPE)
         return QString("");
 
-    QString path = m_resoursesPath[type][level];
+	QString path = m_resoursesPath[type][level].path;
 
     if(path.isEmpty())
     {
         qDebug() << "IResDictionary::getResource: ERROR! empty path!";
+		return "";
     }
+
+	UIResourse& uiRes = m_resoursesPath[type][level];
+
+	if(!uiRes.spec.keys().contains(state))
+	{
+		qDebug() << "IResDictionary::getResource: ERROR! uiRes.spec.keys does not contain this state: !" << state;
+		row = INVALIDE_VALUE;
+		frameCnt = INVALIDE_VALUE;
+		return "";
+	}
+
+	UIResSpecifier* spec = uiRes.spec[state];
+
+	if(spec == nullptr)
+	{
+		qDebug() << "IResDictionary::getResource: ERROR! spec is null!";
+		row = INVALIDE_VALUE;
+		frameCnt = INVALIDE_VALUE;
+		return "";
+	}
+
+	row = spec->rowNumber;
+	frameCnt = spec->frameCnt;
 
     return path;
 }
@@ -208,7 +336,32 @@ QString UIResDictionary::getResource(int type, int level)
  ***********************************************/
 void UIResDictionary::registerResPath(int type, int level, QString path, bool random)
 {
-    m_resoursesPath[type][level] = path;
+	m_resoursesPath[type][level].path = path;
+}
+
+/************************************************
+ * Func: addSpecific
+ * Desc: Add new specifier to dictionary.
+ ***********************************************/
+void UIResDictionary::addSpecific(int type, int level, int state, UIResSpecifier *spec)
+{
+	UIResourse& res = m_resoursesPath[type][level];
+
+	if(spec == nullptr)
+	{
+		qDebug() << "UIResDictionary::addSpecific: Error!!! spec is null for type " << type << " level: " << level << " state: " << state;
+		return;
+	}
+
+	if(res.spec.keys().contains(state))
+	{
+		qDebug() << "UIResDictionary::addSpecific: Error!!! already have Specific for type: " << type << " level: " << level << " state: " << state;
+	}
+
+	UIResSpecifier* resSpec = new UIResSpecifier();
+	memcpy(resSpec, spec, sizeof(UIResSpecifier));
+
+	res.spec[state] = resSpec;
 }
 
 /************************************************

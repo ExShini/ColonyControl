@@ -89,17 +89,17 @@ void GameCore::initGameObject()
 	}
 
 
-	for(int i = 12; i < 17; i ++)
-	{
-		for(int j = 12; j < 17; j++)
-		{
-			if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 1) != nullptr)
-			{
-				j = 16;
-				i = 16;
-			}
-		}
-	}
+    for(int i = 12; i < 17; i ++)
+    {
+        for(int j = 12; j < 17; j++)
+        {
+            if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 1) != nullptr)
+            {
+                j = 16;
+                i = 16;
+            }
+        }
+    }
 }
 
 /************************************************

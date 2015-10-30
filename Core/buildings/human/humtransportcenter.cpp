@@ -7,7 +7,7 @@ HumTransportCenter::HumTransportCenter(GObjWrapper *wrapper, Sector *sector, int
 	m_level = 0;
 
 	m_wrapper->setType(m_type);
-	m_wrapper->setLevel(0);
+	m_wrapper->setLevel(0, UI_NORMAL);
 	m_wrapper->setEnabled();
 
 	updateResourse(POPULATION, m_level);

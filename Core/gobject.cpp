@@ -322,7 +322,7 @@ void GObject::deactivate()
 	if(m_wrapper != nullptr)
 	{
 		m_wrapper->setDisabled();
-		m_wrapper->setLevel(0);
+		m_wrapper->setLevel(0, UI_NORMAL);
 		m_wrapper->setType(INVALID_OBJ_TYPE);
 	}
 

@@ -10,3 +10,12 @@ HumanBuildManager::~HumanBuildManager()
 {
 
 }
+
+
+int HumanBuildManager::getCostOf(OBJECT_TYPE objType)
+{
+	if(objType == t_HUMAN_SETTLERS)
+		return 0;
+
+	return BuildManager::getCostOf(objType);
+}

@@ -16,23 +16,28 @@ class CellController : public QObject
 
     Q_PROPERTY(QString animMainSrc READ mainObjAnimSrc NOTIFY animChanged)
 	Q_PROPERTY(QString backgroundSrc READ backgroundSrc NOTIFY backChanged)
+    Q_PROPERTY(int backgroundDir READ backgroundDir NOTIFY backChanged)
 	Q_PROPERTY(QString markerSrc READ markerSrc NOTIFY markerChanged)
     Q_PROPERTY(int animFrameCnt READ mainObjAnimFrameCnt NOTIFY animChanged)
     Q_PROPERTY(double animFrameRate READ mainObjAnimFrameRate NOTIFY animChanged)
+	Q_PROPERTY(int rowInFrame READ rowInFrame NOTIFY animChanged)
 
 public:
 	explicit CellController(int id = 0, QObject *parent = 0);
     ~CellController();
 
+    bool elapseTime(double time);
 
     //getters for QML
     bool isActive();
     bool objIsvisible();
     QString mainObjAnimSrc();
 	QString backgroundSrc();
+    int backgroundDir();
 	QString markerSrc();
     int mainObjAnimFrameCnt();
     double mainObjAnimFrameRate();
+	int rowInFrame();
 	int id();
 
 
@@ -52,10 +57,11 @@ signals:
 	void idChanged();
 
 public slots:
-    void setLevel(int level);
+	void setLevel(int level, int state);
     void setType(int type);
+	void setState(int state);
 
-    void setNewAnimation(QString src, int cnt, double rate);
+	void setNewAnimation(QString src, int cnt, double rate, int row);
 	void setNewBackground(QString src);
 	void setPlayerMarker(int playerID);
     void disableObj();
@@ -63,20 +69,28 @@ public slots:
 
 	void setSecType(int type);
 
-private:
+protected:
+    void setTemproryState(double animationTime);
+
 	int m_id;
     bool m_active;
     bool m_visible;
+	int m_state;
+	int m_level;
     OBJECT_TYPE m_curType;
 
     QString m_animSrc;
 	QString m_backSrc;
+    int m_backDir;
 	QString m_markerSrc;
     int m_animFrameCnt;
     double m_animFrameRate;
+	int m_rowInFrame;
 
 	int m_fertility;
 	int m_mineralWealth;
+
+    double m_timeToAnimate;
 };
 
 #endif // CELLCONTROLLER_H

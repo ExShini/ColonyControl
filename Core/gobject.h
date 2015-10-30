@@ -4,6 +4,7 @@
 #include "Core/playercontroller.h"
 #include "Enums/objects.h"
 #include "Enums/mapsettings.h"
+#include "Enums/uistate.h"
 #include "QHash"
 #include "QMap"
 
@@ -69,6 +70,7 @@ protected:
 	QMap<RESOURSES, Resourse*>::iterator m_curResource;
 
 	int m_playerID;
+
 };
 
 #endif // GOBJECT

@@ -55,7 +55,8 @@ SOURCES += main.cpp \
     Core/objectstatecontroller.cpp \
     AudioModule/audiocontroller.cpp \
     TestModule/testcase.cpp \
-    TestModule/basebuildingtester.cpp
+    TestModule/basebuildingtester.cpp \
+    UIDrawer/uitimingmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -131,7 +132,9 @@ HEADERS += \
     AudioModule/audiocontroller.h \
     Enums/colonycontrol.h \
     TestModule/testcase.h \
-    TestModule/basebuildingtester.h
+    TestModule/basebuildingtester.h \
+    Enums/uistate.h \
+    UIDrawer/uitimingmanager.h
 
 
 
@@ -183,20 +186,36 @@ QT5_LIBSD = $$[QT_INSTALL_PREFIX]/bin/libgcc_s_dw2-1.dll \
            $$[QT_INSTALL_PREFIX]/bin/icuuc54.dll
 
 
-CONFIG(debug) {
-    DEST = debug
-    copy_qt5_libs.input = QT5_LIBSD
-} else {
-    DEST = release
-    copy_qt5_libs.input = QT5_LIBS
-}
+#CONFIG(release, debug|release) {
+#    #This is a release build
+#    DEST = release
+#    copy_qt5_libs.input = QT5_LIBS
+#} else {
+#    #This is a debug build
+#    DEST = debug
+#    copy_qt5_libs.input = QT5_LIBSD
+#    DEFINES += QT_DEBUG_OUTPUT
+#}
+
+
+BDIR = $$OUT_PWD
+BDIR_STRIPPED = $$replace(BDIR,Release,)
+equals (BDIR,$$BDIR_STRIPPED): CONFIG+= debugExec
+else: CONFIG+= releaseExec
+
+releaseExec: DEST = release
+releaseExec:copy_qt5_libs.input = QT5_LIBS
+
+debugExec: DEST = debug
+debugExec: copy_qt5_libs.input = QT5_LIBSD
 
 
 #copy_qt5_libs.input = QT5_LIBS
 copy_qt5_libs.output = $${OUT_PWD}/$${DEST}/${QMAKE_FILE_BASE}${QMAKE_FILE_EXT}
 copy_qt5_libs.commands = ${COPY_FILE} ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 QMAKE_EXTRA_COMPILERS += copy_qt5_libs
-}
+
+} # end of Win32
 
 
 !equals(_PRO_FILE_PWD_, $$OUT_PWD) {

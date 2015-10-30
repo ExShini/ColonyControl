@@ -7,6 +7,7 @@ class HumanBuildManager: public BuildManager
 public:
 	HumanBuildManager();
 	virtual ~HumanBuildManager();
+	virtual int getCostOf(OBJECT_TYPE objType);
 };
 
 #endif // HUMANBUILDMANAGER_H

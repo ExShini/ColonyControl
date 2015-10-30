@@ -46,7 +46,7 @@ signals:
 	void directionChanged();
 
 public slots:
-	void setLevel(int level);
+	void setLevel(int level, int state);
 	void setType(int type);
 
 	void setNewAnimation(QString src, int cnt, double rate);

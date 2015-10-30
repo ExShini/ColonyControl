@@ -16,6 +16,9 @@ UIDrawer::UIDrawer(int argc, char *argv[])
 
 	AudioController::getInstance()->setEngine(m_engine);
 
+    m_timerManager = UITimingManager::getInstance();
+    m_timerManager->start();
+
     m_mapController = UIMapController::getInstance();
     m_mapController->setEngine(m_engine);
 

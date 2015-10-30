@@ -10,6 +10,11 @@
  ***********************************************/
 int main(int argc, char *argv[])
 {
+
+#if QT_DEBUG_OUTPUT
+	qDebug() << "QT_DEBUG_OUTPUT.";
+#endif
+
 	GameApp* game = new GameApp(argc, argv);
 	game->init();
 

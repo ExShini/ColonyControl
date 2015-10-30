@@ -1,6 +1,7 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 #include <iostream>
+#include <string.h>
 
 #define INVALIDE_VALUE -1
 #define IT_DOES_NOT_METTER -2
@@ -80,8 +81,8 @@ enum RESOURSES
     FERTILITY = 0,
     MINERAL_WEALTH,
 
+    SUPPLY,
     POPULATION,
-	SUPPLY,
     MINERALS,
     INFROSTRUCTURE,
 

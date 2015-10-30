@@ -1,0 +1,14 @@
+#ifndef UISTATE
+#define UISTATE
+
+enum UI_STATES
+{
+	INVALID_UI_STATE = - 1,
+	UI_NORMAL = 0,
+	UI_BUILDED,
+    UI_DESTROYED,
+    UI_CRASHED
+};
+
+#endif // UISTATE
+

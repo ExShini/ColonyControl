@@ -6,9 +6,10 @@
 #define CHECK_CONDITION(condition,status)(condition & status)
 #define ADD_CONDITION(condition,status)(condition|status)
 
-#define NO_CONDITION 0				// 000000
-#define NORMAL_EMPTY_CONDITION 1	// 000001
-#define DESTROED_CONDITION 2	// 000010
+#define NO_CONDITION            0	// 000000
+#define NORMAL_EMPTY_CONDITION  1	// 000001
+#define DESTROED_CONDITION      2	// 000010
+#define IN_DESTRUCTION          4   // 000100
 
 #endif // OBJSTATUS
 

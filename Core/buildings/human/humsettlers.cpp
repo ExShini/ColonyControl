@@ -12,7 +12,7 @@ HumSettlers::HumSettlers(GObjWrapper *wrapper, Sector* sector, int population, i
 	m_type = t_HUMAN_SETTLERS;
 
 	m_wrapper->setType(m_type);
-	m_wrapper->setLevel(0);
+	m_wrapper->setLevel(0, UI_NORMAL);
 	m_wrapper->setEnabled();
 
 	regResourse(POPULATION);

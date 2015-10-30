@@ -1,6 +1,7 @@
 #include <QtQml>
 #include "cellcontroller.h"
 #include "uiresdictionary.h"
+#include "Core/randomgen.h"
 
 /************************************************
  * Func: CellController
@@ -15,10 +16,11 @@ CellController::CellController(int id, QObject *parent) :
 	m_state = 0;	// NORMAL STATE
     m_animFrameCnt = 2;
     m_animFrameRate = 0.5;
-	m_rowInFrame = 0,
+    m_rowInFrame = 0;
     m_animSrc = QString("");
-	m_backSrc = QString("/img/DefBackground.png");
-	m_markerSrc = QString(""),
+    m_backSrc = QString("/img/DefBackground.png");
+    m_backDir = 0;
+    m_markerSrc = QString("");
     m_curType = INVALID_OBJ_TYPE;
 }
 
@@ -47,6 +49,15 @@ QString CellController::mainObjAnimSrc()
 QString CellController::backgroundSrc()
 {
 	return m_backSrc;
+}
+
+/************************************************
+ * Func: backgroundDir
+ * Desc: return direction for background image.
+ ***********************************************/
+int CellController::backgroundDir()
+{
+    return m_backDir;
 }
 
 /************************************************
@@ -124,6 +135,8 @@ void CellController::setNewAnimation(QString src, int cnt, double rate, int row)
 void CellController::setNewBackground(QString src)
 {
 	m_backSrc = src;
+    // add random rotation for background
+    m_backDir = (RandomGen::getRand() % 4) * 90;
 	emit backChanged();
 }
 

@@ -15,6 +15,7 @@ Rectangle {
     Image {
         id: ground;
         source: control.backgroundSrc;
+        rotation: control.backgroundDir;
         anchors.fill: parent;
         z: 1;
     }

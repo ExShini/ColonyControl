@@ -16,6 +16,7 @@ class CellController : public QObject
 
     Q_PROPERTY(QString animMainSrc READ mainObjAnimSrc NOTIFY animChanged)
 	Q_PROPERTY(QString backgroundSrc READ backgroundSrc NOTIFY backChanged)
+    Q_PROPERTY(int backgroundDir READ backgroundDir NOTIFY backChanged)
 	Q_PROPERTY(QString markerSrc READ markerSrc NOTIFY markerChanged)
     Q_PROPERTY(int animFrameCnt READ mainObjAnimFrameCnt NOTIFY animChanged)
     Q_PROPERTY(double animFrameRate READ mainObjAnimFrameRate NOTIFY animChanged)
@@ -31,6 +32,7 @@ public:
     bool objIsvisible();
     QString mainObjAnimSrc();
 	QString backgroundSrc();
+    int backgroundDir();
 	QString markerSrc();
     int mainObjAnimFrameCnt();
     double mainObjAnimFrameRate();
@@ -76,6 +78,7 @@ private:
 
     QString m_animSrc;
 	QString m_backSrc;
+    int m_backDir;
 	QString m_markerSrc;
     int m_animFrameCnt;
     double m_animFrameRate;

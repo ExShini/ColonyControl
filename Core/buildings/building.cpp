@@ -271,77 +271,6 @@ void Building::setNewRequestToMap(REQ_TYPE reqType, RESOURSES resType, int value
 }
 
 
-
-//************************************/
-///*************************************
-//FUNC: popLimitEmigration()
-//DESC: Add emigration request (if it needed) and increase number of colonists
-//*************************************/
-//void HumSettlers::popLimitEmigration()
-//{
-//	int population = getResources(POPULATION);
-//	int populationLimit = getResLimit(POPULATION);
-
-
-//	Request * req = m_requestMap[POPULATION];
-
-//	int col = population - populationLimit;
-
-//	// take 25% of population - it is top limit for emigration
-//	int pop25persent = (population >> 2);
-
-//	if(col > pop25persent)
-//	{
-//		col = pop25persent;
-//	}
-
-//	if(col > 0)
-//	{
-//		if(req == nullptr)
-//		{
-//			req = new Request();
-//			req->resType = POPULATION;
-//			req->status = AWAITS;
-//			req->subject = this;
-//			req->type = PROVIDE;
-//			req->value = col;
-
-//			m_requestMap[POPULATION] = req;
-//		}
-
-//		if(req->type == CONSUME)
-//		{
-//			qDebug() << "popLimitEmigration: Change req-direction at x:" << getMapX() << " y:" << getMapY();
-
-//			// set NOT_ACTUAL for previus request
-//			req->status = NOT_ACTUAL;
-//			req->value = 0;
-
-//			//create new request
-//			req = new Request();
-//			req->resType = POPULATION;
-//			req->status = AWAITS;
-//			req->subject = this;
-//			req->type = PROVIDE;
-//			req->value = col;
-//			m_requestMap[POPULATION] = req;
-//		}
-
-//		if(req->value < col)
-//		{
-//			req->value = col;
-//		}
-
-//		//register request if it needed
-//		if(req->value >= MIN_HUMAN_TO_MOVE && !req->registred)
-//		{
-//			m_player->addRequest(req);
-//		}
-//	}
-//}
-///************************************
-
-
 void Building::checkState()
 {
 	int infrostructure = getResources(INFROSTRUCTURE);
@@ -350,16 +279,17 @@ void Building::checkState()
 	int currentLevel = m_level;
 
 	// check to increae level
+    UI_STATES ui_state = INVALID_UI_STATE;
 	if(infrostructure >= topInfLevel && m_level < m_maxLevel)
 	{
 		m_level++;
-		m_uiState = UI_BUILDED;
+        ui_state = UI_BUILDED;
 	}
 	// chack to degrise level
 	else if(infrostructure < lowInfLevel && m_level > 0)
 	{
 		m_level--;
-		m_uiState = UI_DESTROYED;
+        ui_state = UI_DESTROYED;
 	}
 
 	if(currentLevel != m_level)
@@ -374,7 +304,7 @@ void Building::checkState()
 			updateResourse(resType, m_level);
 		}
 
-		m_wrapper->setLevel(m_level, m_uiState);
+        m_wrapper->setLevel(m_level, ui_state);
 	}
 }
 

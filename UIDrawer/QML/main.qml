@@ -7,10 +7,10 @@ import "qrc:/res/UIDrawer/QML/Styles"
 
 ApplicationWindow {
 
-    //visibility: Window.FullScreen;
+    visibility: Window.FullScreen;
     visible: true
-    width: (Screen.desktopAvailableWidth * 80) / 100;
-    height: (Screen.desktopAvailableHeight * 80) / 100;
+//    width: (Screen.desktopAvailableWidth * 80) / 100;
+//    height: (Screen.desktopAvailableHeight * 80) / 100;
     title: qsTr("Colony Control " + MenuController.getCCVersion())
     objectName: "MainWindow";
 

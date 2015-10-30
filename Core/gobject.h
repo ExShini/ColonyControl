@@ -70,7 +70,6 @@ protected:
 	QMap<RESOURSES, Resourse*>::iterator m_curResource;
 
 	int m_playerID;
-	UI_STATES m_uiState;
 
 };
 

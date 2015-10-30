@@ -247,9 +247,17 @@ void CellController::setState(int state)
 {
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
+
+    bool tempState = (m_state != state) && (state != UI_NORMAL);
+
     m_state = state;
     QString src = UIResDictionary::getInstance()
             ->getResource(m_curType, m_level, m_state, row, frameCnt);
+
+    if(tempState)
+    {
+        setTemproryState(frameCnt / 4.0);
+    }
 
     setNewAnimation(src, frameCnt, 4.0, row);
 }

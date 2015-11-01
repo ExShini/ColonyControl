@@ -206,7 +206,6 @@ void CellController::setTemproryState(double animationTime)
 
     if(oldTime == 0)
     {
-        qDebug() << "CellController::setTemproryState: registred!!!";
         UITimingManager::getInstance()->addCCCntr(this);
     }
 }
@@ -221,8 +220,6 @@ bool CellController::elapseTime(double time)
         m_timeToAnimate = 0;
         setState((int)UI_NORMAL);
         continues = false;
-
-        qDebug() << "CellController::elapseTime: resolved!!!";
     }
 
     return continues;

@@ -63,20 +63,6 @@ Rectangle {
         {
             MapController.setFocus(parent.cellID);
         }
-
-        onReleased:
-        {
-            if(mouse.button === Qt.LeftButton)
-            {
-                AbilityMenuCntr.sectorChoosed();
-                console.log("left button");
-            }
-            else
-            {
-                AbilityMenuCntr.resetMarker();
-                console.log("right button");
-            }
-        }
     }
 
 

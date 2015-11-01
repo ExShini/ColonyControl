@@ -93,7 +93,8 @@ void UiUnitController::initUIUnitElements()
 	QList<QObject*> list = m_engine->rootObjects();
 
 
-	QObject* mapAreaObj = list[0]->findChild<QObject*>("mapArea");
+	QObject* mapContainerObj = list[0]->findChild<QObject*>("mapContainer");
+	QObject* mapAreaObj = mapContainerObj->findChild<QObject*>("mapArea");
 	QQuickItem *itemMap = qobject_cast<QQuickItem*>(mapAreaObj);
 
 	for(m_unitId = 0; m_unitId < MAX_NUMBER_OF_UNITS; m_unitId++)
@@ -106,7 +107,7 @@ void UiUnitController::initUIUnitElements()
 		item->setY(0);
 
 		item->setProperty("unitID", m_unitId);
-		item->setParentItem(itemMap->childItems()[0]);
+		item->setParentItem(itemMap);
 
 		m_unitUIObj[m_unitId] = item;
 	}

@@ -136,16 +136,14 @@ void UIMapController::InitCells()
 		qDebug() << "Error: " << component.errorString();
 	}
 
-
 	QList<QObject*> list = m_engine->rootObjects();
 
-
-	QObject* mapAreaObj = list[0]->findChild<QObject*>("mapArea");
+	QObject* mapContainerObj = list[0]->findChild<QObject*>("mapContainer");
+	QObject* mapAreaObj = mapContainerObj->findChild<QObject*>("mapArea");
 	QQuickItem *itemMap = qobject_cast<QQuickItem*>(mapAreaObj);
 
-	itemMap->setProperty("contentWidth", CELL_MAP_WIDTH * MAP_WIDTH);
-	itemMap->setProperty("contentHeight", CELL_MAP_HEIGHT * MAP_HEIGHT);
-
+	itemMap->setProperty("width", CELL_MAP_WIDTH * MAP_WIDTH);
+	itemMap->setProperty("height", CELL_MAP_HEIGHT * MAP_HEIGHT);
 
 	for(m_i = 0; m_i < MAP_WIDTH; m_i++)
 	{
@@ -158,12 +156,13 @@ void UIMapController::InitCells()
 			item->setX(CELL_MAP_WIDTH * m_i);
 			item->setY(CELL_MAP_HEIGHT * m_j);
 
-
-			item->setParentItem(itemMap->childItems()[0]);
+			item->setParentItem(itemMap);
 
 			m_cellUIObj[m_i][m_j] = item;
 		}
 	}
+
+	qDebug() << "2";
 }
 
 /************************************************
@@ -183,7 +182,8 @@ void UIMapController::InitMarker()
 	QList<QObject*> list = m_engine->rootObjects();
 
 
-	QObject* mapAreaObj = list[0]->findChild<QObject*>("mapArea");
+	QObject* mapContainerObj = list[0]->findChild<QObject*>("mapContainer");
+	QObject* mapAreaObj = mapContainerObj->findChild<QObject*>("mapArea");
 	QQuickItem *itemMap = qobject_cast<QQuickItem*>(mapAreaObj);
 
 
@@ -195,7 +195,7 @@ void UIMapController::InitMarker()
 	item->setY(0);
 
 
-	item->setParentItem(itemMap->childItems()[0]);
+	item->setParentItem(itemMap);
 
 }
 

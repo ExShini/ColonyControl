@@ -108,10 +108,10 @@ void GameCore::initGameObject()
  ***********************************************/
 void GameCore::init()
 {
+	RandomGen::init();
 	m_playerController->init();
 	m_unitController->init();
     m_objController->init();
-	RandomGen::init();
 
     //if game thread not started - change it. Game must go on :)
     if(!m_coreThread->isRunning())

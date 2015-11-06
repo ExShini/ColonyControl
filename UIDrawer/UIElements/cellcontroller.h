@@ -21,6 +21,7 @@ class CellController : public QObject
     Q_PROPERTY(int animFrameCnt READ mainObjAnimFrameCnt NOTIFY animChanged)
     Q_PROPERTY(double animFrameRate READ mainObjAnimFrameRate NOTIFY animChanged)
 	Q_PROPERTY(int rowInFrame READ rowInFrame NOTIFY animChanged)
+	Q_PROPERTY(bool infinityLoop READ infinityLoop NOTIFY animChanged)
 
 public:
 	explicit CellController(int id = 0, QObject *parent = 0);
@@ -38,6 +39,7 @@ public:
     int mainObjAnimFrameCnt();
     double mainObjAnimFrameRate();
 	int rowInFrame();
+	bool infinityLoop();
 	int id();
 
 
@@ -50,6 +52,7 @@ signals:
     void isActiveChanged();
     void objIsvisibleChanged();
     void animChanged();
+	void applyChanges();
 	void backChanged();
 	void markerChanged();
 	void mineralWealthChanged();
@@ -70,7 +73,7 @@ public slots:
 	void setSecType(int type);
 
 protected:
-    void setTemproryState(double animationTime);
+	void setTemproryState(double animationTime);
 
 	int m_id;
     bool m_active;
@@ -91,6 +94,7 @@ protected:
 	int m_mineralWealth;
 
     double m_timeToAnimate;
+	bool m_infinityLoop;
 };
 
 #endif // CELLCONTROLLER_H

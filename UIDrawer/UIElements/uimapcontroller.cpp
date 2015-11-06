@@ -12,8 +12,7 @@ UIMapController* UIMapController::s_instance = nullptr;
  ***********************************************/
 UIMapController::UIMapController(QObject *parent):
 	QObject(parent),
-	m_cnt(1),
-	m_boarderWidth(1)
+	m_cnt(1)
 {
 	//create cellControllers map
 	for(int i = 0; i < MAP_WIDTH; i++ )
@@ -161,8 +160,6 @@ void UIMapController::InitCells()
 			m_cellUIObj[m_i][m_j] = item;
 		}
 	}
-
-	qDebug() << "2";
 }
 
 /************************************************

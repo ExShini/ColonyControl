@@ -186,28 +186,16 @@ QT5_LIBSD = $$[QT_INSTALL_PREFIX]/bin/libgcc_s_dw2-1.dll \
            $$[QT_INSTALL_PREFIX]/bin/icuuc54.dll
 
 
-#CONFIG(release, debug|release) {
-#    #This is a release build
-#    DEST = release
-#    copy_qt5_libs.input = QT5_LIBS
-#} else {
-#    #This is a debug build
-#    DEST = debug
-#    copy_qt5_libs.input = QT5_LIBSD
-#    DEFINES += QT_DEBUG_OUTPUT
-#}
-
-
-BDIR = $$OUT_PWD
-BDIR_STRIPPED = $$replace(BDIR,Release,)
-equals (BDIR,$$BDIR_STRIPPED): CONFIG+= debugExec
-else: CONFIG+= releaseExec
-
-releaseExec: DEST = release
-releaseExec:copy_qt5_libs.input = QT5_LIBS
-
-debugExec: DEST = debug
-debugExec: copy_qt5_libs.input = QT5_LIBSD
+CONFIG(release, debug|release) {
+    #This is a release build
+    DEST = release
+    copy_qt5_libs.input = QT5_LIBS
+} else {
+    #This is a debug build
+    DEST = debug
+    copy_qt5_libs.input = QT5_LIBSD
+    DEFINES += QT_DEBUG_OUTPUT
+}
 
 
 #copy_qt5_libs.input = QT5_LIBS

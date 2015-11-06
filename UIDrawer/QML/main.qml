@@ -172,16 +172,16 @@ ApplicationWindow {
                 var oldScaling = dragged.scaleValue;
                 if (wheel.angleDelta.y > 0)
                 {
-                    if(dragged.scaleValue > 0.8)
+                    if(dragged.scaleValue < 2)
                     {
-                        dragged.scaleValue -= 0.1;
+                        dragged.scaleValue += 0.1;
                     }
                 }
                 else
                 {
-                    if(dragged.scaleValue < 1.5)
+                    if(dragged.scaleValue > 0.8)
                     {
-                        dragged.scaleValue += 0.1;
+                        dragged.scaleValue -= 0.1;
                     }
                 }
 

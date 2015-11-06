@@ -29,29 +29,51 @@ Rectangle {
 
 
     AnimatedSprite {
+        id: sprite
 
         property int rowNumber: parent.control.rowInFrame;
+        property bool infinityLoops: parent.control.infinityLoop;
+        property string animSrc: parent.control.animMainSrc;
+        property int animFrameCnt: parent.control.animFrameCnt;
+        property int animFrameRate: parent.control.animFrameRate;
 
-        id: sprite
+
         width: 128
         height: 128
         anchors.centerIn: parent
         z: 3;
 
-        source: parent.control.animMainSrc;
-        frameCount: parent.control.animFrameCnt;
+        source: "";
+        frameCount: 8;
         frameWidth: 128
         frameHeight: 128
-        frameRate: parent.control.animFrameRate;
-        running: parent.control.objIsActive;
+        frameRate: 4;
+        running: parent.control.objIsvisible;
         visible: parent.control.objIsvisible;
 
-        onRowNumberChanged:
+        Connections
         {
-            frameY = frameHeight * rowNumber;
-            restart();
-        }
+            target: control
+            onApplyChanges:
+            {
+                sprite.source = sprite.animSrc;
+                if(sprite.infinityLoops)
+                {
+                    sprite.frameCount = sprite.animFrameCnt;
+                }
+                else
+                {
+                    sprite.frameCount = sprite.animFrameCnt + 2;
+                }
 
+                sprite.frameRate = sprite.animFrameRate;
+
+                sprite.frameX = 0;
+                sprite.frameY = sprite.frameHeight * sprite.rowNumber;
+
+                sprite.start();
+            }
+        }
     }
 
     MouseArea {

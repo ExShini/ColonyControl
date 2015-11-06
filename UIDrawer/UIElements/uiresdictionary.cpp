@@ -31,8 +31,8 @@ UIResDictionary::UIResDictionary()
 	classicNormalSpec->frameCnt = 8;
 	classicNormalSpec->rowNumber = 0;
 	UIResSpecifier* classicBuildSpec = new UIResSpecifier();
-	classicBuildSpec->frameCnt = 8;
-    classicBuildSpec->rowNumber = 1;	// TODO: temprory solution
+	classicBuildSpec->frameCnt = 4;
+	classicBuildSpec->rowNumber = 1;
 	UIResSpecifier* classicDestrSpec = new UIResSpecifier();
 	classicDestrSpec->frameCnt = 8;
 	classicDestrSpec->rowNumber = 0;	// TODO: temprory solution

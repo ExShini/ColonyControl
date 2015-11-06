@@ -26,6 +26,7 @@ CellController::CellController(int id, QObject *parent) :
     m_markerSrc = QString("");
     m_curType = INVALID_OBJ_TYPE;
     m_timeToAnimate = 0;
+	m_infinityLoop = true;
 }
 
 /************************************************
@@ -119,6 +120,15 @@ int CellController::rowInFrame()
 }
 
 /************************************************
+ * Func: infinityLoop
+ * Desc: return true for infinity loop and false for 1 loop animation.
+ ***********************************************/
+bool CellController::infinityLoop()
+{
+	return m_infinityLoop;
+}
+
+/************************************************
  * Func: setNewAnimation
  * Desc: setup new animation for cell.
  ***********************************************/
@@ -130,6 +140,7 @@ void CellController::setNewAnimation(QString src, int cnt, double rate, int row)
     m_rowInFrame = row;
 
     emit animChanged();
+	emit applyChanges();
 }
 
 /************************************************
@@ -193,7 +204,7 @@ void CellController::setLevel(int level, int state)
 
     if(tempState)
     {
-        setTemproryState(frameCnt / 4.0);
+		setTemproryState(frameCnt / 4.0);
     }
 
     setNewAnimation(src, frameCnt, 4.0, row);
@@ -203,6 +214,7 @@ void CellController::setTemproryState(double animationTime)
 {
     double oldTime = m_timeToAnimate;
     m_timeToAnimate = animationTime;
+	m_infinityLoop = false;
 
     if(oldTime == 0)
     {
@@ -215,9 +227,10 @@ bool CellController::elapseTime(double time)
     bool continues = true;
 
     m_timeToAnimate -= time;
-    if(m_timeToAnimate <= 0)
+	if(m_timeToAnimate <= 0)	// trick
     {
         m_timeToAnimate = 0;
+		m_infinityLoop = true;
         setState((int)UI_NORMAL);
         continues = false;
     }
@@ -245,7 +258,7 @@ void CellController::setState(int state)
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
 
-    bool tempState = (m_state != state) && (state != UI_NORMAL);
+	bool tempState = state != UI_NORMAL;
 
     m_state = state;
     QString src = UIResDictionary::getInstance()
@@ -253,7 +266,7 @@ void CellController::setState(int state)
 
     if(tempState)
     {
-        setTemproryState(frameCnt / 4.0);
+		setTemproryState(frameCnt / 4.0);
     }
 
     setNewAnimation(src, frameCnt, 4.0, row);

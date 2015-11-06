@@ -42,14 +42,11 @@ protected:
 	QQmlApplicationEngine* m_engine;
 
 	QQuickItem* m_cellUIObj[MAP_WIDTH][MAP_HEIGHT];
-
 	CellController* m_cellCntrs[MAP_WIDTH][MAP_HEIGHT];
 
 	int m_cnt;
-	int m_boarderWidth;
 
 	MarkerController * m_markerCntr;
-
 
 	//support members for creating and linking cell objects
 	int m_i;

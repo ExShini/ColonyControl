@@ -37,8 +37,6 @@ public:
 protected:
 	QList<Request*>* m_requests[NUM_OF_RESOURSES][NUM_OF_REQ_TYPE][NUM_OF_SECTOR_AT_WIDTH][NUM_OF_SECTOR_AT_HEIGHT];
 	QList<Request*> m_reqAtExecution;
-	//int m_requestIds[NUM_OF_RESOURSES];
-	//int reqCounter[NUM_OF_RESOURSES][NUM_OF_SECTOR_AT_WIDTH][NUM_OF_SECTOR_AT_HEIGHT];
 };
 
 #endif // REQUESTMANAGER_H

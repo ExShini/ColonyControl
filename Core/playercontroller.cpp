@@ -1,5 +1,5 @@
 #include "playercontroller.h"
-#include "player/humanplayer.h"
+#include "player/Human/humanplayer.h"
 #include "UIDrawer/UIElements/uiresdictionary.h"
 #include "UIDrawer/UIElements/monitorpanelcontroller.h"
 #include "UIDrawer/UIElements/abilitymenucontroller.h"

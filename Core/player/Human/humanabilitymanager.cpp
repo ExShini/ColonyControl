@@ -5,8 +5,7 @@
 #include "qdebug.h"
 
 HumanAbilityManager::HumanAbilityManager(int playerID):
-	AbilityManager(playerID),
-	m_abilityExecuters()
+	AbilityManager(playerID)
 {
 }
 

@@ -1,6 +1,7 @@
 #include "building.h"
 #include "Core/gobjwrapper.h"
 #include "Core/objectstatecontroller.h"
+#include "Core/playercontroller.h"
 #include "qdebug.h"
 
 
@@ -9,7 +10,8 @@ Building::Building(GObjWrapper *wrapper, Sector* sector, int initialStep, int pl
 	m_sector(sector),
 	m_initialStep(initialStep),
 	m_level(0),
-	m_maxLevel(0)
+	m_maxLevel(0),
+	m_stateCount(0)
 {    
 	m_playerID = plID;
 	m_player = PlayerController::getInstance()->getPlayer(m_playerID);
@@ -29,6 +31,13 @@ void Building::process(int step)
 		return;
 
 	processResource();
+
+	m_stateCount++;
+	if(m_stateCount >= 5)
+	{
+		checkState();
+		m_stateCount = 0;
+	}
 }
 
 void Building::processResource()
@@ -221,7 +230,6 @@ void Building::processResource()
 
 void Building::setNewRequestToMap(REQ_TYPE reqType, RESOURSES resType, int value)
 {
-	// TODO
 	Request * req = m_requestMap[resType];
 
 	if(value > 0)

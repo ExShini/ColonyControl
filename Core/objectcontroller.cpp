@@ -1,13 +1,17 @@
 #include "objectcontroller.h"
+#include "gobjwrapper.h"
+#include "buildings/sector.h"
+#include "buildings/building.h"
 #include "buildings/human/humsettlers.h"
 #include "buildings/human/humcolonycenter.h"
-#include "qdebug.h"
 #include "Enums/coresettings.h"
 #include "UIDrawer/UIElements/uimapcontroller.h"
 #include "UIDrawer/UIElements/monitorpanelcontroller.h"
 #include "objectstatecontroller.h"
-#include "QThread"
+#include "Core/playercontroller.h"
 
+#include "QThread"
+#include "qdebug.h"
 ObjectController* ObjectController::s_instance = nullptr;
 
 

@@ -1,6 +1,7 @@
 #include "humcolonycenter.h"
 #include "Core/gobjwrapper.h"
 #include "Core/UnitController/unitcontroller.h"
+#include "Core/playercontroller.h"
 #include "qdebug.h"
 
 HumColonyCenter::HumColonyCenter(GObjWrapper *wrapper, Sector *sector, int population, int initialStep, int plID):

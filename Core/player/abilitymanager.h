@@ -1,6 +1,7 @@
 #ifndef ABILITYMANAGER_H
 #define ABILITYMANAGER_H
 #include "Enums/procsettings/ability.h"
+#include "abilityexecutor.h"
 #include "QMap"
 
 class Building;
@@ -39,6 +40,8 @@ protected:
 	int getCostFor(AbilitySettings* abilitySett);
 
 	QMap<ABILITIES, AbilitySettings*> m_abilityConfigs;
+	QMap<ABILITIES, AbilityExecutor*> m_abilityExecuters;
+
 	int m_playerID;
 };
 

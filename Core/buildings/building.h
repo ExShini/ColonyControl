@@ -2,7 +2,8 @@
 #define BUILDING_H
 #include "Core/gobject.h"
 #include "sector.h"
-#include "Core/playercontroller.h"
+
+class Player;
 
 class Building: public GObject
 {
@@ -25,6 +26,7 @@ protected:
 	int m_initialStep;
 	int m_level;
 	int m_maxLevel;
+	int m_stateCount;
 
 
 

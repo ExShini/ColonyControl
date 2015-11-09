@@ -4,9 +4,10 @@
 #include "QThread"
 #include "QTimer"
 
-#include "objectcontroller.h"
-#include "playercontroller.h"
-#include "UnitController/unitcontroller.h"
+
+class ObjectController;
+class PlayerController;
+class UnitController;
 
 class GameCore: public QObject
 {

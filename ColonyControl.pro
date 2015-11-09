@@ -25,7 +25,7 @@ SOURCES += main.cpp \
     UIDrawer/UIElements/markercontroller.cpp \
     Core/playercontroller.cpp \
     Core/player/player.cpp \
-    Core/player/humanplayer.cpp \
+    Core/player/Human/humanplayer.cpp \
     Core/player/requestmanager.cpp \
     Core/UnitController/unitcontroller.cpp \
     Core/UnitController/Units/unit.cpp \
@@ -56,7 +56,13 @@ SOURCES += main.cpp \
     AudioModule/audiocontroller.cpp \
     TestModule/testcase.cpp \
     TestModule/basebuildingtester.cpp \
-    UIDrawer/uitimingmanager.cpp
+    UIDrawer/uitimingmanager.cpp \
+    Core/player/Aroi/aroiplayer.cpp \
+    Core/player/Aroi/aroibuildmanager.cpp \
+    Core/UnitController/Units/Aroi/aroiunitfactory.cpp \
+    Core/buildings/Aroi/aroibuildingfactory.cpp \
+    Core/player/Aroi/aroiabilitymanager.cpp \
+    Core/buildings/Aroi/aroihive.cpp
 
 RESOURCES += qml.qrc
 
@@ -82,7 +88,7 @@ HEADERS += \
     Core/gobjwrapper.h \
     Core/smcont.h \
     Core/buildings/building.h \
-    Core/buildings/human/humsettlers.h \
+    Core/buildings/Human/humsettlers.h \
     UIDrawer/UIElements/uiresdictionary.h \
     Core/buildings/sector.h \
     Core/mapgenerator.h \
@@ -95,7 +101,7 @@ HEADERS += \
     Enums/gameprocessingsettings.h \
     Core/playercontroller.h \
     Core/player/player.h \
-    Core/player/humanplayer.h \
+    Core/player/Human/humanplayer.h \
     Enums/procsettings/humanprocessingsettings.h \
     Core/player/requestmanager.h \
     Core/UnitController/unitcontroller.h \
@@ -104,7 +110,7 @@ HEADERS += \
     UIDrawer/UIElements/uiunitcontroller.h \
     UIDrawer/UIElements/uiunitcntr.h \
     Core/UnitController/Units/Human/humshuttle.h \
-    Core/buildings/human/humcolonycenter.h \
+    Core/buildings/Human/humcolonycenter.h \
     Core/UnitController/Units/unitfactory.h \
     Core/UnitController/Units/Human/humanunitfactory.h \
     Enums/procsettings/humanunitprocessing.h \
@@ -115,9 +121,9 @@ HEADERS += \
     UIDrawer/UIElements/abilitybuttoncntr.h \
     UIDrawer/UIElements/abilitymenucontroller.h \
     Core/buildings/buildingfactory.h \
-    Core/buildings/human/humanbuildingfactory.h \
+    Core/buildings/Human/humanbuildingfactory.h \
     Core/player/Human/humanbuildmanager.h \
-    Core/buildings/human/humtransportcenter.h \
+    Core/buildings/Human/humtransportcenter.h \
     TestModule/testmanager.h \
     TestModule/requestmanagertest.h \
     Enums/procsettings/ability.h \
@@ -134,7 +140,14 @@ HEADERS += \
     TestModule/testcase.h \
     TestModule/basebuildingtester.h \
     Enums/uistate.h \
-    UIDrawer/uitimingmanager.h
+    UIDrawer/uitimingmanager.h \
+    Core/player/Aroi/aroiplayer.h \
+    Enums/procsettings/aroiprocessingsettings.h \
+    Core/player/Aroi/aroibuildmanager.h \
+    Core/UnitController/Units/Aroi/aroiunitfactory.h \
+    Core/buildings/Aroi/aroibuildingfactory.h \
+    Core/player/Aroi/aroiabilitymanager.h \
+    Core/buildings/Aroi/aroihive.h
 
 
 

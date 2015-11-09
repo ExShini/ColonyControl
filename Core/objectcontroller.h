@@ -2,16 +2,19 @@
 #define OBJECTCONTROLLER_H
 #include "QObject"
 #include "gobject.h"
-#include "gobjwrapper.h"
+
+#include "Enums/gameprocessingsettings.h"
 #include "Enums/mapsettings.h"
 #include "smcont.h"
-#include "buildings/sector.h"
-#include "buildings/building.h"
 #include "mapgenerator.h"
 #include "buildings/buildingfactory.h"
 #include "objectstatecontroller.h"
 
 #define FOCUS_REFRESH_STEP 1
+
+class GObjWrapper;
+class Sector;
+class Building;
 
 class ObjectController: public QObject
 {

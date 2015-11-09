@@ -1,14 +1,16 @@
 #ifndef UNITCONTROLLER_H
 #define UNITCONTROLLER_H
 #include "Enums/guisettings.h"
-#include "Units/unit.h"
+#include "Enums/gameprocessingsettings.h"
 #include "Core/smcont.h"
-#include "Core/buildings/building.h"
-#include "qlist.h"
+#include "Units/unit.h"
 #include "Units/unitfactory.h"
-#include "../objectstatecontroller.h"
 
+#include "qlist.h"
 #include "QObject"
+
+class ObjectStateController;
+class Building;
 
 class UnitController: public QObject
 {

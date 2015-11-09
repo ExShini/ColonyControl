@@ -6,6 +6,7 @@
 
 AbilityManager::AbilityManager(int playerID):
 	m_abilityConfigs(),
+	m_abilityExecuters(),
 	m_playerID(playerID)
 {
 

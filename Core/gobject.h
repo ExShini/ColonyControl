@@ -1,14 +1,12 @@
 #ifndef GOBJECT
 #define GOBJECT
-
-#include "Core/playercontroller.h"
 #include "Enums/objects.h"
 #include "Enums/mapsettings.h"
 #include "Enums/uistate.h"
-#include "QHash"
 #include "QMap"
 
 class GObjWrapper;
+class Request;
 
 class GObject
 {
@@ -50,9 +48,6 @@ public:
 	virtual void takeDamage(int damage);
 
 protected:
-
-
-
 	virtual void regResourse(RESOURSES type, int maxValue, int defValue = 0, bool hard = true);
 	virtual void regResourse(RESOURSES type);
 	virtual void updateResourse(RESOURSES type, int level, bool initial = false);

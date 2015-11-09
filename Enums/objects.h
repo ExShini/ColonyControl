@@ -45,16 +45,31 @@ enum OBJECT_TYPE
 
     t_DESERT,
 
-    //human objects
+	/**********************
+	*	HUMAN BUILDINGS
+	*/
     t_HUMAN_SETTLERS,
     t_HUMAN_COLONY_CENTER,
     t_HUMAN_TRANSPORT_CENTER,
+
+
+	/**********************
+	*	AROI BUILDINGS
+	*/
+	t_AROI_HIVE,
+
+	/**********************
+	*	HUMAN UNITS
+	*/
 
     t_FIRST_UNIT,
     t_HUMAN_SHUTTLE,
 
 
-    // abilities
+	/**********************
+	*	HUMAN ABILITIES
+	*/
+
     t_HUMAN_ION_CANON_SATELLITE,
     t_HUMAN_ION_CANON_BULLET,
 

@@ -2,6 +2,7 @@
 #include "qdebug.h"
 #include "gobjwrapper.h"
 #include "Enums/objstatus.h"
+#include "Core/playercontroller.h"
 
 /************************************************
  * Func: GObject

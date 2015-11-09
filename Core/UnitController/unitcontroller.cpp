@@ -2,6 +2,8 @@
 #include "UIDrawer/UIElements/uiunitcontroller.h"
 #include "UIDrawer/UIElements/uiunitcntr.h"
 #include "Core/objectstatecontroller.h"
+#include "Core/objectcontroller.h"
+#include "Core/buildings/building.h"
 #include "QThread"
 
 UnitController* UnitController::s_instance = nullptr;

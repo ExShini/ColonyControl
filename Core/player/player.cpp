@@ -18,6 +18,8 @@ Player::Player(int id, Race race):
 Player::~Player()
 {
 	delete m_reqManager;
+	delete m_builManager;
+	delete m_abilityManager;
 }
 
 void Player::init()

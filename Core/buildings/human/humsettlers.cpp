@@ -11,8 +11,7 @@ FUNC: HumSettlers(...)
 DESC: constructor
 *************************************/
 HumSettlers::HumSettlers(GObjWrapper *wrapper, Sector* sector, int population, int initialStep, int plID):
-	Building(wrapper, sector, initialStep, plID),
-	m_stateCount(0)
+	Building(wrapper, sector, initialStep, plID)
 {
 	m_type = t_HUMAN_SETTLERS;
 

@@ -11,14 +11,6 @@ public:
 
 protected:
 	virtual void process(int step);
-
-	void popLimitEmigration();
-	void foodEmigration();
-	void immigrationReq(int colonists);
-
-	short m_stateCount;
-
-	Request* m_populationRequest;
 };
 
 #endif // HUMSETTLERS_H

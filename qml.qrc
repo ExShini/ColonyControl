@@ -36,11 +36,11 @@
         <file alias="DefAbility.png">UIDrawer/Res/AbilityMarkers/DefAbility.png</file>
         <file alias="KILLLLL.png">UIDrawer/Res/AbilityMarkers/KILLLLL.png</file>
         <file alias="HumTransportCenter.png">UIDrawer/Res/AbilityMarkers/HumTransportCenter.png</file>
-        <file alias="humanSettlerL0.png">UIDrawer/Res/Buildings/Human/humanSettlerL0.png</file>
         <file alias="humanSettlerL1.png">UIDrawer/Res/Buildings/Human/humanSettlerL1.png</file>
         <file alias="humanSettlerL2.png">UIDrawer/Res/Buildings/Human/humanSettlerL2.png</file>
         <file alias="humanSettlerL3.png">UIDrawer/Res/Buildings/Human/humanSettlerL3.png</file>
         <file alias="humanSettlerL4.png">UIDrawer/Res/Buildings/Human/humanSettlerL4.png</file>
+        <file alias="humanSettlerL5.png">UIDrawer/Res/Buildings/Human/humanSettlerL5.png</file>
         <file alias="humanColonyCenterL0.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL0.png</file>
         <file alias="humanColonyCenterL1.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL1.png</file>
         <file alias="humanColonyCenterL2.png">UIDrawer/Res/Buildings/Human/humanColonyCenterL2.png</file>

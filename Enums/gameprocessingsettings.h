@@ -4,6 +4,7 @@
 #include "races.h"
 #include "mapsettings.h"
 #include "procsettings/humanprocessingsettings.h"
+#include "procsettings/aroiprocessingsettings.h"
 
 #define DEFAULT_PROC_TIME_POINT 1   //1 ms time point
 

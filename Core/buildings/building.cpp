@@ -9,10 +9,10 @@ Building::Building(GObjWrapper *wrapper, Sector* sector, int initialStep, int pl
 	GObject(wrapper),
 	m_sector(sector),
 	m_initialStep(initialStep),
-	m_level(0),
 	m_maxLevel(0),
 	m_stateCount(0)
 {    
+	m_level = 1;
 	m_playerID = plID;
 	m_player = PlayerController::getInstance()->getPlayer(m_playerID);
 	setMapCoord(sector->getMapX(), sector->getMapY());
@@ -271,7 +271,7 @@ void Building::setNewRequestToMap(REQ_TYPE reqType, RESOURSES resType, int value
 		}
 
 		//register request if it needed
-		if(req->value >= MIN_RES_TO_MOVE && !req->registred)
+		if(req->value >= HUMAN_MIN_RES_TO_MOVE && !req->registred)
 		{
 			m_player->addRequest(req);
 		}
@@ -284,6 +284,15 @@ void Building::checkState()
 	int infrostructure = getResources(INFROSTRUCTURE);
 	int topInfLevel = getResLimit(INFROSTRUCTURE);
 	int lowInfLevel = m_player->getResLimit(m_type, INFROSTRUCTURE, m_level);
+//	if(m_level > 0)
+//	{
+//		lowInfLevel = m_player->getResLimit(m_type, INFROSTRUCTURE, m_level - 1);
+//	}
+//	else
+//	{
+//		lowInfLevel = 0;
+//	}
+
 	int currentLevel = m_level;
 
 	// check to increae level

@@ -5,7 +5,7 @@
 
 #define INVALIDE_VALUE -1
 #define IT_DOES_NOT_METTER -2
-#define MAX_LEVEL 11	// 10 levels + 1 for top value of resource at last(10) level
+#define MAX_LEVEL 12	// 11 levels + 1 for top value of resource at last(11) level
 #define MAX_RES_IN_ONE_SECTOR 4
 #define SCIENSE_POSITION -2
 #define MAIN_RACE_RES_POSITION -3
@@ -136,10 +136,11 @@ enum REQ_TYPE
 struct Resourse
 {
 
-	Resourse(){}
-	Resourse(Resourse* res)
+	static Resourse* copyRes(Resourse* res)
 	{
-		memcpy(this, res, sizeof(Resourse));
+		Resourse* copyRes = new Resourse();
+		memcpy(copyRes, res, sizeof(Resourse));
+		return copyRes;
 	}
 
     RESOURSES type;

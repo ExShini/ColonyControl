@@ -1,4 +1,5 @@
 #include "aroibuildingfactory.h"
+#include "aroihive.h"
 #include "QDebug"
 
 AroiBuildingFactory::AroiBuildingFactory(int playerID):
@@ -28,10 +29,10 @@ Building* AroiBuildingFactory::buildStructure(OBJECT_TYPE type,
 	switch (type) {
 
 	case t_AROI_HIVE:
-		//building = new HumSettlers(wrapper, sector, population, initialStep, m_playerID);
+		building = new AroiHive(wrapper, sector, population, initialStep, m_playerID);
 		break;
 	default:
-		qDebug() << "HumanBuildingFactory::buildStructure: Error! Wrong type : " << type;
+		qDebug() << "AroiBuildingFactory::buildStructure: Error! Wrong type : " << type;
 		break;
 	}
 

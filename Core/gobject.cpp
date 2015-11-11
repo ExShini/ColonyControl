@@ -17,7 +17,8 @@ GObject::GObject(GObjWrapper * wrapper):
 	m_id(INVALIDE_VALUE),
 	m_resources(),
 	m_requestMap(),
-	m_playerID(INVALIDE_VALUE)
+	m_playerID(INVALIDE_VALUE),
+	m_level(0)
 {
 }
 
@@ -203,8 +204,8 @@ void GObject::regResourse(RESOURSES type)
 	{
 		Player* player = PlayerController::getInstance()->getPlayer(m_playerID);
 
-		Resourse* proto = player->getResPrototype(m_type, type, 0);
-		Resourse* res = new Resourse(proto);
+		Resourse* proto = player->getResPrototype(m_type, type, m_level);
+		Resourse* res = Resourse::copyRes(proto);
 		res->value = player->getResDefaultValue(m_type, type);
 
 		/* INFROSTRUCTURE have some specific in handling - we need to know low and top limits
@@ -213,7 +214,7 @@ void GObject::regResourse(RESOURSES type)
 		*/
 		if(type == INFROSTRUCTURE)
 		{
-			res->maxValue = player->getResLimit(m_type, INFROSTRUCTURE, 1);
+			res->maxValue = player->getResLimit(m_type, INFROSTRUCTURE, 2);
 		}
 
 		m_resources[type] = res;

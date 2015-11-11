@@ -38,9 +38,10 @@ UIResDictionary::UIResDictionary()
 	classicDestrSpec->rowNumber = 0;	// TODO: temprory solution
 
 
+	// HUMAN
 	// t_HUMAN_SETTLERS
 
-	registerResPath(t_HUMAN_SETTLERS, 0, "/img/humanSettlerL0.png");
+	registerResPath(t_HUMAN_SETTLERS, 0, "/img/humanSettlerL1.png");
 	addSpecific(t_HUMAN_SETTLERS, 0, UI_NORMAL, classicNormalSpec);
 	addSpecific(t_HUMAN_SETTLERS, 0, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_SETTLERS, 0, UI_DESTROYED, classicDestrSpec);
@@ -90,6 +91,11 @@ UIResDictionary::UIResDictionary()
 	addSpecific(t_HUMAN_SETTLERS, 9, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_SETTLERS, 9, UI_DESTROYED, classicDestrSpec);
 
+	registerResPath(t_HUMAN_SETTLERS, 10, "/img/humanSettlerL4.png");
+	addSpecific(t_HUMAN_SETTLERS, 10, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_HUMAN_SETTLERS, 10, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_HUMAN_SETTLERS, 10, UI_DESTROYED, classicDestrSpec);
+
 	// t_HUMAN_COLONY_CENTER
 
 	classicNormalSpec->frameCnt = 24;
@@ -135,10 +141,69 @@ UIResDictionary::UIResDictionary()
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_BUILDED, classicBuildSpec);
 	addSpecific(t_HUMAN_TRANSPORT_CENTER, 2, UI_DESTROYED, classicDestrSpec);
 
+	// AROI
+	// t_AROI_HIVE
+
+	registerResPath(t_AROI_HIVE, 0, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 0, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 0, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 0, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 1, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 1, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 1, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 1, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 2, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 2, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 2, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 2, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 3, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 3, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 3, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 3, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 4, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 4, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 4, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 4, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 5, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 5, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 5, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 5, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 6, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 6, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 6, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 6, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 7, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 7, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 7, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 7, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 8, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 8, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 8, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 8, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 9, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 9, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 9, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 9, UI_DESTROYED, classicDestrSpec);
+
+	registerResPath(t_AROI_HIVE, 10, "/img/aroiHiveL1.png");
+	addSpecific(t_AROI_HIVE, 10, UI_NORMAL, classicNormalSpec);
+	addSpecific(t_AROI_HIVE, 10, UI_BUILDED, classicBuildSpec);
+	addSpecific(t_AROI_HIVE, 10, UI_DESTROYED, classicDestrSpec);
 
 	/*********************************
 	 *			Units
 	 ********************************/
+
+	// HUMAN
 
 	registerResPath(t_HUMAN_SHUTTLE, 0, "/img/PionerL0.png");
 	addSpecific(t_HUMAN_SHUTTLE, 0, UI_NORMAL, classicNormalSpec);
@@ -175,6 +240,9 @@ UIResDictionary::UIResDictionary()
 
 	registerMarkerPath(Human, 0, "/img/HumMarker_Blue.png");
 	registerMarkerPath(Human, 1, "/img/HumMarker_Red.png");
+
+	registerMarkerPath(Aroi, 0, "/img/HumMarker_Blue.png");
+	registerMarkerPath(Aroi, 1, "/img/HumMarker_Red.png");
 
 
 	registerBuildButtonSrc(t_HUMAN_TRANSPORT_CENTER, "/img/HumTransportCenter_Icon.png", "/img/HumTransportCenter.png");

@@ -75,32 +75,32 @@ void GameCore::initGameObject()
 	// create objects for first game step
 
 	m_playerController->addPlayer(Human);
-	m_playerController->addPlayer(Human);
+	m_playerController->addPlayer(Aroi);
 
-	for(int i = 2; i < 5; i ++)
+//	for(int i = 2; i < 5; i ++)
+//	{
+//		for(int j = 2; j < 5; j++)
+//		{
+//			if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 0) != nullptr)
+//			{
+//				j = 16;
+//				i = 16;
+//			}
+//		}
+//	}
+
+
+	for(int i = 12; i < 17; i ++)
 	{
-		for(int j = 2; j < 5; j++)
+		for(int j = 12; j < 17; j++)
 		{
-			if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 0) != nullptr)
+			if(m_objController->buildObj(t_AROI_HIVE, i, j, 100, 1) != nullptr)
 			{
 				j = 16;
 				i = 16;
 			}
 		}
 	}
-
-
-    for(int i = 12; i < 17; i ++)
-    {
-        for(int j = 12; j < 17; j++)
-        {
-            if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 1) != nullptr)
-            {
-                j = 16;
-                i = 16;
-            }
-        }
-    }
 }
 
 /************************************************

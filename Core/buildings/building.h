@@ -24,7 +24,6 @@ protected:
 
 	Sector* m_sector;
 	int m_initialStep;
-	int m_level;
 	int m_maxLevel;
 	int m_stateCount;
 

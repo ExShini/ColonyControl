@@ -16,10 +16,25 @@ HumanPlayer::HumanPlayer(int ID):
 
 HumanPlayer::~HumanPlayer()
 {
-	delete m_builManager;
-	delete m_abilityManager;
-	delete m_unitFactory;
-	delete m_buildingFactory;
+	if(m_builManager != nullptr)
+	{
+		delete m_builManager;
+	}
+
+	if(m_abilityManager != nullptr)
+	{
+		delete m_abilityManager;
+	}
+
+	if(m_unitFactory != nullptr)
+	{
+		delete m_unitFactory;
+	}
+
+	if(m_buildingFactory != nullptr)
+	{
+		delete m_buildingFactory;
+	}
 }
 
 void HumanPlayer::init()
@@ -337,58 +352,63 @@ void HumanPlayer::prepareHumanResPrototypes()
 		m_infrastructure[0] = infrastr;
 
 		// 1 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 2;
 		m_infrastructure[1] = infrastr;
 
 		// 2 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 4;
 		m_infrastructure[2] = infrastr;
 
 		// 3 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 8;
 		m_infrastructure[3] = infrastr;
 
 		// 4 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 16;
 		m_infrastructure[4] = infrastr;
 
 		// 5 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 32;
 		m_infrastructure[5] = infrastr;
 
 		// 6 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 64;
 		m_infrastructure[6] = infrastr;
 
 		// 7 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 128;
 		m_infrastructure[7] = infrastr;
 
 		// 8 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 256;
 		m_infrastructure[8] = infrastr;
 
 		// 9 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 512;
 		m_infrastructure[9] = infrastr;
 
 		// 10 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 1024;
 		m_infrastructure[9] = infrastr;
 
 		// 11 lvl
-		infrastr = new Resourse(infrastr);
+		infrastr = Resourse::copyRes(infrastr);
 		infrastr->complexityOfManufacturing = 2048;
 		m_infrastructure[10] = infrastr;
+
+		// 12 lvl
+		infrastr = Resourse::copyRes(infrastr);
+		infrastr->complexityOfManufacturing = 4096;
+		m_infrastructure[11] = infrastr;
 	}
 }

@@ -17,26 +17,14 @@ Player::Player(int id, Race race):
 
 Player::~Player()
 {
-	delete m_reqManager;
-	delete m_builManager;
-	delete m_abilityManager;
+	if(m_reqManager != nullptr)
+	{
+		delete m_reqManager;
+	}
 }
 
 void Player::init()
 {
-
-	// clear limit table
-	for(int type = t_FIRST_OBJ; type < NUM_OF_OBJ_TYPES; type++)
-	{
-		for(int res = FIRST_RES; res <= LAST_PARAMETER; res++)
-		{
-			for(int level = 0; level < MAX_LEVEL; level++)
-			{
-				m_buildingLimits[type][res][level] = INVALIDE_VALUE;
-			}
-		}
-	}
-
     //m_prototypes
     // clear prototype table
     for(int type = t_FIRST_OBJ; type < NUM_OF_OBJ_TYPES; type++)
@@ -56,8 +44,6 @@ void Player::init()
 
 void Player::setResLimit(OBJECT_TYPE type, RESOURSES res, int level, int value)
 {
-	m_buildingLimits[type][res][level] = value;
-
 	m_prototypes[type][res]->resorses[level]->maxValue = value;
 }
 
@@ -81,7 +67,7 @@ void Player::setResToPrototype(OBJECT_TYPE type, Resourse *res, int level)
         return;
     }
 
-	Resourse* resToSet = new Resourse(res);
+	Resourse* resToSet = Resourse::copyRes(res);
 	RESOURSES resType = resToSet->type;
 
 	if(resType < FIRST_RES || resType > NUM_OF_RESOURSES)
@@ -114,9 +100,6 @@ int Player::getResLimit(OBJECT_TYPE buildingType, RESOURSES res, int level)
 
 		return val;
 	}
-
-
-//	int val = m_buildingLimits[buildingType][res][level];
 
 	if(val == INVALIDE_VALUE)
 	{

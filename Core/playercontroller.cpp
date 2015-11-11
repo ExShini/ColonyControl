@@ -1,5 +1,6 @@
 #include "playercontroller.h"
 #include "player/Human/humanplayer.h"
+#include "player/Aroi/aroiplayer.h"
 #include "UIDrawer/UIElements/uiresdictionary.h"
 #include "UIDrawer/UIElements/monitorpanelcontroller.h"
 #include "UIDrawer/UIElements/abilitymenucontroller.h"
@@ -94,6 +95,12 @@ void PlayerController::addPlayer(Race race)
 	case Human:
 	{
 		player = new HumanPlayer(m_initPlID);
+		player->init();
+	}
+		break;
+	case Aroi:
+	{
+		player = new AroiPlayer(m_initPlID);
 		player->init();
 	}
 		break;

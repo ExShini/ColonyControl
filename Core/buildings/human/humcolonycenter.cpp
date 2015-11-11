@@ -20,10 +20,6 @@ HumColonyCenter::HumColonyCenter(GObjWrapper *wrapper, Sector *sector, int popul
 	updateResourse(SUPPLY, m_level, true);
 	updateResourse(INFROSTRUCTURE, m_level, true);
 
-	//	setResLimit(POPULATION, m_player->getResLimit(m_type, POPULATION, m_level));
-	//	setResLimit(SUPPLY, m_player->getResLimit(m_type, SUPPLY, m_level));
-	//	setResLimit(INFROSTRUCTURE, m_player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1));
-
 	regResourse(SHIPS);
 
 

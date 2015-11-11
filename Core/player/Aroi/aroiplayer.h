@@ -13,21 +13,11 @@ public:
 	virtual void init();
 
 protected:
-	void setAllAroiLimits();
 	void setupAroiResPrototypes();
-	void prepareAroiResPrototypes();
-	void setBuildingPrototypes();
+	void setAroiResDefValue();
 
 	AroiUnitFactory* m_unitFactory;
 	AroiBuildingFactory* m_buildingFactory;
-
-
-	// human prototypes
-	Resourse* m_supplyProtoRes;
-	Resourse* m_populationProtoRes;
-	Resourse* m_transportShuttle;
-	Resourse* m_infrastructure[MAX_LEVEL];
-
 
 };
 

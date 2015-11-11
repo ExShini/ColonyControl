@@ -50,5 +50,6 @@
         <file alias="PionerL0.png">UIDrawer/Res/Units/Human/PionerL0.png</file>
         <file alias="IonCanonAbility.png">UIDrawer/Res/Units/Human/IonCanonAbility.png</file>
         <file alias="IonCanonBullet.png">UIDrawer/Res/Units/Human/IonCanonBullet.png</file>
+        <file alias="aroiHiveL1.png">UIDrawer/Res/Buildings/Aroi/aroiHiveL1.png</file>
     </qresource>
 </RCC>

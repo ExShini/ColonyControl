@@ -61,7 +61,6 @@ protected:
 
 	int m_xFocus, m_yFocus;
 	int m_initialCounter;
-	int m_objectID;
 
 };
 

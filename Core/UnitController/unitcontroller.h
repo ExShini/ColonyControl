@@ -44,8 +44,6 @@ protected:
 	QList<UnitWrapper*> m_inUseWrappers;
 	UnitFactory* m_unitFactories[NUMBER_OF_PLAYERS];
 	ObjectStateController* m_statusController;
-
-	int m_unitID;
 };
 
 #endif // UNITCONTROLLER_H

@@ -12,8 +12,7 @@ UnitController::UnitController(QObject *parent):
 	QObject(parent),
 	m_units(),
 	m_freeWrappers(),
-	m_inUseWrappers(),
-	m_unitID(0)
+	m_inUseWrappers()
 {
 }
 
@@ -91,7 +90,7 @@ void UnitController::process(int step)
 	{
 
 		id = unit->getID();
-		bool isActive = !m_statusController->chackUnitCondition(id, DESTROED_CONDITION);
+		bool isActive = !m_statusController->chackGObjectCondition(id, DESTROED_CONDITION);
 
 		if(isActive)
 		{
@@ -136,9 +135,9 @@ Unit* UnitController::buildUnit(Building *base, OBJECT_TYPE unitType)
 	{
 		unit = factory->buildUnit(unitType, base, wrapper);
 
-		unit->setID(m_unitID);
-		ObjectStateController::getInstance()->addUnit(m_unitID);
-		m_unitID++;
+		int unitID = ObjectStateController::getInstance()->getNewGObjectID();
+		unit->setID(unitID);
+		ObjectStateController::getInstance()->addGObject(unitID);
 	}
 	else
 	{
@@ -178,9 +177,9 @@ Unit* UnitController::buildAbilityExecutor(int playerID, OBJECT_TYPE unitType)
 	{
 		unit = factory->buildUnit(unitType, nullptr, wrapper);	// ability have not base
 
-		unit->setID(m_unitID);
-		ObjectStateController::getInstance()->addUnit(m_unitID);
-		m_unitID++;
+		int unitID = ObjectStateController::getInstance()->getNewGObjectID();
+		unit->setID(unitID);
+		ObjectStateController::getInstance()->addGObject(unitID);
 	}
 	else
 	{

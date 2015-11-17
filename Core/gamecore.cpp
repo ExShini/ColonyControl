@@ -77,17 +77,17 @@ void GameCore::initGameObject()
 	m_playerController->addPlayer(Human);
 	m_playerController->addPlayer(Aroi);
 
-//	for(int i = 2; i < 5; i ++)
-//	{
-//		for(int j = 2; j < 5; j++)
-//		{
-//			if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 0) != nullptr)
-//			{
-//				j = 16;
-//				i = 16;
-//			}
-//		}
-//	}
+	for(int i = 2; i < 5; i ++)
+	{
+		for(int j = 2; j < 5; j++)
+		{
+			if(m_objController->buildObj(t_HUMAN_COLONY_CENTER, i, j, 1000, 0) != nullptr)
+			{
+				j = 16;
+				i = 16;
+			}
+		}
+	}
 
 
 	for(int i = 12; i < 17; i ++)

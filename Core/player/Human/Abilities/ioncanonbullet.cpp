@@ -43,7 +43,7 @@ void IonCanonBullet::process(int step)
 	if(m_target != nullptr && m_targetID != INVALIDE_VALUE)
 	{
 		// check, what it is still alive
-		bool state = ObjectStateController::getInstance()->chackBuildingCondition(m_targetID, DESTROED_CONDITION);
+		bool state = ObjectStateController::getInstance()->chackGObjectCondition(m_targetID, DESTROED_CONDITION);
 		if(!state)
 		{
 			m_target->takeDamage(m_damage);

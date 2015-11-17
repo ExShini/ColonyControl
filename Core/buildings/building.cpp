@@ -284,14 +284,6 @@ void Building::checkState()
 	int infrostructure = getResources(INFROSTRUCTURE);
 	int topInfLevel = getResLimit(INFROSTRUCTURE);
 	int lowInfLevel = m_player->getResLimit(m_type, INFROSTRUCTURE, m_level);
-//	if(m_level > 0)
-//	{
-//		lowInfLevel = m_player->getResLimit(m_type, INFROSTRUCTURE, m_level - 1);
-//	}
-//	else
-//	{
-//		lowInfLevel = 0;
-//	}
 
 	int currentLevel = m_level;
 
@@ -350,7 +342,7 @@ void Building::activate()
  ***********************************************/
 void Building::removeWrapper()
 {
-	ObjectStateController::getInstance()->setBuildingCondition(m_id, DESTROED_CONDITION);
+	ObjectStateController::getInstance()->setGObjectCondition(m_id, DESTROED_CONDITION);
 	m_active = false;
 	m_wrapper = nullptr;
 }
@@ -374,7 +366,7 @@ void Building::takeDamage(int damage)
 	if(infrStruct < 0)
 	{
 		infrStruct = 0;
-		ObjectStateController::getInstance()->setBuildingCondition(m_id, DESTROED_CONDITION);
+		ObjectStateController::getInstance()->setGObjectCondition(m_id, DESTROED_CONDITION);
 	}
 
 	setResources(INFROSTRUCTURE, infrStruct);

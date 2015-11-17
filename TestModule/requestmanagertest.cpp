@@ -4,7 +4,7 @@
 #include "qdebug.h"
 
 RequestManagerTest::RequestManagerTest():
-	TestCase("RequestManagerTest")
+	TestCase("Request Manager Test")
 {
 	m_numOfTests = 4;
 }

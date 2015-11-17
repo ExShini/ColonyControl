@@ -164,7 +164,7 @@ void HumShuttle::targetAchived()
 
 void HumShuttle::flyToBase()
 {
-    bool baseDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(m_baseID, DESTROED_CONDITION);
+    bool baseDestroyed = ObjectStateController::getInstance()->chackGObjectCondition(m_baseID, DESTROED_CONDITION);
     if(m_base != nullptr && !baseDestroyed)
 	{
 		m_specStatus = RETURN_TO_BASE;
@@ -235,7 +235,7 @@ void HumShuttle::provideResToTarget()
 			if(target != nullptr)
 			{
 				int id = target->getID();
-				bool isDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(id, DESTROED_CONDITION);
+				bool isDestroyed = ObjectStateController::getInstance()->chackGObjectCondition(id, DESTROED_CONDITION);
 
 				if(target->getPlayerID() != m_playerID || isDestroyed)
 				{
@@ -322,7 +322,7 @@ bool HumShuttle::getResFromTarget()
 		if(subject != nullptr)
 		{
 			int id = subject->getID();
-			bool isDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(id, DESTROED_CONDITION);
+			bool isDestroyed = ObjectStateController::getInstance()->chackGObjectCondition(id, DESTROED_CONDITION);
 
 
 			if(!isDestroyed)
@@ -349,7 +349,7 @@ bool HumShuttle::getResFromTarget()
 
 void HumShuttle::returnToBase()
 {
-    bool baseDestroyed = ObjectStateController::getInstance()->chackBuildingCondition(m_baseID, DESTROED_CONDITION);
+    bool baseDestroyed = ObjectStateController::getInstance()->chackGObjectCondition(m_baseID, DESTROED_CONDITION);
     if(baseDestroyed)
     {
         //TODO

@@ -24,8 +24,7 @@ ObjectController::ObjectController(QObject *parent):
     m_buildings(),
     m_xFocus(0),
     m_yFocus(0),
-    m_initialCounter(0),
-    m_objectID(0)
+	m_initialCounter(0)
 {
     for(int i = 0; i < MAP_WIDTH; i++)
     {
@@ -125,7 +124,6 @@ void ObjectController::init()
 void ObjectController::setupNewGame()
 {
     m_buildings.clearAll();
-    m_objectID = 0;
 
     Map* map = m_mapGenerator->generateMap();
 
@@ -161,6 +159,12 @@ void ObjectController::addBuildingFactory(BuildingFactory *buildFactory, int plI
  ***********************************************/
 Building* ObjectController::buildObj(OBJECT_TYPE type, int x, int y, int population, int playerID)
 {
+	if(x < 0 || x >= MAP_WIDTH)
+		return nullptr;
+
+	if(y < 0 || y >= MAP_HEIGHT)
+		return nullptr;
+
     Building* building = nullptr;
 
     GObjWrapper* wr = m_wrappers[x][y];
@@ -192,9 +196,9 @@ Building* ObjectController::buildObj(OBJECT_TYPE type, int x, int y, int populat
     {
         m_buildings.addEl(building);
 
-        building->setID(m_objectID);
-        ObjectStateController::getInstance()->addBuilding(m_objectID);
-        m_objectID++;
+		int buildingID = ObjectStateController::getInstance()->getNewGObjectID();
+		building->setID(buildingID);
+		ObjectStateController::getInstance()->addGObject(buildingID);
 
         m_initialCounter++;
         if(m_initialCounter >= GAME_STEP_PER_SECOND)
@@ -209,6 +213,12 @@ Building* ObjectController::buildObj(OBJECT_TYPE type, int x, int y, int populat
 
 Building* ObjectController::updateObj(OBJECT_TYPE type, int x, int y, int playerID)
 {
+	if(x < 0 || x >= MAP_WIDTH)
+		return nullptr;
+
+	if(y < 0 || y >= MAP_HEIGHT)
+		return nullptr;
+
     Building* building = nullptr;
     Building* oldBuilding = getBuilding(x, y);
 
@@ -249,9 +259,9 @@ Building* ObjectController::updateObj(OBJECT_TYPE type, int x, int y, int player
         removeObject(oldBuilding, false);
         m_buildings.addEl(building);
 
-        building->setID(m_objectID);
-        ObjectStateController::getInstance()->addBuilding(m_objectID);
-        m_objectID++;
+		int buildingID = ObjectStateController::getInstance()->getNewGObjectID();
+		building->setID(buildingID);
+		ObjectStateController::getInstance()->addGObject(buildingID);
 
         m_initialCounter++;
         if(m_initialCounter >= GAME_STEP_PER_SECOND)
@@ -329,8 +339,8 @@ void ObjectController::process(int step)
     while(obj != nullptr)
     {
         id = obj->getID();
-        bool isInDestruction = m_statusController->chackBuildingCondition(id, DESTROED_CONDITION);
-        bool isAlive = !m_statusController->chackBuildingCondition(id, DESTROED_CONDITION);
+		bool isInDestruction = m_statusController->chackGObjectCondition(id, DESTROED_CONDITION);
+		bool isAlive = !m_statusController->chackGObjectCondition(id, DESTROED_CONDITION);
 
         if(isAlive && !isInDestruction)
         {

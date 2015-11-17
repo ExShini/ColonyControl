@@ -59,7 +59,7 @@ static DefResSetting s_aroiDefResValue[]
 	//	BUILDING TYPE		RES TYPE			DEF VALUE
 	{	t_AROI_HIVE,		POPULATION,			NOT_SET					},
 	{	t_AROI_HIVE,		SUPPLY,				NOT_SET					},
-	{	t_AROI_HIVE,		INFROSTRUCTURE,		AROI_HIVE_INF_LVL_1		}
+	{	t_AROI_HIVE,		INFROSTRUCTURE,		AROI_HIVE_INF_LVL_1 + 1	}
 };
 
 AroiPlayer::AroiPlayer(int ID):

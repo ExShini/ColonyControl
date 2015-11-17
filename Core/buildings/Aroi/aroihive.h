@@ -3,6 +3,15 @@
 #include "Core/buildings/building.h"
 #include "Core/player/requestmanager.h"
 
+enum MovingDirection
+{
+	DIR_UP = 0,
+	DIR_LEFT,
+	DIR_DOWN,
+	DIR_RIGHT,
+	DIR_NUMBER
+};
+
 class AroiHive: public Building
 {
 public:
@@ -11,5 +20,8 @@ public:
 
 protected:
 	virtual void process(int step);
+	virtual void processHiveMigration();
+
+	int m_migrationDirection;
 };
 #endif // AROIHIVE_H

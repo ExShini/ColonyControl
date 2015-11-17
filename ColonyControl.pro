@@ -62,7 +62,9 @@ SOURCES += main.cpp \
     Core/UnitController/Units/Aroi/aroiunitfactory.cpp \
     Core/buildings/Aroi/aroibuildingfactory.cpp \
     Core/player/Aroi/aroiabilitymanager.cpp \
-    Core/buildings/Aroi/aroihive.cpp
+    Core/buildings/Aroi/aroihive.cpp \
+    Core/goalgorithms.cpp \
+    TestModule/gobjectalgorithmstest.cpp
 
 RESOURCES += qml.qrc
 
@@ -147,7 +149,9 @@ HEADERS += \
     Core/UnitController/Units/Aroi/aroiunitfactory.h \
     Core/buildings/Aroi/aroibuildingfactory.h \
     Core/player/Aroi/aroiabilitymanager.h \
-    Core/buildings/Aroi/aroihive.h
+    Core/buildings/Aroi/aroihive.h \
+    Core/goalgorithms.h \
+    TestModule/gobjectalgorithmstest.h
 
 
 

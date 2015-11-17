@@ -1,6 +1,7 @@
 #include "testmanager.h"
 #include "requestmanagertest.h"
 #include "basebuildingtester.h"
+#include "gobjectalgorithmstest.h"
 #include "qdebug.h"
 
 TestManager::TestManager()
@@ -25,6 +26,15 @@ void TestManager::exec()
 	for(int i = 0; i < testCase2.getNumOfTests(); i++)
 	{
 		testCase2.executeTest(i);
+	}
+
+	qDebug() << "\n*** Next test case ***\n";
+
+	GObjectAlgorithmsTest testCase3;
+	/***********************/
+	for(int i = 0; i < testCase3.getNumOfTests(); i++)
+	{
+		testCase3.executeTest(i);
 	}
 
 }

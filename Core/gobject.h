@@ -42,6 +42,7 @@ public:
 
 	virtual void addRequst(Request* req);
 	void requestComplited(RESOURSES resType);
+	Request* getRequest(RESOURSES resType);
 
 	void virtual deactivate();
 	bool isActive()				{ return m_active; }
@@ -64,6 +65,7 @@ protected:
 
 	QMap<RESOURSES, Resourse*>::iterator m_curResource;
 
+	int m_level;
 	int m_playerID;
 
 };

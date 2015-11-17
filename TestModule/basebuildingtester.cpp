@@ -523,7 +523,7 @@ void TestBuilding::setup7Env()
  *****************************/
 
 BaseBuildingTester::BaseBuildingTester():
-	TestCase("BaseBuildingTester")
+	TestCase("Base Building Test")
 {
 	m_numOfTests = 6;
 	PlayerController::getInstance()->addPlayer(Human);

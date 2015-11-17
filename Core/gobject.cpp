@@ -214,7 +214,7 @@ void GObject::regResourse(RESOURSES type)
 		*/
 		if(type == INFROSTRUCTURE)
 		{
-			res->maxValue = player->getResLimit(m_type, INFROSTRUCTURE, 2);
+			res->maxValue = player->getResLimit(m_type, INFROSTRUCTURE, m_level + 1);
 		}
 
 		m_resources[type] = res;
@@ -283,6 +283,20 @@ void GObject::requestComplited(RESOURSES resType)
 	{
 		qDebug() << "!ERROR! GObject::requestComplited incorrect resType: " << resType;
 	}
+}
+
+/************************************************
+ * Func: getRequest
+ * Desc: return pointer to request by resType
+ ***********************************************/
+Request* GObject::getRequest(RESOURSES resType)
+{
+	Request* req = nullptr;
+	if(m_requestMap.keys().contains(resType))
+	{
+		req = m_requestMap[resType];
+	}
+	return req;
 }
 
 /************************************************

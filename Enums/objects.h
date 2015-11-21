@@ -23,13 +23,13 @@
 #define GROUP_FROM_2 1
 #define GROUP_FROM_1 0
 
-#define MATERIAL_COST_1 0
-#define MATERIAL_COST_2 1
-#define MATERIAL_COST_4 2
-#define MATERIAL_COST_8 3
-#define MATERIAL_COST_16 4
-#define MATERIAL_COST_32 5
-#define MATERIAL_COST_64 6
+#define MAT_COST_1 0
+#define MAT_COST_2 1
+#define MAT_COST_4 2
+#define MAT_COST_8 3
+#define MAT_COST_16 4
+#define MAT_COST_32 5
+#define MAT_COST_64 6
 
 enum OBJECT_TYPE
 {

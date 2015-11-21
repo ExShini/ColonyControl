@@ -4,10 +4,9 @@ HumTransportCenter::HumTransportCenter(GObjWrapper *wrapper, Sector *sector, int
 	HumColonyCenter(wrapper, sector, population, initialStep, plID)
 {
 	m_type = t_HUMAN_TRANSPORT_CENTER;
-	m_level = 0;
 
 	m_wrapper->setType(m_type);
-	m_wrapper->setLevel(0, UI_NORMAL);
+	m_wrapper->setLevel(1, UI_NORMAL);
 	m_wrapper->setEnabled();
 
 	updateResourse(POPULATION, m_level);

@@ -408,7 +408,7 @@ void TestBuilding::setup5Env()
 	// material
 	population->material = SUPPLY;
 	population->naturalMaterial = false;
-	population->costOfMaterial = MATERIAL_COST_1;
+	population->costOfMaterial = MAT_COST_1;
 
 	//req resourse
 	population->requaredRes = NO_RES;
@@ -490,7 +490,7 @@ void TestBuilding::setup6Env()
 	// material
 	population->material = NO_RES;
 	population->naturalMaterial = false;
-	population->costOfMaterial = MATERIAL_COST_1;
+	population->costOfMaterial = MAT_COST_1;
 
 	//req resourse
 	population->requaredRes = SUPPLY;

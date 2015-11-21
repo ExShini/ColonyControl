@@ -17,8 +17,8 @@ GObject::GObject(GObjWrapper * wrapper):
 	m_id(INVALIDE_VALUE),
 	m_resources(),
 	m_requestMap(),
-	m_playerID(INVALIDE_VALUE),
-	m_level(0)
+	m_level(0),
+	m_playerID(INVALIDE_VALUE)
 {
 }
 
@@ -258,7 +258,7 @@ void GObject::updateResourse(RESOURSES type, int level, bool initial)
 		res->value = currValue;
 		res->currentProgress = currProgress;
 
-		if(initial)
+		if(initial && type != POPULATION)
 		{
 			res->value = player->getResDefaultValue(m_type, type);
 		}

@@ -17,9 +17,9 @@ class AroiHive: public Building
 public:
 	AroiHive(GObjWrapper * wrapper, Sector *sector, int population, int initialStep, int plID);
 	virtual ~AroiHive();
+	virtual void process(int step);
 
 protected:
-	virtual void process(int step);
 	virtual void processHiveMigration();
 
 	int m_migrationDirection;

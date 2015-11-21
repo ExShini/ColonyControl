@@ -51,9 +51,10 @@ void HumSettlers::process(int step)
 	Building::process(step);
 
 
-	int population = getResources(POPULATION);
+	Resourse* res = getResourcesObj(POPULATION);
+	int population = res->value;
 
 	// update main resource
-	int mainResChange = HUMANS_GROPS(population);
+	int mainResChange = POPULATION_GROPS(population, res->sizeOfGroup);
 	m_player->changeMainResValue(mainResChange);
 }

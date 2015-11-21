@@ -30,12 +30,15 @@ UIResDictionary::UIResDictionary()
 	UIResSpecifier* classicNormalSpec = new UIResSpecifier();
 	classicNormalSpec->frameCnt = 8;
 	classicNormalSpec->rowNumber = 0;
+	classicNormalSpec->rate = 4.0;
 	UIResSpecifier* classicBuildSpec = new UIResSpecifier();
 	classicBuildSpec->frameCnt = 4;
 	classicBuildSpec->rowNumber = 1;
+	classicBuildSpec->rate = 4.0;
 	UIResSpecifier* classicDestrSpec = new UIResSpecifier();
 	classicDestrSpec->frameCnt = 8;
 	classicDestrSpec->rowNumber = 0;	// TODO: temprory solution
+	classicDestrSpec->rate = 4.0;
 
 
 	// HUMAN
@@ -143,6 +146,7 @@ UIResDictionary::UIResDictionary()
 
 	// AROI
 	// t_AROI_HIVE
+	classicNormalSpec->rate = 3.0;
 
 	registerResPath(t_AROI_HIVE, 0, "/img/aroiHiveL1.png");
 	addSpecific(t_AROI_HIVE, 0, UI_NORMAL, classicNormalSpec);
@@ -204,6 +208,8 @@ UIResDictionary::UIResDictionary()
 	 ********************************/
 
 	// HUMAN
+
+	classicNormalSpec->rate = 4.0;
 
 	registerResPath(t_HUMAN_SHUTTLE, 0, "/img/PionerL0.png");
 	addSpecific(t_HUMAN_SHUTTLE, 0, UI_NORMAL, classicNormalSpec);
@@ -359,7 +365,12 @@ UIResDictionary::~UIResDictionary()
  * Func: getResource
  * Desc: Return src for images and animations.
  ***********************************************/
-QString UIResDictionary::getResource(int type, int level, int state, int& row, int& frameCnt)
+QString UIResDictionary::getResource(int type,
+									 int level,
+									 int state,
+									 int& row,
+									 int& frameCnt,
+									 double& rate)
 {
     if(type == INVALID_OBJ_TYPE)
         return QString("");
@@ -379,6 +390,7 @@ QString UIResDictionary::getResource(int type, int level, int state, int& row, i
 		qDebug() << "IResDictionary::getResource: ERROR! uiRes.spec.keys does not contain this state: !" << state;
 		row = INVALIDE_VALUE;
 		frameCnt = INVALIDE_VALUE;
+		rate = INVALIDE_VALUE;
 		return "";
 	}
 
@@ -389,11 +401,13 @@ QString UIResDictionary::getResource(int type, int level, int state, int& row, i
 		qDebug() << "IResDictionary::getResource: ERROR! spec is null!";
 		row = INVALIDE_VALUE;
 		frameCnt = INVALIDE_VALUE;
+		rate = INVALIDE_VALUE;
 		return "";
 	}
 
 	row = spec->rowNumber;
 	frameCnt = spec->frameCnt;
+	rate = spec->rate;
 
     return path;
 }

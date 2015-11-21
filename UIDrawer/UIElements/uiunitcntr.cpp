@@ -120,10 +120,11 @@ void UiUnitCntr::setLevel(int level, int state)
 	// TODO: update unit state machine to use graphic posibilityes
 	int row = INVALIDE_VALUE;
 	int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
 
-	QString src = UIResDictionary::getInstance()->getResource(m_curType, level, state, row, frameCnt);
+	QString src = UIResDictionary::getInstance()->getResource(m_curType, level, state, row, frameCnt, rate);
 
-	setNewAnimation(src, 8, 4.0);
+	setNewAnimation(src, frameCnt, rate);
 }
 
 /************************************************
@@ -135,11 +136,12 @@ void UiUnitCntr::setType(int type)
 	// TODO: update unit state machine to use graphic posibilityes
 	int row = INVALIDE_VALUE;
 	int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
 
 	m_curType = (OBJECT_TYPE)type;
-	QString src = UIResDictionary::getInstance()->getResource(m_curType, 0, 0, row, frameCnt);
+	QString src = UIResDictionary::getInstance()->getResource(m_curType, 0, 0, row, frameCnt, rate);
 
-	setNewAnimation(src, 8, 4.0);
+	setNewAnimation(src, frameCnt, rate);
 }
 
 /************************************************

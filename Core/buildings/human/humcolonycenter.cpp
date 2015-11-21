@@ -12,7 +12,7 @@ HumColonyCenter::HumColonyCenter(GObjWrapper *wrapper, Sector *sector, int popul
 	m_type = t_HUMAN_COLONY_CENTER;
 
 	m_wrapper->setType(m_type);
-	m_wrapper->setLevel(0, UI_NORMAL);
+	m_wrapper->setLevel(1, UI_NORMAL);
 	m_wrapper->setEnabled();
 
 

@@ -196,18 +196,20 @@ void CellController::setLevel(int level, int state)
 {
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
+
     m_level = level;
     bool tempState = (m_state != state) && (state != UI_NORMAL);
     m_state = state;
     QString src = UIResDictionary::getInstance()
-            ->getResource(m_curType, m_level, m_state, row, frameCnt);
+			->getResource(m_curType, m_level, m_state, row, frameCnt, rate);
 
     if(tempState)
     {
-		setTemproryState(frameCnt / 4.0);
+		setTemproryState(frameCnt / rate);
     }
 
-    setNewAnimation(src, frameCnt, 4.0, row);
+	setNewAnimation(src, frameCnt, rate, row);
 }
 
 void CellController::setTemproryState(double animationTime)
@@ -246,30 +248,32 @@ void CellController::setType(int type)
 {
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
     m_curType = (OBJECT_TYPE)type;
     QString src = UIResDictionary::getInstance()
-            ->getResource(m_curType, 0, 0, row, frameCnt);
+			->getResource(m_curType, 0, 0, row, frameCnt, rate);
 
-    setNewAnimation(src, frameCnt, 4.0, row);
+	setNewAnimation(src, frameCnt, rate, row);
 }
 
 void CellController::setState(int state)
 {
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
 
 	bool tempState = state != UI_NORMAL;
 
     m_state = state;
     QString src = UIResDictionary::getInstance()
-            ->getResource(m_curType, m_level, m_state, row, frameCnt);
+			->getResource(m_curType, m_level, m_state, row, frameCnt, rate);
 
     if(tempState)
     {
-		setTemproryState(frameCnt / 4.0);
+		setTemproryState(frameCnt / rate);
     }
 
-    setNewAnimation(src, frameCnt, 4.0, row);
+	setNewAnimation(src, frameCnt, rate, row);
 }
 
 /************************************************
@@ -281,9 +285,10 @@ void CellController::setSecType(int type)
     // trick, it does not used
     int row = INVALIDE_VALUE;
     int frameCnt = INVALIDE_VALUE;
+	double rate = INVALIDE_VALUE;
 
     OBJECT_TYPE bacType = (OBJECT_TYPE)type;
-    QString src = UIResDictionary::getInstance()->getResource(bacType, 0, 0, row, frameCnt);
+	QString src = UIResDictionary::getInstance()->getResource(bacType, 0, 0, row, frameCnt, rate);
     setNewBackground(src);
 }
 

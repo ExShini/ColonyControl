@@ -10,6 +10,7 @@ struct UIResSpecifier
 {
 	int frameCnt;
 	int rowNumber;
+	int rate;
 };
 
 struct UIResourse
@@ -23,7 +24,7 @@ class UIResDictionary
 public:
 
     static UIResDictionary* getInstance();
-	QString getResource(int type, int level, int state, int &row, int &frameCnt);
+	QString getResource(int type, int level, int state, int &row, int &frameCnt, double &rate);
 	QString getMarkerSrc(int playerID);
 	QString getAbilityIcon(ABILITY_TYPE type, int subType);
 	QString getAbilityMouseSrc(ABILITY_TYPE type, int subType);

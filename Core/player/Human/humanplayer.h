@@ -13,10 +13,8 @@ public:
 	virtual void init();
 
 protected:
-	void setAllHumanLimits();
 	void setupHumanResPrototypes();
-	void prepareHumanResPrototypes();
-	void setBuildingPrototypes();
+	void setupDefaltValues();
 
 	HumanUnitFactory* m_unitFactory;
 	HumanBuildingFactory* m_buildingFactory;
